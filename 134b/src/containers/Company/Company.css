@@ -1,0 +1,30 @@
+.jumbotron
+{
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 30%;
+  margin-bottom: 0px !important; /*Override bootsrap's jumbotron styling*/
+}
+
+.open-jobs {
+    width:75%;
+    float: left; 
+    height: 100vh;
+    border-right:  1px solid black;
+  }
+  
+.extra {
+    width:24%;
+    float: right;
+    height: 100vh;
+}
+
+.ul-photo-list {
+    -moz-column-count: 3;
+    -moz-column-gap: 5px;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 5px;
+    column-count: 3;
+    column-gap: 5px;
+    list-style-type: none;
+}
