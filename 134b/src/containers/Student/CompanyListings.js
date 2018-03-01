@@ -14,32 +14,17 @@ export class CompanyListings extends React.Component{
             if (allCompanies[i].openPositions > 0){
                 console.log("There's an opening so post photo");
                 console.log(allCompanies[i].logoURL);
-                logoArray.push(allCompanies[i].logoURL);
+                logoArray.push([allCompanies[i].logoURL, allCompanies[i].number]);
                 
             }
         }
         console.log(logoArray);
-        const chefs = [
-            {
-              key: 1,
-              images: ['http://lorempixel.com/400/400/sports/', 'http://lorempixel.com/400/400/abstract/', 'http://lorempixel.com/400/400/animals/', 'http://lorempixel.com/400/400/city/', 'http://lorempixel.com/400/400/people/']
-            }
-          ]
 
         return (
             <div>
-            <h4>Slide image</h4>
-            {chefs.map((chef, i)=>(
-              <div key={i}>
-                {chef.images.map((image,index)=>(
-                  <ImageLoad imageUrl={image} key={index} />
-                ))}
-              </div>  
-            ))}
+            <h3>These companies are hiring!</h3>
             
-               {/* {logoArray.map((logo)=>(
-              <ImageLoad imageUrl={logo} /> 
-            ))} */}
+            {logoArray.map((logo,i) => <ImageLoad key={i} imageURL={logo[0]} compNumber={logo[1]}/>)}
            
           </div>
         )
