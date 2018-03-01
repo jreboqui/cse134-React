@@ -4,6 +4,7 @@ import CompanyListings from './CompanyListings';
 
 import logo from './kpan.jpg';
 import logo2 from './pp1.jpeg';
+//import { Company } from '../../Shared/Objects';
 
 export class Player extends React.Component {
     render(){
@@ -14,6 +15,7 @@ export class Player extends React.Component {
             return <div> Sorry, player not found </div>
         }
         
+      
         let profilePic;
         if (player.number === 1){
              profilePic = logo;
