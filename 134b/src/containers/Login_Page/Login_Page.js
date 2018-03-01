@@ -4,6 +4,8 @@ import {Route, Link} from 'react-router-dom';
 import styles from './Login_Page.css';
 import {Company, Positions, applicationInfo, mentee, allCompanies, 
     allStudents, allTutors, Student, Tutor, mail} from  './../../Shared/Objects';
+import CompanyAPI from '../Company/CompanyAPI'
+
 
 class Login_Page extends Component {
 
@@ -11,28 +13,19 @@ class Login_Page extends Component {
         allCompanies
     }
 
-    componentWillMount(){
-        //this.retrieveLocalData();
-        console.log("LOGIN_PAGE componentWillMount")
-        localStorage.setItem("userType", "c");
-        localStorage.setItem("userId", 1);
-        this.retrieveLocalData();
-        //console.log(this.allCompanies);
+    componentDidMount(){
+        // console.log("LOGIN_PAGE componentWillMount")
+        // localStorage.setItem("userType", "c");
+        // localStorage.setItem("userId", 1);
+        // this.retrieveLocalData();
+        console.log("LOGIN_PAGE - COMPONENT WILL MOUNT");
+        const retrivedCompanies = CompanyAPI.all();
+        console.log(retrivedCompanies);
+        // this.setState({allCompanies: retrivedCompanies}); //Why this doesnt work??
+        // this.setState({allCompanies: "XXSAAJSHDJA"}); //this also doesnt work??
+        console.log(this.state.allCompanies);
     }
 
-    retrieveLocalData = () => {
-        var retrivedCompanies = localStorage.getItem('allCompanies');
-        retrivedCompanies = JSON.parse(retrivedCompanies);
-        this.allCompanies = retrivedCompanies;
-    
-        // var retrievedStudents = localStorage.getItem('allStudents');
-        // retrievedStudents = JSON.parse(retrievedStudents);
-        // allStudents = retrievedStudents;
-    
-        // var retrievedTutors = localStorage.getItem('allTutors');
-        // retrievedTutors = JSON.parse(retrievedTutors);
-        // allTutors = retrievedTutors;
-    }
 
     onClickLogin = (id,type) => {
         if(type == "c")
