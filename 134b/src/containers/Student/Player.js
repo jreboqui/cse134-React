@@ -2,8 +2,7 @@ import React from 'react';
 import StudentAPI from './StudentAPI';
 import CompanyListings from './CompanyListings';
 
-import logo from './kpan.jpg';
-import logo2 from './pp1.jpeg';
+import {kpan, pp1} from './Images';
 //import { Company } from '../../Shared/Objects';
 
 export class Player extends React.Component {
@@ -15,19 +14,12 @@ export class Player extends React.Component {
             return <div> Sorry, player not found </div>
         }
         
-      
-        let profilePic;
-        if (player.number === 1){
-             profilePic = logo;
-        } else {
-             profilePic = logo2;
-        }
         return (
             <div>
                 <img alt="none" 
-                     src={profilePic}
-                     height="200"
-                     width="200"/>
+                     src={require(`${player.pic}`)}
+                     height="200px"
+                     width="200px"/>
                 <h1> {player.name}</h1>
                 <h3> School: {player.school} </h3>
                 <h3> GPA: {player.GPA} </h3>
