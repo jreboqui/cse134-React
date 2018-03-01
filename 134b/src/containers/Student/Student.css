@@ -1,4 +1,26 @@
 img {
     height: 200px;
     width: 200px;
+    border: 0;
+    margin: 3%;
 }
+
+#photo {
+    display: inline;
+
+}
+
+#photo button {
+    display: inline-block;
+    width: 300px;
+    margin: 3%;
+    border: 1%;
+}
+
+#close-image img {
+    display: block;
+    height: 100px;  
+    width: 250px;
+}
+
+
