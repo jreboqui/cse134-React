@@ -11,7 +11,7 @@ export class CompanyListings extends React.Component{
         const logoArray = [];
         let i;
         for (i = 0; i < allCompanies.length; i++){
-            if (allCompanies[i].openPositions > 0){
+            if (allCompanies[i].openPositions.length > 0){
                 console.log("There's an opening so post photo");
                 console.log(allCompanies[i].logoURL);
                 logoArray.push([allCompanies[i].logoURL, allCompanies[i].number]);
