@@ -1,0 +1,16 @@
+.curr-job-title {
+    width:75%;
+    border: none;
+    float: left;
+}
+  
+.curr-job-description {
+width:76%;
+border: none;
+float: left;
+}
+
+.extra-buttons {
+width: 24%;
+float: right;
+}
