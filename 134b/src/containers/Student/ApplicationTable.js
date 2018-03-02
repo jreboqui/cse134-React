@@ -1,9 +1,22 @@
 import React from 'react';
-
+import {Composite} from 'react-composite';
 class ApplicationTable extends React.Component{
     
     render(){
-        console.log(this.props.studentObject);
+        console.log("This is the student object");
+        console.log(this.props);
+       // console.log(this.props.studentObject);
+        const student = this.props.studentObject;
+       // console.log(student);
+        console.log("Application info length: " + student.applications.length);
+        console.log(student.applications[0]);
+        let row = student.applications.length;
+        
+        var heading = new Array();
+        heading[0] = "Company";
+        heading[1] = "Position";
+        heading[2] = "Status";
+
         return(
             <div id="appTable">
                 <h4> Current Applications </h4>
@@ -11,28 +24,21 @@ class ApplicationTable extends React.Component{
                 <table className="table table-hover">
                     <thead>
                         <tr>
-                            <th>Company</th>
-                            <th>Position</th>
-                            <th>Status</th>
+                           {heading.map((head,i) => <th key={i}>{head}</th>)}
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Amazon</td>
-                            <td>SWE</td>
-                            <td>Offered</td>
-                        </tr>
-                        <tr>
-                            <td>Amazon</td>
-                            <td>Product Management</td>
-                            <td>Offered</td>
-                        </tr>
-                        <tr>
-                            <td>Salesforce</td>
-                            <td>Software Engineer</td>
-                            <td>Offered</td>
-                        </tr>
-                       
+                        
+                        {student.applications.map((app,i,j,k,m,n) => 
+                            <Composite key={i}>
+                                <tr key={n}>
+                                <th key={i}> {app["companyName"]} </th>
+                                <th key={j}> {app["positionTitle"]} </th>
+                                <th key={k}> {app["appStatus"]} </th>
+                                
+                                </tr>
+                            </Composite>
+                        )}
                     </tbody>
                 </table>
                 </div>
