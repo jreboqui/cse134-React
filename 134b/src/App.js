@@ -10,7 +10,6 @@ import Tutor from './containers/Tutor/Tutor';
 import CurrentJobPosting from './containers/Company/CurrentJobPosting/CurrentJobPosting';
 
 
-
 class App extends Component {
   render() {
     return (

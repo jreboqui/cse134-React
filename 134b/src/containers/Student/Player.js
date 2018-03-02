@@ -17,7 +17,6 @@ export class Player extends React.Component {
         this.props.history.push('/login');
     }
 
-
     render(){
         const player = StudentAPI.get(
             parseInt(this.props.match.params.number, 10)
