@@ -17,11 +17,14 @@ export class Player extends React.Component {
         this.props.history.push('/login');
     }
 
+<<<<<<< HEAD
     handleEditProfile = () => {
         <Link to={`/student/editprofile/${this.props.match.params.number}`} />
     }
 
 
+=======
+>>>>>>> 1ed46f42aca083ffcf8a24fe21e848905fd1483e
     render(){
         const player = StudentAPI.get(
             parseInt(this.props.match.params.number, 10)
