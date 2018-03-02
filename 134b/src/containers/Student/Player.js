@@ -20,7 +20,7 @@ export class Player extends React.Component {
         return (
             <div>
                 <div id="sidebar"> 
-                    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
+                    <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
                         <img alt="none" 
                         src={require(`${player.pic}`)}
                         height="200px"
@@ -29,15 +29,15 @@ export class Player extends React.Component {
                         <h3> School: {player.school} </h3>
                         <h3> GPA: {player.GPA} </h3>
                         <h3> Year: {player.year} </h3>
-                        <button class="btn btn-primary"> Edit Profile </button>
+                        <button className="btn btn-primary"> Edit Profile </button>
                         <br/>
-                        <button class="btn btn-warning"> Messaging </button>
+                        <button className="btn btn-warning"> Messaging </button>
                         <br/>
-                        <button class="btn btn-danger"> Logout </button>
+                        <button className="btn btn-danger"> Logout </button>
                     </nav>
+                </div>
                 <ApplicationTable />
                 <CompanyListings />
-                </div>
             </div>
         )
 
