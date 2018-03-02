@@ -5,6 +5,7 @@ import styles from './Company.css';
 import CompanyAPI from './CompanyAPI';
 import JobOpening from './JobOpening/JobOpening'
 import CurrentJobPosting from './CurrentJobPosting/CurrentJobPosting';
+import CompanyAbout from './CurrentJobPosting/CompanyAbout';
 
 class Company extends Component {
     
@@ -47,6 +48,33 @@ class Company extends Component {
                         {/* <button id="btn-add" onClick="addNewPosition(1)" className="btn btn-success" type="button" style="float: left">Add</button> */}
                     </div>   
                 </div>
+
+                <div className="extra">
+                    <CompanyAbout 
+                            hq={this.state.currCompany.hq} 
+                            size={this.state.currCompany.size}
+                            industry={this.state.currCompany.Industry}
+                            website={this.state.currCompany.website}
+                    />
+
+                    <hr></hr>
+
+                    <div className="photos">
+                        <h4>Photos:</h4>
+                        <div>
+                        <ul id="id-ul-photos" className="ul-photo-list">
+                        </ul>
+                        </div>
+                    </div>
+
+                    <br></br>
+                    <button className="btn btn-primary" 
+                        style={{width: "6.5em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}}>Messaging</button>
+                    <button className="btn btn-danger" 
+                        style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px", marginLeft:"10px"}}>Logout</button> 
+
+                </div>
+
             </div>
         ); 
     } 
