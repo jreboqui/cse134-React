@@ -6,8 +6,8 @@ class ApplicationTable extends React.Component{
         return(
             <div id="appTable">
                 <h1> Application Table goes here </h1>
-                <div id="theHead" class="table-header">
-                <table class="table table-hover">
+                <div id="theHead" className="table-header">
+                <table className="table table-hover">
                     <thead>
                         <tr>
                             <th>Company</th>
