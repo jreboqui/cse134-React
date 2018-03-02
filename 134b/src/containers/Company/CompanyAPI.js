@@ -72,6 +72,7 @@ const CompanyAPI = {
         title: "We pioneer", 
         description: "We're a company of pioneers. It's our job to make bold bets, and we get our energy from inventing on behalf of customers. Success is measured against the possible, not the probable. For today’s pioneers, that’s exactly why there’s no place on Earth they’d rather build than Amazon.",
         photosURL: ["amazon1.JPG", "amazon2.JPG", "amazon3.JPG", "amazon4.JPG", "amazon5.JPG", "amazon6.JPG"],
+        logoURL: "./amazon.jpg",
         openPositions: [amazonPos1,amazonPos2,amazonPos3,amazonPos4,amazonPos5,amazonPos6,amazonPos7],
         mailing: [mailToAmazon1,mailToAmazon2]
       },
@@ -89,11 +90,12 @@ const CompanyAPI = {
         title: "We pioneer", 
         description: "We're a company of pioneers. It's our job to make bold bets, and we get our energy from inventing on behalf of customers. Success is measured against the possible, not the probable. For today’s pioneers, that’s exactly why there’s no place on Earth they’d rather build than Amazon.",
         photosURL: ["salesforce1.JPG", "salesforce2.JPG", "salesforce3.JPG", "salesforce4.JPG", "salesforcen5.JPG", "salesforce6.JPG"],
+        logoURL: "./salesforce_icon.png",
         openPositions: [salesforcePos1,salesforcePos2,salesforcePos3,salesforcePos4],
         mailing: [mailToSalesforce1]
       },
         
-      { id: 3, name: "Microsoft", bannerURL: "./salesforce_icon.png", openPositions: 2}
+      { id: 3, name: "Microsoft", bannerURL: "./salesforce_icon.png", openPositions: [salesforcePos1,salesforcePos2,salesforcePos3,salesforcePos4], logoURL: "./microsoft_icon.jpg"}
     ],
     all: function() { return this.companies},
     get: function(id) {
