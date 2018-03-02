@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import StudentAPI from './StudentAPI';
 import CompanyListings from './CompanyListings';
 import ApplicationTable from './ApplicationTable';
@@ -15,6 +16,8 @@ export class Player extends React.Component {
     onClickLogout = () => {
         this.props.history.push('/login');
     }
+
+
     render(){
         const player = StudentAPI.get(
             parseInt(this.props.match.params.number, 10)
@@ -42,9 +45,9 @@ export class Player extends React.Component {
                             </ul>
                         </div>
                        
-                        <button className="btn btn-primary" style={{"width": "50%"}}> Edit Profile </button>
+                        <button className="btn btn-primary" style={{"width": "50%"}} onClick={this.handleEditProfile}> Edit Profile </button>
                         <br/>
-                        <button className="btn btn-warning" style={{"width": "50%"}}> Messaging </button>
+                        <button className="btn btn-warning" style={{"width": "50%"}} onClick={this.handleMessaging}> Messaging </button>
                         <br/>
                         <button className="btn btn-danger" style={{"width": "50%"}} onClick={this.onClickLogout}> Logout </button>
                     </nav>
