@@ -5,6 +5,8 @@ import ApplicationTable from './ApplicationTable';
 
 import {kpan, pp1} from './Images';
 //import { Company } from '../../Shared/Objects';
+import './resume.css';
+import './resume.min.css';
 
 export class Player extends React.Component {
     render(){
@@ -18,17 +20,21 @@ export class Player extends React.Component {
         return (
             <div>
                 <div id="sidebar"> 
-                    <img alt="none" 
-                     src={require(`${player.pic}`)}
-                     height="200px"
-                     width="200px"/>
-                    <h1> {player.name}</h1>
-                    <h3> School: {player.school} </h3>
-                    <h3> GPA: {player.GPA} </h3>
-                    <h3> Year: {player.year} </h3>
-                    <button> Edit Profile </button>
-                    <button> Messaging </button>
-                    <button> Logout </button>
+                    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav">
+                        <img alt="none" 
+                        src={require(`${player.pic}`)}
+                        height="200px"
+                        width="200px"/>
+                        <h1> {player.name}</h1>
+                        <h3> School: {player.school} </h3>
+                        <h3> GPA: {player.GPA} </h3>
+                        <h3> Year: {player.year} </h3>
+                        <button class="btn btn-primary"> Edit Profile </button>
+                        <br/>
+                        <button class="btn btn-warning"> Messaging </button>
+                        <br/>
+                        <button class="btn btn-danger"> Logout </button>
+                    </nav>
                 <ApplicationTable />
                 <CompanyListings />
                 </div>
