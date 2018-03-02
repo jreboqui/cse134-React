@@ -19,6 +19,11 @@ export class Tutor extends React.Component{
         this.setState({currTutor: tutorId});
         
     }
+
+    onClickLogout = () => {
+        this.props.history.push('/login');
+    }
+    
     render(){
         const tuts = TutorAPI.get(
             parseInt(this.props.match.params.tutorId, 10)
@@ -38,14 +43,14 @@ export class Tutor extends React.Component{
                     height="200px"
                     width="200px"/>
                     <h2> {tuts.name}</h2>
-                    <h3> School: {tuts.school} </h3>
-                    <h3> GPA: {tuts.GPA} </h3>
-                    <h3> Year: {tuts.year} </h3>
+                    <h5> School: {tuts.school} </h5>
+                    <h5> GPA: {tuts.GPA} </h5>
+                    <h5> Year: {tuts.year} </h5>
                     <button className="btn btn-primary"> Edit Profile </button>
                     <br/>
                     <button className="btn btn-warning"> Messaging </button>
                     <br/>
-                    <button className="btn btn-danger"> Logout </button>
+                    <button className="btn btn-danger" onClick={this.onClickLogout}> Logout </button>
                 </nav>            
             </div>
             <ApplicationTable />

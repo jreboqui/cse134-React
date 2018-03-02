@@ -9,6 +9,10 @@ import './resume.css';
 import './resume.min.css';
 
 export class Player extends React.Component {
+    
+    onClickLogout = () => {
+        this.props.history.push('/login');
+    }
     render(){
         const player = StudentAPI.get(
             parseInt(this.props.match.params.number, 10)
@@ -33,7 +37,7 @@ export class Player extends React.Component {
                         <br/>
                         <button className="btn btn-warning"> Messaging </button>
                         <br/>
-                        <button className="btn btn-danger"> Logout </button>
+                        <button className="btn btn-danger" onClick={this.onClickLogout}> Logout </button>
                     </nav>
                 </div>
                 <ApplicationTable />

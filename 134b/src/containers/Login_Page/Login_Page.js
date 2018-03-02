@@ -4,8 +4,9 @@ import {Route, Link} from 'react-router-dom';
 import styles from './Login_Page.css';
 import {Company, Positions, applicationInfo, mentee, allCompanies, 
     allStudents, allTutors, Student, Tutor, mail} from  './../../Shared/Objects';
-import CompanyAPI from '../Company/CompanyAPI'
-
+import CompanyAPI from '../Company/CompanyAPI';
+import StudentAPI from '../Student/StudentAPI';
+import TutorAPI from '../Tutor/TutorAPI';
 
 class Login_Page extends Component {
 
@@ -48,9 +49,36 @@ class Login_Page extends Component {
                 }
                 break;
             }
-            case('s'):
-                
+            case('s'): {
+                const retrivedStudents = StudentAPI.all();
+                for(var i = 0; i < retrivedStudents.length; i++){
+                    if(this.state.username == retrivedStudents[i].username &&
+                        this.state.password == retrivedStudents[i].password){
+                            alert("Sign in Successful!");
+                            localStorage.setItem("userType", 's');
+                            localStorage.setItem("userId",retrivedStudents[i].number);
+                            valid = true;
+                            this.props.history.push(`/student/${retrivedStudents[i].number}`);
+                            break;
+                    }
+                }
                 break;
+            }
+            case('t'): {
+                const retrivedTutors = TutorAPI.all();
+                for(var i = 0; i < retrivedTutors.length; i++){
+                    if(this.state.username == retrivedTutors[i].username &&
+                        this.state.password == retrivedTutors[i].password){
+                            alert("Sign in Successful!");
+                            localStorage.setItem("userType", 't');
+                            localStorage.setItem("userId",retrivedTutors[i].tutorId);
+                            valid = true;
+                            this.props.history.push(`/tutor/${retrivedTutors[i].tutorId}`);
+                            break;
+                    }
+                }
+                break;
+            }
             default: {
 
                 break;
