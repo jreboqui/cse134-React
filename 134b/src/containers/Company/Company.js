@@ -2,48 +2,62 @@ import React, {Component} from 'react';
 import {Route, Link} from 'react-router-dom';
 
 import styles from './Company.css';
-
+import CompanyAPI from './CompanyAPI';
+import JobOpening from './JobOpening/JobOpening'
+//import CurrentJobPosting from './CurrentJobPosting/CurrentJobPosting';
 
 class Company extends Component {
     
     state = {
         currCompany: null,
-        userType: ''
+        userType: '',
+        renderPositions: false,
+        bannerPath: ""
     }
 
     componentWillMount(){
         this.userType = localStorage.getItem('userType');
-        let retrievedCompanies = localStorage.getItem('allCompanies');
-        retrievedCompanies = JSON.parse(retrievedCompanies);
+        let retrievedCompanies = CompanyAPI.all();
+        console.log(retrievedCompanies);
+        //console.log(this.props.match.params);
+        if(this.props.match.params.positionId != null)
+            this.setState({renderPositions: true})
         const companyId = this.props.match.params.companyId;
         for (var i = 0; i < retrievedCompanies.length; i++){
-            if(companyId == retrievedCompanies[i].id)
-                this.currCompany = retrievedCompanies[i];
+            if(companyId == retrievedCompanies[i].id){
+                this.setState({currCompany: retrievedCompanies[i]});
+                this.setState({bannerPath: "'../../Shared/Images/" + retrievedCompanies[i].bannerURL + "'"});
+                break;
+            }
         }
-        console.log(this.currCompany);
     }
 
     render(){
-    
-        return (
-            <div>
-                <div id="id-banner" className="jumbotron jumbotron-fluid"></div>
-                <div className="open-jobs">
-                    <div id ="id-about" style={{ paddingLeft: '1%'}}>
+        if(!this.state.renderPositions){
+            //bannerPath = "'../../Shared/Images/" + this.state.currCompany.bannerURL + "'";
+            //style={{backgroundImage: "url("+ require(this.state.bannerPath) + ")" }}
+            return (
+                <div>
+                    <div className="jumbotron jumbotron-fluid">
                     </div>
-                    <hr></hr>
-                    <div style={{paddingLeft:'1%'}}>
-                        <h2>Currently Open Intern Positions</h2>
-                        <ul id="id-list-open-position">
-                        </ul>
+                    <div className="open-jobs">
+                        <div id ="id-about" style={{ paddingLeft: '1%'}}></div>
+                        <hr></hr>
+                        <div style={{paddingLeft:'1%'}}>
+                            <JobOpening positions={this.state.currCompany.openPositions}/>
+                        </div>
+                        <div style={{paddingLeft:'2%'}}>
+                            {/* <button id="btn-add" onClick="addNewPosition(1)" className="btn btn-success" type="button" style="float: left">Add</button> */}
+                        </div>   
                     </div>
-                    <div style={{paddingLeft:'2%'}}>
-                        {/* <button id="btn-add" onClick="addNewPosition(1)" className="btn btn-success" type="button" style="float: left">Add</button> */}
-                    </div>   
                 </div>
-            </div>
-        ); 
-    }
+            );
+        } else {
+            return (<div>
+                        <Route path="/company/:companyId/position/:positionId"/>
+                    </div>);
+        }
+    } 
 }
 
 export default Company;

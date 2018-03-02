@@ -14,16 +14,12 @@ class Login_Page extends Component {
     }
 
     componentDidMount(){
-        // console.log("LOGIN_PAGE componentWillMount")
-        // localStorage.setItem("userType", "c");
-        // localStorage.setItem("userId", 1);
-        // this.retrieveLocalData();
-        console.log("LOGIN_PAGE - COMPONENT WILL MOUNT");
+        localStorage.setItem("userType", "c");
+        localStorage.setItem("userId", 1);
+        console.log("LOGIN_PAGE - COMPONENT DID MOUNT");
         const retrivedCompanies = CompanyAPI.all();
         console.log(retrivedCompanies);
-        // this.setState({allCompanies: retrivedCompanies}); //Why this doesnt work??
-        // this.setState({allCompanies: "XXSAAJSHDJA"}); //this also doesnt work??
-        console.log(this.state.allCompanies);
+        this.setState({allCompanies: retrivedCompanies}); 
     }
 
 
