@@ -1,7 +1,7 @@
 import React, from 'react';
 import StudentAPI from '../Student/StudentAPI';
 
-class EditForm extends React.Component {
+class EditProfile extends React.Component {
     constructor(props) {
         super(props);
 

@@ -17,6 +17,10 @@ export class Player extends React.Component {
         this.props.history.push('/login');
     }
 
+    handleEditProfile = () => {
+        <Link to={`/student/editprofile/${this.props.match.params.number}`} />
+    }
+
 
     render(){
         const player = StudentAPI.get(
