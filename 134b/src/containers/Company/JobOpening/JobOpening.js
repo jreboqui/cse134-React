@@ -11,7 +11,7 @@ function JobOpening (props) {
                 {
                     props.positions.map(position => (
                     <li key={position.id} className="list-group-item">
-                        <Link to={`/company/position/${position.id}`}>{position.title}</Link>
+                        <Link to={`/company/${props.companyId}/position/${position.id}`}>{position.title}</Link>
                     </li>
                     ))
                 }
