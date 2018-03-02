@@ -8,7 +8,7 @@ const StudentAPI = {
         year:"2018", 
         pic:"./kpan.jpg",
         major: "Computer Science", 
-        status: "",
+        status: "Looking for internship",
         applications: [], 
         username: "kp", 
         password: "kp12345", 

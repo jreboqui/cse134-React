@@ -11,7 +11,7 @@ export class ImageLoad extends React.Component{
                      {console.log(this.props.compNumber)}
 
                      <Link to={`/company/${this.props.compNumber}`}>
-                     <button id="close-image"><img alt="none" src={require(`${this.props.imageURL}`)} /></button>
+                     <button style={{"backgroundColor": "white", "width":"20%"}}><img alt="none" src={require(`${this.props.imageURL}`)} /></button>
                      </Link>
 
             </div>

@@ -7,7 +7,7 @@ export class Student extends React.Component{
     render(){
         return (
         <div>
-           <h2> Profile </h2>
+           
            <Switch>
                 <Route exact path='/student' component={FullRoster}/>
                 <Route path='/student/:number' component={Player} />

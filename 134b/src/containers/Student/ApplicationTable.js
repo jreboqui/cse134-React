@@ -3,9 +3,10 @@ import React from 'react';
 class ApplicationTable extends React.Component{
     
     render(){
+        console.log(this.props.studentObject);
         return(
             <div id="appTable">
-                <h1> Application Table goes here </h1>
+                <h4> Current Applications </h4>
                 <div id="theHead" className="table-header">
                 <table className="table table-hover">
                     <thead>
