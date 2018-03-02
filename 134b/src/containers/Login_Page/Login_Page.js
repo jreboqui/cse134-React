@@ -9,49 +9,89 @@ import CompanyAPI from '../Company/CompanyAPI'
 
 class Login_Page extends Component {
 
-    state = {
-        allCompanies
+    //Add constructor for pages that contain forms
+    constructor(props){ 
+        super(props); //dont forget to always include this in the constructor!
+        this.state = {
+            username: '',
+            password: '',
+            userType: 's' 
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount(){
-        localStorage.setItem("userType", "c");
-        localStorage.setItem("userId", 1);
-        console.log("LOGIN_PAGE - COMPONENT DID MOUNT");
-        const retrivedCompanies = CompanyAPI.all();
-        console.log(retrivedCompanies);
-        this.setState({allCompanies: retrivedCompanies}); 
+    handleChange = (event) => {
+        const target = event.target;
+        const name = target.name;
+        this.setState({
+            [name]: event.target.value
+        });
     }
 
+    handleSubmit = (event) => {
+        let valid = false;
+        switch(this.state.userType){
+            case('c'): {
+                const retrivedCompanies = CompanyAPI.all();
+                for(var i = 0; i < retrivedCompanies.length; i++){
+                    if(this.state.username == retrivedCompanies[i].username &&
+                        this.state.password == retrivedCompanies[i].password){
+                            alert("Sign in Successful!");
+                            localStorage.setItem("userType", 'c');
+                            localStorage.setItem("userId",retrivedCompanies[i].id);
+                            valid = true;
+                            this.props.history.push(`/company/${retrivedCompanies[i].id}`);
+                            break;
+                    }
+                }
+                break;
+            }
+            case('s'):
+                
+                break;
+            default: {
 
-    onClickLogin = (id,type) => {
-        if(type == "c")
-            this.props.history.push("/company/" + id);
+                break;
+            }    
+        }
+
+        if(!valid){
+            alert("Invalid Username and Password Combination!");
+            event.preventDefault();
+        }
+
     }
 
     render() {
         return (
             <div>
-                <h2>3-Days-Rush</h2>
-
                 <div className="container">
-                    <label><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" id="uname" name="uname" required></input>
+                    <h2>3-Days-Rush</h2><hr></hr>
+                    <form onSubmit={this.handleSubmit}>
+                        <label><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="username"
+                                value={this.state.username} onChange={this.handleChange} required>
+                        </input>
 
-                    <label><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" id="psw" name="psw" required></input>
+                        <label><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="password"
+                                value={this.state.password} onChange={this.handleChange} required>
+                        </input>
+                        
+                        <label><b>Login as:</b></label>
+                        <br></br>
+                        <select value={this.state.userType} onChange={this.handleChange} name="userType">
+                            <option value='s'>Student</option>
+                            <option value='t'>Tutor</option>
+                            <option value='c'>Company</option>
+                        </select>
                     
-                    <label for="userType"><b>Login as:</b></label>
-                    <br></br>
-                    <select id="userType" name="userType">
-                        <option value="s">Student</option>
-                        <option value="t">Tutor</option>
-                        <option value="c">Company</option>
-                    </select>
-                    
-                    <form>
-                        <button type="button">Login</button>
-                        <button className="button-register" type="button" onClick="location.href='register.html'">Register</button>
+                        <input className="btn btn-success" style={{width:"100%", marginTop: "20px", marginBottom:"20px"}} type="submit" value="Login"/>
                     </form>
+                    
+                    <button className="btn btn-primary" style={{width:"100%"}}>Register</button>
                 </div>
             </div>
         );

@@ -19,7 +19,6 @@ class Company extends Component {
         this.userType = localStorage.getItem('userType');
         let retrievedCompanies = CompanyAPI.all();
         console.log(retrievedCompanies);
-        //console.log(this.props.match.params);
         const companyId = this.props.match.params.companyId;
         for (var i = 0; i < retrievedCompanies.length; i++){
             if(companyId == retrievedCompanies[i].id){
@@ -28,6 +27,10 @@ class Company extends Component {
                 break;
             }
         }
+    }
+
+    onClickLogout = () => {
+        this.props.history.push('/login');
     }
 
     render(){
@@ -70,7 +73,7 @@ class Company extends Component {
                     <br></br>
                     <button className="btn btn-primary" 
                         style={{width: "6.5em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}}>Messaging</button>
-                    <button className="btn btn-danger" 
+                    <button className="btn btn-danger"  onClick={this.onClickLogout}
                         style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px", marginLeft:"10px"}}>Logout</button> 
 
                 </div>

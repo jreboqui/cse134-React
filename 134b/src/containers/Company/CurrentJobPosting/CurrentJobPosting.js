@@ -18,7 +18,7 @@ class CurrentJobPosting extends Component {
         //this.userType = localStorage.getItem('userType');
         let retrievedCompanies = CompanyAPI.all();
         console.log(retrievedCompanies);
-        console.log(this.props.match.params);
+        //console.log(this.props.match.params);
         const companyId = this.props.match.params.companyId;
         for (var i = 0; i < retrievedCompanies.length; i++){
             if(companyId == retrievedCompanies[i].id){
@@ -37,7 +37,7 @@ class CurrentJobPosting extends Component {
     }
 
     render() {
-        console.log(this.state.currJobPosting);
+        //console.log(this.state.currJobPosting);
         return(
             <div>
                 <div id="id-banner" className="jumbotron jumbotron-fluid"></div>

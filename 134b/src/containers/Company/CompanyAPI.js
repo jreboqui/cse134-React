@@ -81,7 +81,7 @@ const CompanyAPI = {
         id: 2,
         name: "Salesforce.com",
         username: "recruiting@salesforce.com",
-        password: "amazon12345",  
+        password: "salesforce12345",  
         bannerURL: "salesforce-banner.PNG",
         hq: "San Francisco, WA",
         size: "125000",
