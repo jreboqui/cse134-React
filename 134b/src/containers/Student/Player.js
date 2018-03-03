@@ -29,6 +29,8 @@ export class Player extends React.Component {
         if (!player){
             return <div> Sorry, player not found </div>
         }
+
+        let userType = localStorage.getItem("userType");
         
         return (
             <div>
