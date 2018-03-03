@@ -10,7 +10,8 @@ import Tutor from './containers/Tutor/Tutor';
 import CurrentJobPosting from './containers/Company/CurrentJobPosting/CurrentJobPosting';
 import Messaging from './containers/Messaging/Messaging';
 import EditProfile from './containers/Student/EditProfile';
-
+import EditProfile from './containers/Student/EditProfile';
+import Applicant from './containers/Company/Applicant';
 
 class App extends Component {
   render() {
@@ -25,7 +26,8 @@ class App extends Component {
           <Route path="/messaging" component={Messaging}/>
           <Route path="/student" component={Student} />
           <Route path="/tutor/:tutorId" exact component={Tutor} />
-          <Route path="/editProfile" component={EditProfile} />         
+          <Route path="/editProfile" component={EditProfile} />
+          <Route path="/applicant" exact component={Applicant} />         
         </Switch>
       </div>
       </BrowserRouter>

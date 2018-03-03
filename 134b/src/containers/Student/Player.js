@@ -9,8 +9,6 @@ import {kpan, pp1} from './Images';
 import './resume.css';
 import './resume.min.css';
 
-
-
 export class Player extends React.Component {
     
     onClickLogout = () => {
@@ -21,11 +19,15 @@ export class Player extends React.Component {
         this.props.history.push('/editprofile/student/' + this.props.match.params.number);
     }
 
-
+    
     render(){
         const player = StudentAPI.get(
             parseInt(this.props.match.params.number, 10)
         )
+        console.log("Number is:" + player.number);
+        StudentAPI.set(1);
+        console.log(player.number);
+
         if (!player){
             return <div> Sorry, player not found </div>
         }

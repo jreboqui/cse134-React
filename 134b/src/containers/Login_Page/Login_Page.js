@@ -93,6 +93,8 @@ class Login_Page extends Component {
     }
 
     render() {
+        console.log(StudentAPI.all());
+
         return (
             <div>
                 <div className="container">
