@@ -8,6 +8,7 @@ import Company from './containers/Company/Company';
 import Student from './containers/Student/Student';
 import Tutor from './containers/Tutor/Tutor';
 import CurrentJobPosting from './containers/Company/CurrentJobPosting/CurrentJobPosting';
+import EditProfile from './containers/Student/EditProfile';
 
 
 class App extends Component {
@@ -21,7 +22,8 @@ class App extends Component {
           <Route path="/company/:companyId" exact component={Company}/>
           <Route path="/company/:companyId/position/:positionId" exact component={CurrentJobPosting}/>
           <Route path="/student" component={Student} />
-          <Route path="/tutor/:tutorId" exact component={Tutor} />         
+          <Route path="/tutor/:tutorId" exact component={Tutor} />
+          <Route path="/editProfile" component={EditProfile} />         
         </Switch>
       </div>
       </BrowserRouter>

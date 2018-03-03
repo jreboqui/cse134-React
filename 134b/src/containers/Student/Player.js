@@ -18,8 +18,7 @@ export class Player extends React.Component {
     }
 
     handleEditProfile = () => {
-        //<Link to={`/student/editprofile/${this.props.match.params.number}`} />
-        this.props.history.push('/student/editprofile/' + this.props.match.params.number);
+        this.props.history.push('/editprofile/student/' + this.props.match.params.number);
     }
 
 

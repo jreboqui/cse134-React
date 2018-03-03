@@ -12,7 +12,7 @@ export class Student extends React.Component{
            <Switch>
                 <Route exact path='/student' component={FullRoster}/>
                 <Route path='/student/:number' component={Player} />
-                <Route path='/student/editprofile/:number' component={EditProfile} />
+                <Route path='/editprofile/student/:number' component={EditProfile} />
             </Switch>
         </div>
         );
