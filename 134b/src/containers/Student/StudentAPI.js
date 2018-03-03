@@ -114,7 +114,19 @@ const StudentAPI = {
     get: function(id) {
       const isPlayer = p => p.number === id
       return this.players.find(isPlayer)
+    },
+    setAll: function(id, state) {
+      const isPlayer = p => p.number === id
+      let x = this.players.find(isPlayer);
+      x.name = state.sname;
+      x.school = state.schoolname;
+      x.year = state.year;
+      x.major = state.major;
+      x.status = state.status;
+      x.GPA = state.gpa;
+      x.intern = state.intern;
     }
+
   }
   
   export default StudentAPI  

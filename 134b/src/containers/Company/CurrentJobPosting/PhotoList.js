@@ -4,4 +4,4 @@ function PhotoList (props) {
     
 }
 
-export default photoList;
+export default PhotoList;

@@ -9,7 +9,7 @@ import Student from './containers/Student/Student';
 import Tutor from './containers/Tutor/Tutor';
 import CurrentJobPosting from './containers/Company/CurrentJobPosting/CurrentJobPosting';
 import EditProfile from './containers/Student/EditProfile';
-
+import Applicant from './containers/Company/Applicant';
 
 class App extends Component {
   render() {
@@ -24,7 +24,7 @@ class App extends Component {
           <Route path="/student" component={Student} />
           <Route path="/tutor/:tutorId" exact component={Tutor} />
           <Route path="/editProfile" component={EditProfile} />
-          <Route path="/company.:companyId/position/:positionId/applicants/:applicantId" exact component={Applicant} />         
+          <Route path="/applicant" exact component={Applicant} />         
         </Switch>
       </div>
       </BrowserRouter>
