@@ -1,31 +1,114 @@
 import React from 'react';
+import { browserRouter, Link, Route } from 'react-router-dom';
 import StudentAPI from '../Student/StudentAPI';
+import './EditProfile.css';
 
 class EditProfile extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {value: ''};
+        this.state = {
+            sname: '',
+            schoolname: '',
+            year: '',
+            major: '',
+            minor: '',
+            status: '',
+            gpa: '',
+            intern: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        
+        
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    studentId = this.props.location.pathname[this.props.location.pathname.length-1];
+
+    componentDidMount() {
+        const player = StudentAPI.get(
+            parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10)
+        )
+
+        console.log(player);
+        
+        this.setState({
+            sname: player.name,
+            schoolname: player.school,
+            year: player.year,
+            major: player.major,
+            status: player.status,
+            gpa: player.GPA,
+            intern: player.intern
+        });
+    }
+
+    handleChange = (event) => {
+        const target = event.target;
+        const name = target.name;
+        this.setState({
+            [name]: event.target.value
+        });
+    }
+
+    handleReset = () => {
+        this.setState({
+            sname: '',
+            schoolname: '',
+            year: '',
+            major: '',
+            status: '',
+            gpa: '',
+            intern: ''
+        });
+    }
+
+    handleCancel = () => {
+        this.props.history.push('/student/' + this.props.location.pathname[this.props.location.pathname.length-1]);
+    }
+
+    handleSubmit = () => {
+        StudentAPI.setAll(this.state);
+        this.props.history.push('/student/' + this.props.location.pathname[this.props.location.pathname.length-1]);
     }
 
     render() {
+    
         return (
-          <div>
-            <h1> Nice </h1>
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                Name:
-                <input type="text" value={this.state.value} onChange={this.handleChange} />
-              </label>
-              <input type="submit" value="Submit" />
-            </form>
-          </div>
+            <div class ="profile">
+                <h1>Edit Student Profile</h1>
+                <hr />    
+                <form name="profile">
+                    <label for="sname">Full name:</label>
+                    <input name="sname" type="text" value={this.state.sname} onChange={this.handleChange} />
+
+                    <label for="schoolname">School name:</label>
+                    <input name="schoolname" type="text" value={this.state.schoolname} onChange={this.handleChange} />
+
+                    <label for="year">Year:</label>
+                    <input name="year" type="text" value={this.state.year} onChange={this.handleChange} />
+
+                    <label for="major">Major:</label>
+                    <input name="major" type="text" value={this.state.major} onChange={this.handleChange} />
+
+                    <label for="status">Status:</label>
+                    <input name="status" type="text" value={this.state.status} onChange={this.handleChange} />
+
+                    <label for="gpa">GPA:</label>
+                    <input name="gpa" type="text" value={this.state.gpa} onChange={this.handleChange} />
+
+                    <label for="internship">Previous Internship:</label>
+                    <textarea name="internship" class="profileintern" value={this.state.intern} onChange={this.handleChange} />
+               
+                    <input type="reset" value="Reset" onClick={this.handleReset} />
+                    <button class="button-cancel" type="button" onClick={this.handleCancel}>Cancel</button>
+                    <button class="button-submit" type="button" onClick={this.handleSubmit}>Save Changes</button>
+                    
+                </form>
+            </div>  
         );
       }
 }
 
 export default EditProfile;
+
