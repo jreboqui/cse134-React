@@ -53,7 +53,7 @@ export class Tutor extends React.Component{
                     <button className="btn btn-danger" onClick={this.onClickLogout}> Logout </button>
                 </nav>            
             </div>
-            <ApplicationTable />
+            <ApplicationTable studentObject={tuts}/>
             <CompanyListings />
         </div>
         );
