@@ -15,6 +15,7 @@ class NewMessage extends Component {
             //Forms States:
             toType: 's',
             sendTo: [],
+            recipient: "",
             message: "" 
         };
         this.handleChange = this.handleChange.bind(this);
@@ -83,10 +84,10 @@ class NewMessage extends Component {
                 </div>
                 <div className="form-group">
                     <label>Recipient:</label>
-                    <select className="form-control">
-                        {/* {this.state.sendTo.map((rcp,i) => {
-                            <option>{rcp[i].name}</option>
-                        })} */}
+                    <select className="form-control" name="recipient">
+                        {this.state.sendTo.map((rcp,i) => {
+                            <option value="x">{rcp[i].name}</option>
+                        })}
                     </select>
                 </div>
                 <div className="form-group">
