@@ -10,7 +10,6 @@ import Tutor from './containers/Tutor/Tutor';
 import CurrentJobPosting from './containers/Company/CurrentJobPosting/CurrentJobPosting';
 import Messaging from './containers/Messaging/Messaging';
 import EditProfile from './containers/Student/EditProfile';
-import EditProfile from './containers/Student/EditProfile';
 import Applicant from './containers/Company/Applicant';
 
 class App extends Component {
