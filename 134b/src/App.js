@@ -23,7 +23,8 @@ class App extends Component {
           <Route path="/company/:companyId/position/:positionId" exact component={CurrentJobPosting}/>
           <Route path="/student" component={Student} />
           <Route path="/tutor/:tutorId" exact component={Tutor} />
-          <Route path="/editProfile" component={EditProfile} />         
+          <Route path="/editProfile" component={EditProfile} />
+          <Route path="/company.:companyId/position/:positionId/applicants/:applicantId" exact component={Applicant} />         
         </Switch>
       </div>
       </BrowserRouter>

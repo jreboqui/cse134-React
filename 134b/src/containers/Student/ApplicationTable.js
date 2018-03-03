@@ -2,7 +2,6 @@ import React from 'react';
 import {Composite} from 'react-composite';
 class ApplicationTable extends React.Component{
     
-    
     render(){
 
         const userType = localStorage.getItem("userType");
