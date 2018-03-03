@@ -21,8 +21,8 @@ const mentee2 = new mentee("Ariwasnap Nivek", "Microsoft", "2018-05-20");
 const mentee3 = new mentee("Kevin Pansawira", "Palantir", "2018-06-20");
 
 
-const mailToSunshine1 = new mail("1","c","Hello, thank you very much for the invitiation to the interview for the SWE position. I would be availaible...");
-const mailToSunshine2 = new mail("1","t","Hi, I was supposed to hear back from Amazon last week, but I havent heard back until today regarding position Data Science Intern. I was wondering...");
+const mailToSunshine1 = new mail(1,"c","Hello, thank you very much for the invitiation to the interview for the SWE position. I would be availaible...");
+const mailToSunshine2 = new mail(1,"t","Hi, I was supposed to hear back from Amazon last week, but I havent heard back until today regarding position Data Science Intern. I was wondering...");
 
 const TutorAPI = {
     tutors: [
@@ -45,6 +45,10 @@ const TutorAPI = {
     get: function(id) {
         const isTutor = t => t.tutorId === id
         return this.tutors.find(isTutor)
+    },
+    addMail: function(id,mail) {
+        const isTutor = p => p.tutorId === id
+        this.tutors.find(isTutor).mailing.push(mail);
     }
 }
 

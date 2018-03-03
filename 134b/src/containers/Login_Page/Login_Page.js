@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {Route, Link} from 'react-router-dom';
 
 import styles from './Login_Page.css';
-import {Company, Positions, applicationInfo, mentee, allCompanies, 
-    allStudents, allTutors, Student, Tutor, mail} from  './../../Shared/Objects';
 import CompanyAPI from '../Company/CompanyAPI';
 import StudentAPI from '../Student/StudentAPI';
 import TutorAPI from '../Tutor/TutorAPI';
@@ -21,6 +19,10 @@ class Login_Page extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentWillMount() {
+        localStorage.clear();
     }
 
     handleChange = (event) => {
@@ -93,8 +95,6 @@ class Login_Page extends Component {
     }
 
     render() {
-        console.log(StudentAPI.all());
-
         return (
             <div>
                 <div className="container">

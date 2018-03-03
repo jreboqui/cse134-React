@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CompanyAPI from '../Company/CompanyAPI';
 import StudentAPI from '../Student/StudentAPI';
 import TutorAPI from '../Tutor/TutorAPI';
+import mail from '../../Shared/mail'
 
 class Inbox extends Component {
     constructor(props){
@@ -12,44 +13,54 @@ class Inbox extends Component {
             allTutors: null,
             userType: '',
             userId: 0,
-            sendMessageContent: '' 
+            sendMessageContent: ''
         };
         this.handleChange = this.handleChange.bind(this);
     }
     messages;
     senders;
+    names;
 
     handleChange = (event) => {
         this.setState({sendMessageContent:event.target.value});
         //console.log(this.state.sendMessageContent);
     }
 
-    onClickReply = (sender) => {
+    onClickReply = (event,sender) => {
         console.log(this.state.sendMessageContent);
         console.log(sender);
-        var senderId, senderType, message;
-        const newMessage = {
-            senderId: sender.senderId,
-            senderType: sender.senderType,
-            message: this.state.sendMessageContent
-        }
+        //var senderId, senderType, message;
+        // const newMessage = {
+        //     senderId: sender.senderId,
+        //     senderType: sender.senderType,
+        //     message: this.state.sendMessageContent
+        // }
+        const newMessage = new mail(parseInt(this.state.userId),this.state.userType,this.state.sendMessageContent);
 
-        switch(this.state.senderType){
-            case('c'):{
-                CompanyAPI.addMail(parseInt(this.state.userId),newMessage);
+        switch(sender.senderType){
+            case("c"):{
+                CompanyAPI.addMail(parseInt(sender.senderId),newMessage);
+                console.log(CompanyAPI.all());
+                alert("Reply Succesfully Sent!");
                 break;       
             }
-            case('s'):{
-                StudentAPI.addMail(parseInt(this.state.userId),newMessage);
+            case("s"):{
+                StudentAPI.addMail(parseInt(sender.senderId),newMessage);
+                console.log(StudentAPI.all());
+                alert("Reply Succesfully Sent!");
                 break;
             }
             default:{
-                TutorAPI.addMail(parseInt(this.state.userId),newMessage);
+                TutorAPI.addMail(parseInt(sender.senderId),newMessage);
+                console.log(TutorAPI.all());
+                alert("Reply Succesfully Sent!");
                 break;
             }
         }
-
+        
+        event.preventDefault();
     }
+    
 
     componentWillMount() {
         this.setState({allCompanies:CompanyAPI.all()});
@@ -60,13 +71,13 @@ class Inbox extends Component {
     }
 
     populateInbox() {
-        //console.log(this.state);
         let currUser = null;
         var tempMessages = [];
         var tempSenders = [];
+        var tempNames = [];
         switch(this.state.userType){
             case('s'): {
-                currUser = StudentAPI.get(this.state.userId);
+                currUser = StudentAPI.get(parseInt(this.state.userId));
                 for(var j = 0; j < currUser.mailing.length;j++){
                     //Mailing loop for student starts from here
                     if(currUser.mailing[j].senderType == 's'){
@@ -78,6 +89,8 @@ class Inbox extends Component {
                                     senderId: this.state.allStudents[k].number,
                                     senderType: 's'
                                 });
+                                tempNames.push(this.state.allStudents[k].name);
+                                break;
                             }
                         }
                     }
@@ -90,6 +103,8 @@ class Inbox extends Component {
                                     senderId: this.state.allCompanies[k].id,
                                     senderType: 'c'
                                 });
+                                tempNames.push(this.state.allCompanies[k].name);
+                                break;
                             }
                         }
                     }
@@ -102,6 +117,8 @@ class Inbox extends Component {
                                     senderId: this.state.allTutors[k].tutorId,
                                     senderType: 't'
                                 });
+                                tempNames.push(this.state.allTutors[k].name);
+                                break;
                             }
                         }
                     }
@@ -123,6 +140,8 @@ class Inbox extends Component {
                                     senderId: this.state.allStudents[k].number,
                                     senderType: 's'
                                 });
+                                tempNames.push(this.state.allStudents[k].name);
+                                break;
                             }
                         }
                     }
@@ -135,6 +154,8 @@ class Inbox extends Component {
                                     senderId: this.state.allCompanies[k].id,
                                     senderType: 'c'
                                 });
+                                tempNames.push(this.state.allCompanies[k].name);
+                                break;
                             }
                         }
                     }
@@ -147,6 +168,8 @@ class Inbox extends Component {
                                     senderId: this.state.allTutors[k].tutorId,
                                     senderType: 't'
                                 });
+                                tempNames.push(this.state.allTutors[k].name);
+                                break;
                             }
                         }
                     }
@@ -167,6 +190,8 @@ class Inbox extends Component {
                                     senderId: this.state.allStudents[k].number,
                                     senderType: 's'
                                 });
+                                tempNames.push(this.state.allStudents[k].name);
+                                break;
                             }
                         }
                     }
@@ -179,6 +204,8 @@ class Inbox extends Component {
                                     senderId: this.state.allCompanies[k].id,
                                     senderType: 'c'
                                 });
+                                tempNames.push(this.state.allCompanies[k].name);
+                                break;
                             }
                         }
                     }
@@ -189,8 +216,10 @@ class Inbox extends Component {
                                 // tempSenders.push(this.state.allTutors[k].name);
                                 tempSenders.push({
                                     senderId: this.state.allTutors[k].tutorId,
-                                    senderType: 't'
+                                    senderType: 't',
                                 });
+                                tempNames.push(this.state.allTutors[k].name);
+                                break;
                             }
                         }
                     }
@@ -200,6 +229,7 @@ class Inbox extends Component {
         }
         this.messages = tempMessages;
         this.senders = tempSenders;
+        this.names = tempNames;
     }
 
     render() {
@@ -207,18 +237,22 @@ class Inbox extends Component {
         //console.log(this.state);
         var tempMessages = this.messages.slice();
         var tempSenders = this.senders.slice();
-
+        var tempNames = this.names.slice();
+       
         return(
             <div>
                 {tempMessages.map((message,i) => (
-                    <div className="panel panel-default" style={{marginTop:"3em"}}>
-                        <h4>{tempSenders[i].name}</h4>
+                    <div className="panel panel-default" style={{marginTop:"3em"}} key={i}>
+                        <h3>{tempNames[i]}</h3>
                         <div className="panel-body">
+                            {/* <form onSubmit={this.onClickReply}> */}
+                            <form onSubmit={event => this.onClickReply(event, tempSenders[i])}>
                             <p>{message}</p>
-                            <textarea className="form-control" onChange={this.handleChange}></textarea>
-                            <button className="btn btn-primary" onClick={this.onClickReply(tempSenders[i])}
-                                    style={{float:"right",marginTop:"10px",width:"5em"}}>Reply
-                            </button>
+                                <textarea className="form-control" onChange={this.handleChange}></textarea>
+                                <button type="submit" className="btn btn-primary" 
+                                        style={{float:"right",marginTop:"10px",width:"5em"}}>Reply
+                                </button>
+                            </form>
                         </div>
                     </div>
                 ))

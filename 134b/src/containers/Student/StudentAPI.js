@@ -21,8 +21,8 @@ const app1 = new ApplicationInfo(1, "Amazon Inc.", "Software Engineering", 1, "U
 const app2 = new ApplicationInfo(1, "Amazon Inc.", "Software Engineering Intern", 2, "Under Review");
 const app3 = new ApplicationInfo(1, "Amazon Inc.", "Data Science Intern", 3, "Under Review");
 
-const mailToKevin1 = new mail("1","c","Hello, thank you very much for the invitiation to the interview for the SWE position. I would be availaible...");
-const mailToKevin2 = new mail("1","t","Hi, I was supposed to hear back from Amazon last week, but I havent heard back until today regarding position Data Science Intern. I was wondering...");
+const mailToKevin1 = new mail(1,"c","Hello, thank you very much for the invitiation to the interview for the SWE position. I would be availaible...");
+const mailToKevin2 = new mail(1,"t","Hi, I was supposed to hear back from Amazon last week, but I havent heard back until today regarding position Data Science Intern. I was wondering...");
 
 const StudentAPI = {
     players: [
@@ -125,8 +125,15 @@ const StudentAPI = {
       x.status = state.status;
       x.GPA = state.gpa;
       x.intern = state.intern;
+    },
+    addMail: function(id,mail) {
+      const isStudent = p => p.number === id
+      //const mailObject = new mail(mail.senderId,mail.senderType,mail.message); 
+      console.log("id:" + id);
+      console.log(mail);
+      console.log(this.players.find(isStudent));
+      this.players.find(isStudent).mailing.push(mail);
     }
-
   }
   
   export default StudentAPI  

@@ -19,14 +19,18 @@ export class Player extends React.Component {
         this.props.history.push('/editprofile/student/' + this.props.match.params.number);
     }
 
+    handleMessaging = () => {
+        this.props.history.push('/messaging');
+    }
+
     
     render(){
         const player = StudentAPI.get(
             parseInt(this.props.match.params.number, 10)
         )
-        console.log("Number is:" + player.number);
-        StudentAPI.set(1);
-        console.log(player.number);
+        //console.log("Number is:" + player.number);
+        //StudentAPI.set(1);
+        //console.log(player.number);
 
         if (!player){
             return <div> Sorry, player not found </div>
