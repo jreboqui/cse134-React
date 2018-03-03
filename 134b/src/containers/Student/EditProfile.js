@@ -28,4 +28,4 @@ class EditProfile extends React.Component {
       }
 }
 
-export default EditProfile
+export default EditProfile;

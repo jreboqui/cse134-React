@@ -51,6 +51,7 @@ export class Player extends React.Component {
                             </ul>
                         </div>
                        
+                        
                         <button className="btn btn-primary" style={{"width": "50%"}} onClick={this.handleEditProfile}> Edit Profile </button>
                         <br/>
                         <button className="btn btn-warning" style={{"width": "50%"}} onClick={this.handleMessaging}> Messaging </button>
