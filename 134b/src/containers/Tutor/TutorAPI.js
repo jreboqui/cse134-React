@@ -46,6 +46,16 @@ const TutorAPI = {
         const isTutor = t => t.tutorId === id
         return this.tutors.find(isTutor)
     },
+    setAll: function(id, state) {
+        const isTutor = t => t.tutorId === id
+        let x = this.tutors.find(isTutor);
+        x.name = state.tname;
+        x.school = state.schoolname;
+        x.year = state.year;
+        x.major = state.major;
+        x.status = state.status;
+        x.GPA = state.gpa;
+    },
     addMail: function(id,mail) {
         const isTutor = p => p.tutorId === id
         this.tutors.find(isTutor).mailing.push(mail);

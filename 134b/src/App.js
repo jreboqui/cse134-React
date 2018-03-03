@@ -11,6 +11,8 @@ import CurrentJobPosting from './containers/Company/CurrentJobPosting/CurrentJob
 import Messaging from './containers/Messaging/Messaging';
 import EditProfile from './containers/Student/EditProfile';
 import Applicant from './containers/Company/Applicant';
+import EditTutorProfile from './containers/Tutor/EditTutorProfile';
+import EditCompanyProfile from './containers/Company/EditCompanyProfile';
 
 class App extends Component {
   render() {
@@ -21,10 +23,12 @@ class App extends Component {
           <Route path="/" exact component={Welcome}/>
           <Route path="/login" exact component={Login_Page}/>
           <Route path="/company/:companyId" exact component={Company}/>
+          <Route path="/editProfile/company/:companyId" exact component={EditCompanyProfile} />
           <Route path="/company/:companyId/position/:positionId" exact component={CurrentJobPosting}/>
           <Route path="/messaging" component={Messaging}/>
           <Route path="/student" component={Student} />
           <Route path="/tutor/:tutorId" exact component={Tutor} />
+          <Route path="/editprofile/tutor/:tutorId" exact component={EditTutorProfile} />
           <Route path="/editProfile" component={EditProfile} />
           <Route path="/applicant" exact component={Applicant} />         
         </Switch>

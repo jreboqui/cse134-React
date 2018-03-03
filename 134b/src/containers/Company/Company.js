@@ -38,6 +38,10 @@ class Company extends Component {
         this.props.history.push('/messaging');
     }
 
+    handleEditCompanyProfile = () => {
+        this.props.history.push('/editprofile/company/' + this.props.match.params.companyId);
+    }
+
     render(){
         //bannerPath = "'../../Shared/Images/" + this.state.currCompany.bannerURL + "'";
         console.log(this.state.bannerPath);
@@ -79,7 +83,10 @@ class Company extends Component {
                     </div>
 
                     <br></br>
-                    <button className="btn btn-primary"  onClick={this.onClickMessage}
+                
+                    <button className="btn btn-primary"  onClick={this.handleEditCompanyProfile}
+                        style={{width: "6.5em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}}>Edit Profile</button>
+                    <button className="btn btn-warning"  onClick={this.onClickMessage}
                         style={{width: "6.5em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}}>Messaging</button>
                     <button className="btn btn-danger"  onClick={this.onClickLogout}
                         style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px", marginLeft:"10px"}}>Logout</button> 
