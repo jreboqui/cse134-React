@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
+import Inbox from './Inbox'
 
 class Messaging extends Component {
-
-    State = {
-        userType: localStorage.getItem('userType'),
-        userId: localStorage.getItem('userId')
-    }
 
     render() {
         return (
             <div id="container" class="container">
                 <h2>Conversations</h2>
-                
+                <hr></hr>
+                <Inbox/>
             </div>
         )
     }
 }
+
+export default Messaging;
