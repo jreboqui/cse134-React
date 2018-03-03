@@ -23,7 +23,6 @@ class EditProfile extends React.Component {
         
     }
 
-    studentId = this.props.location.pathname[this.props.location.pathname.length-1];
 
     componentDidMount() {
         const player = StudentAPI.get(
@@ -68,7 +67,7 @@ class EditProfile extends React.Component {
     }
 
     handleSubmit = () => {
-        StudentAPI.setAll(this.state);
+        StudentAPI.setAll(parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10), this.state);
         this.props.history.push('/student/' + this.props.location.pathname[this.props.location.pathname.length-1]);
     }
 
