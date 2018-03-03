@@ -18,3 +18,5 @@ export class FullRoster extends React.Component{
         )
     }
 }
+
+export default FullRoster

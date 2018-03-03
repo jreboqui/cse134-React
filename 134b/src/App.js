@@ -8,8 +8,9 @@ import Company from './containers/Company/Company';
 import Student from './containers/Student/Student';
 import Tutor from './containers/Tutor/Tutor';
 import CurrentJobPosting from './containers/Company/CurrentJobPosting/CurrentJobPosting';
+import Messaging from './containers/Messaging/Messaging';
 import EditProfile from './containers/Student/EditProfile';
-
+import Applicant from './containers/Company/Applicant';
 
 class App extends Component {
   render() {
@@ -21,9 +22,11 @@ class App extends Component {
           <Route path="/login" exact component={Login_Page}/>
           <Route path="/company/:companyId" exact component={Company}/>
           <Route path="/company/:companyId/position/:positionId" exact component={CurrentJobPosting}/>
+          <Route path="/messaging" component={Messaging}/>
           <Route path="/student" component={Student} />
           <Route path="/tutor/:tutorId" exact component={Tutor} />
-          <Route path="/editProfile" component={EditProfile} />         
+          <Route path="/editProfile" component={EditProfile} />
+          <Route path="/applicant" exact component={Applicant} />         
         </Switch>
       </div>
       </BrowserRouter>

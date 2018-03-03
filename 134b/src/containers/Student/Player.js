@@ -9,10 +9,12 @@ import {kpan, pp1} from './Images';
 import './resume.css';
 import './resume.min.css';
 
-
-
 export class Player extends React.Component {
-    
+    constructor(props) {
+        super(props);
+
+        this.state = {number: ''};
+    }
     onClickLogout = () => {
         this.props.history.push('/login');
     }
@@ -21,14 +23,27 @@ export class Player extends React.Component {
         this.props.history.push('/editprofile/student/' + this.props.match.params.number);
     }
 
+    handleMessaging = () => {
+        this.props.history.push('/messaging');
+    }
 
+    componentWillMount() {
+        this.setState({number: this.props.match.params.number})
+    }
     render(){
+        console.log(this.state.number);
         const player = StudentAPI.get(
-            parseInt(this.props.match.params.number, 10)
+            parseInt(this.state.number, 10)
         )
+        //console.log("Number is:" + player.number);
+        //StudentAPI.set(1);
+        //console.log(player.number);
+
         if (!player){
             return <div> Sorry, player not found </div>
         }
+
+        let userType = localStorage.getItem("userType");
         
         return (
             <div>
@@ -64,3 +79,4 @@ export class Player extends React.Component {
 
     }
 }
+export default Player
