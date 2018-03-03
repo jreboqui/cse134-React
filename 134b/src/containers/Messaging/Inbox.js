@@ -25,19 +25,29 @@ class Inbox extends Component {
     }
 
     onClickReply = (sender) => {
-        // console.log(this.state.sendMessageContent);
-        // console.log(sender);
+        console.log(this.state.sendMessageContent);
+        console.log(sender);
+        var senderId, senderType, message;
         const newMessage = {
             senderId: sender.senderId,
             senderType: sender.senderType,
             message: this.state.sendMessageContent
         }
 
-        // switch(this.state.senderType){
-        //     case('s'):{
-                
-        //     }
-        // }
+        switch(this.state.senderType){
+            case('c'):{
+                CompanyAPI.addMail(parseInt(this.state.userId),newMessage);
+                break;       
+            }
+            case('s'):{
+                StudentAPI.addMail(parseInt(this.state.userId),newMessage);
+                break;
+            }
+            default:{
+                TutorAPI.addMail(parseInt(this.state.userId),newMessage);
+                break;
+            }
+        }
 
     }
 

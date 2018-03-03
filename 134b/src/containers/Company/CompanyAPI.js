@@ -101,6 +101,13 @@ const CompanyAPI = {
     get: function(id) {
       const isCompany = p => p.id === id
       return this.companies.find(isCompany)
+    },
+    addMail: function(id,mail) {
+      const isCompany = p => p.id === id 
+      console.log(mail);
+      console.log(this.companies.find(isCompany));
+      //this.companies.find(isCompany).mailing.push(mail);
+      //console.log(this.companies);
     }
   }
   
