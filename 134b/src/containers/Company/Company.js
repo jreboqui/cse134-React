@@ -23,7 +23,8 @@ class Company extends Component {
         for (var i = 0; i < retrievedCompanies.length; i++){
             if(companyId == retrievedCompanies[i].id){
                 this.setState({currCompany: retrievedCompanies[i]});
-                this.setState({bannerPath: "'../../Shared/Images/" + retrievedCompanies[i].bannerURL + "'"});
+                //this.setState({bannerPath: "../../Shared/Images/" + retrievedCompanies[i].bannerURL});
+                this.setState({bannerPath: retrievedCompanies[i].bannerURL});
                 break;
             }
         }
@@ -33,12 +34,19 @@ class Company extends Component {
         this.props.history.push('/login');
     }
 
+    onClickMessage = () => {
+        this.props.history.push('/messaging');
+    }
+
     render(){
         //bannerPath = "'../../Shared/Images/" + this.state.currCompany.bannerURL + "'";
-        //style={{backgroundImage: "url("+ require(this.state.bannerPath) + ")" }}
+        console.log(this.state.bannerPath);
+        //style={{backgroundImage: "url("+ this.state.bannerPath + ")" }}
+        console.log("backgroundImage: url(${require('./'+this.state.bannerPath)}");
         return (
             <div>
-                <div className="jumbotron jumbotron-fluid">
+                <div className="jumbotron jumbotron-fluid"
+                    style={{backgroundImage: `url(${this.state.bannerPath}`}}>
                 </div>
                 <div className="open-jobs">
                     <div id ="id-about" style={{ paddingLeft: '1%'}}></div>
@@ -71,7 +79,7 @@ class Company extends Component {
                     </div>
 
                     <br></br>
-                    <button className="btn btn-primary" 
+                    <button className="btn btn-primary"  onClick={this.onClickMessage}
                         style={{width: "6.5em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}}>Messaging</button>
                     <button className="btn btn-danger"  onClick={this.onClickLogout}
                         style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px", marginLeft:"10px"}}>Logout</button> 
