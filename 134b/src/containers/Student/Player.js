@@ -17,14 +17,12 @@ export class Player extends React.Component {
         this.props.history.push('/login');
     }
 
-<<<<<<< HEAD
     handleEditProfile = () => {
-        <Link to={`/student/editprofile/${this.props.match.params.number}`} />
+        //<Link to={`/student/editprofile/${this.props.match.params.number}`} />
+        this.props.history.push('/student/editprofile/' + this.props.match.params.number);
     }
 
 
-=======
->>>>>>> 1ed46f42aca083ffcf8a24fe21e848905fd1483e
     render(){
         const player = StudentAPI.get(
             parseInt(this.props.match.params.number, 10)
@@ -52,6 +50,7 @@ export class Player extends React.Component {
                             </ul>
                         </div>
                        
+                        
                         <button className="btn btn-primary" style={{"width": "50%"}} onClick={this.handleEditProfile}> Edit Profile </button>
                         <br/>
                         <button className="btn btn-warning" style={{"width": "50%"}} onClick={this.handleMessaging}> Messaging </button>

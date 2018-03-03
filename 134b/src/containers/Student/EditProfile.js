@@ -1,4 +1,4 @@
-import React from 'react';
+import React, from 'react';
 import StudentAPI from '../Student/StudentAPI';
 
 class EditProfile extends React.Component {
@@ -24,5 +24,3 @@ class EditProfile extends React.Component {
         );
       }
 }
-
-export default EditProfile
