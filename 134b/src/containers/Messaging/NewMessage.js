@@ -22,6 +22,8 @@ class NewMessage extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        //this.handleChangeDropdown = this.handleChangeDropdown.bind(this);
+       
     };
     recipients = [];
     rType = '';
@@ -29,6 +31,7 @@ class NewMessage extends Component {
 
     componentWillMount() {
         let localStore = localAPI.all();
+        console.log(localAPI.all());
         this.setState({allCompanies:CompanyAPI.all()});
         this.setState({allStudents:StudentAPI.all()});
         this.setState({allTutors:TutorAPI.all()});
@@ -44,27 +47,7 @@ class NewMessage extends Component {
         this.setState({
             [name]: event.target.value
         });
-    }
 
-    handleChangeRecipient = (event) => {
-        const target = event.target;
-        const name = target.name;
-        //console.log("currently selected user:" + event.target.value);
-        //console.log(name);
-        this.setState({
-            [name]: event.target.value
-        });
-        document.getElementById("recipient")
-    }
-
-    handleChangeDropdown = (event) => {
-        
-        const target = event.target;
-        const name = target.name;
-        this.setState({
-            [name]: event.target.value
-        });
-        
         switch(event.target.value){
             case("c"):{
                 this.setState({sendTo: this.state.allCompanies});
@@ -79,20 +62,69 @@ class NewMessage extends Component {
                 this.rType = "s";
                 break;
             }
-            default:{
+            case("t"):{
                 this.setState({sendTo: this.state.allTutors});
                 this.recipients = TutorAPI.all();
                 this.rType="t";
                 break;
             }
+            default:{
+                break;
+            }
         }
     }
+
+    // handleChangeRecipient = (event) => {
+    //     const target = event.target;
+    //     const name = target.name;
+    //     //console.log("currently selected user:" + event.target.value);
+    //     //console.log(name);
+    //     this.setState({
+    //         [name]: event.target.value
+    //     });
+    //     document.getElementById("recipient")
+    // }
+
+    // handleChangeDropdown = (event) => {
+        
+    //     const target = event.target;
+    //     const name = target.name;
+    //     this.setState({
+    //         [name]: event.target.value
+    //     });
+        
+    //     switch(event.target.value){
+    //         case("c"):{
+    //             this.setState({sendTo: this.state.allCompanies});
+    //             //console.log("in handleChangeDropdown c");
+    //             this.recipients = CompanyAPI.all();
+    //             this.setState = "c";
+    //             break;
+    //         }
+    //         case("s"):{
+    //             this.setState({sendTo: this.state.allStudents});
+    //             this.recipients = StudentAPI.all();
+    //             this.rType = "s";
+    //             break;
+    //         }
+    //         case("t"):{
+    //             this.setState({sendTo: this.state.allTutors});
+    //             this.recipients = TutorAPI.all();
+    //             this.rType="t";
+    //             break;
+    //         }
+    //         default:{
+    //             break;
+    //         }
+    //     }
+    // }
     
     handleSubmit = (event) => {
 
-        const newMessage = new mail(parseInt(this.state.userId),this.state.userType,this.state.message);
-        //console.log(newMessage);
-        //console.log(this.state.toType);
+        const newMessage = new mail(parseInt(localAPI.all().userId),localAPI.all().userType,this.state.message);
+        console.log(this.state.userId);
+        console.log(this.state.userType);
+        console.log(newMessage);
 
         switch(this.state.toType){
             case("c"):{
@@ -103,7 +135,7 @@ class NewMessage extends Component {
             }
             case("s"):{
                 StudentAPI.addMail(parseInt(this.state.recipientId),newMessage);
-                //console.log(StudentAPI.all());
+                console.log(StudentAPI.all());
                 //alert("Reply Succesfully Sent!");
                 break;
             }
@@ -126,7 +158,7 @@ class NewMessage extends Component {
                 <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                     <label>Send to:</label>
-                    <select className="form-control" name="toType" onChange={this.handleChangeDropdown}>
+                    <select className="form-control" name="toType" onChange={this.handleChange}>
                     <option>Choose..</option>
                     <option value="s">Student</option>
                     <option value="c">Company</option>
@@ -135,7 +167,7 @@ class NewMessage extends Component {
                 </div>
                 <div className="form-group">
                     <label>Recipient:</label>
-                    <select id="recipient" className="form-control" name="recipientId" onChange={this.handleChangeRecipient}>
+                    <select id="recipient" className="form-control" name="recipientId" onChange={this.handleChange}>
                         {(() => {
                                 //console.log(this.state.sendTo);
                                 //console.log(this.state.sendTo.length);
