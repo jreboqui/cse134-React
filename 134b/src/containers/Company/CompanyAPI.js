@@ -104,7 +104,6 @@ const CompanyAPI = {
     },
     addMail: function(id,mail) {
       const isCompany = p => p.id === id
-      console.log(mail);
       this.companies.find(isCompany).mailing.push(mail);
     }
   }

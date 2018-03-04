@@ -129,9 +129,9 @@ const StudentAPI = {
     addMail: function(id,mail) {
       const isStudent = p => p.number === id
       //const mailObject = new mail(mail.senderId,mail.senderType,mail.message); 
-      console.log("id:" + id);
-      console.log(mail);
-      console.log(this.players.find(isStudent));
+      // console.log("id:" + id);
+      // console.log(mail);
+      // console.log(this.players.find(isStudent));
       this.players.find(isStudent).mailing.push(mail);
     }
   }
