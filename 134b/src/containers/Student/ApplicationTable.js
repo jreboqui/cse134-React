@@ -1,10 +1,11 @@
 import React from 'react';
 import {Composite} from 'react-composite';
+import localAPI from '../../Shared/localAPI';
 class ApplicationTable extends React.Component{
     
     render(){
-
-        const userType = localStorage.getItem("userType");
+        let localStore = localAPI.all();
+        const userType = localStore.userType;
         console.log(userType);
 
         if(userType == 's'){
@@ -91,6 +92,11 @@ class ApplicationTable extends React.Component{
                     </div>
                 </div>
 
+            )
+        }
+        else {
+            return (
+                <h1> Nothing was returned </h1>
             )
         }
     }//end of render

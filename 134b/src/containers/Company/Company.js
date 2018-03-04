@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom';
 
 import styles from './Company.css';
 import CompanyAPI from './CompanyAPI';
+import localAPI from '../../Shared/localAPI';
 import JobOpening from './JobOpening/JobOpening'
 import CurrentJobPosting from './CurrentJobPosting/CurrentJobPosting';
 import CompanyAbout from './CurrentJobPosting/CompanyAbout';
@@ -16,7 +17,9 @@ class Company extends Component {
     }
 
     componentWillMount(){
-        this.userType = localStorage.getItem('userType');
+        let localStore = localAPI.all();
+        //this.userType = localStorage.getItem('userType');
+        this.userType = localStore.userType;
         let retrievedCompanies = CompanyAPI.all();
         console.log(retrievedCompanies);
         const companyId = this.props.match.params.companyId;

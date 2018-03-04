@@ -22,7 +22,7 @@ const mentee3 = new mentee("Hao Yang", "Palantir", "2018-06-20");
 
 
 const mailToSunshine1 = new mail(1,"s","Hi, I need help to pass the Microsoft first round phone interview. I would appreaciate if..");
-const mailToSunshine2 = new mail(1,"s","Hi, thanks for your help! I passed my last interview with Amazon and just got an offer from them!");
+const mailToSunshine2 = new mail(2,"s","Hi, thanks for your help! I passed my last interview with Amazon and just got an offer from them!");
 
 const TutorAPI = {
     tutors: [

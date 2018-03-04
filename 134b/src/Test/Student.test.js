@@ -18,41 +18,43 @@ Enzyme.configure({ adapter: new Adapter() });
 //   ReactDOM.render(<App />, div);
 //   ReactDOM.unmountComponentAtNode(div);
 // });
-it('renders without crashing', () => {
-  
-  shallow(<Student/>);
-  
-});
-it('renders without crashing', () => {
-  
-    shallow(<CompanyListings/>);
-    
-  });
+
 // it('renders without crashing', () => {
   
-//    shallow(<ApplicationTable/>);
+//     shallow(<CompanyListings/>);
     
-// });
-
-it('renders without crashing', () => {
+//   });
+//  it('renders without crashing', () => {
   
-    shallow(<FullRoster/>);
+//     shallow(<ApplicationTable/>);
+    
+//  });
+
+// it('renders without crashing', () => {
+  
+//     shallow(<FullRoster/>);
      
- });
+//  });
  
 //  it('renders without crashing', () => {
   
-//     shallow(<Player/>);
+//     shallow(<Player />);
      
 //  });
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Player />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
 
+// it('renders without crashing', () => {
+  
+//     shallow(<EditProfile/>);
+     
+//  });
+let match1 = {
+  params: { number:1}
+}
+//const wrapper = shallow(<Student match={match1}/>);
 it('renders without crashing', () => {
   
-    shallow(<EditProfile/>);
-     
- });
+  shallow(<Student match={match1}/>);
+  
+});
+  
+
