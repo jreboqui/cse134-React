@@ -8,6 +8,7 @@ import styles from './CurrentJobPosting.css';
 import localAPI from '../../../Shared/localAPI';
 import ApplicationInfo from '../../../Shared/ApplicationInfo';
 import StudentAPI from '../../Student/StudentAPI';
+import ApplicantsList from './ApplicantsList';
 
 class CurrentJobPosting extends Component {
 
@@ -22,8 +23,9 @@ class CurrentJobPosting extends Component {
         this.userType = localAPI.all().userType;
         let retrievedCompanies = CompanyAPI.all();
         console.log(retrievedCompanies);
-        //console.log(this.props.match.params);
+        //console.log(this.props.match.params.positionId);
         const companyId = this.props.match.params.companyId;
+        const positionId = this.props.match.params.positionId;
         for (var i = 0; i < retrievedCompanies.length; i++){
             if(companyId == retrievedCompanies[i].id){
                 this.setState({currCompany: retrievedCompanies[i]});
@@ -95,6 +97,10 @@ class CurrentJobPosting extends Component {
                         </div>
                     </div>    
                 </div>
+                
+                <ApplicantsList companyId={this.props.match.params.companyId}
+                positionId={this.props.match.params.positionId}/>
+                
             </div>
         )
     }
