@@ -24,6 +24,10 @@ export class Tutor extends React.Component{
         this.props.history.push('/login');
     }
     
+    handleEditTutorProfile = () => {
+        this.props.history.push('/editprofile/tutor/' + this.props.match.params.tutorId);
+    }
+
     render(){
         const tuts = TutorAPI.get(
             parseInt(this.props.match.params.tutorId, 10)
@@ -46,7 +50,7 @@ export class Tutor extends React.Component{
                     <h5> School: {tuts.school} </h5>
                     <h5> GPA: {tuts.GPA} </h5>
                     <h5> Year: {tuts.year} </h5>
-                    <button className="btn btn-primary"> Edit Profile </button>
+                    <button className="btn btn-primary" onClick={this.handleEditTutorProfile}> Edit Profile </button>
                     <br/>
                     <button className="btn btn-warning"> Messaging </button>
                     <br/>

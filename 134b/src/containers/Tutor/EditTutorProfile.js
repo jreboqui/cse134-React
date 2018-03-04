@@ -1,39 +1,37 @@
 import React from 'react';
 import { browserRouter, Link, Route } from 'react-router-dom';
-import StudentAPI from '../Student/StudentAPI';
-import './EditProfile.css';
+import TutorAPI from '../Tutor/TutorAPI';
+import '../Student/EditProfile.css';
 
-class EditProfile extends React.Component {
+class EditTutorProfile extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            sname: '',
+            tname: '',
             schoolname: '',
             year: '',
             major: '',
             status: '',
-            gpa: '',
-            intern: ''
+            gpa: ''
         };
     }
 
 
     componentDidMount() {
-        const player = StudentAPI.get(
+        const tuts = TutorAPI.get(
             parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10)
         )
 
-        console.log(player);
+        console.log(tuts);
         
         this.setState({
-            sname: player.name,
-            schoolname: player.school,
-            year: player.year,
-            major: player.major,
-            status: player.status,
-            gpa: player.GPA,
-            intern: player.intern
+            tname: tuts.name,
+            schoolname: tuts.school,
+            year: tuts.year,
+            major: tuts.major,
+            status: tuts.status,
+            gpa: tuts.GPA
         });
     }
 
@@ -47,34 +45,33 @@ class EditProfile extends React.Component {
 
     handleReset = () => {
         this.setState({
-            sname: '',
+            tname: '',
             schoolname: '',
             year: '',
             major: '',
             status: '',
-            gpa: '',
-            intern: ''
+            gpa: ''
         });
     }
 
     handleCancel = () => {
-        this.props.history.push('/student/' + this.props.location.pathname[this.props.location.pathname.length-1]);
+        this.props.history.push('/tutor/' + this.props.location.pathname[this.props.location.pathname.length-1]);
     }
 
     handleSubmit = () => {
-        StudentAPI.setAll(parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10), this.state);
-        this.props.history.push('/student/' + this.props.location.pathname[this.props.location.pathname.length-1]);
+        TutorAPI.setAll(parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10), this.state);
+        this.props.history.push('/tutor/' + this.props.location.pathname[this.props.location.pathname.length-1]);
     }
 
     render() {
     
         return (
             <div class ="profile">
-                <h1>Edit Student Profile</h1>
+                <h1>Edit Tutor Profile</h1>
                 <hr />    
                 <form name="profile">
-                    <label for="sname">Full name:</label>
-                    <input name="sname" type="text" value={this.state.sname} onChange={this.handleChange} />
+                    <label for="tname">Full name:</label>
+                    <input name="tname" type="text" value={this.state.tname} onChange={this.handleChange} />
 
                     <label for="schoolname">School name:</label>
                     <input name="schoolname" type="text" value={this.state.schoolname} onChange={this.handleChange} />
@@ -91,9 +88,6 @@ class EditProfile extends React.Component {
                     <label for="gpa">GPA:</label>
                     <input name="gpa" type="text" value={this.state.gpa} onChange={this.handleChange} />
 
-                    <label for="internship">Previous Internship:</label>
-                    <textarea name="internship" class="profileintern" value={this.state.intern} onChange={this.handleChange} />
-               
                     <input type="reset" value="Reset" onClick={this.handleReset} />
                     <button class="button-cancel" type="button" onClick={this.handleCancel}>Cancel</button>
                     <button class="button-submit" type="button" onClick={this.handleSubmit}>Save Changes</button>
@@ -104,5 +98,5 @@ class EditProfile extends React.Component {
       }
 }
 
-export default EditProfile;
+export default EditTutorProfile;
 

@@ -16,13 +16,13 @@ class mail {
   }
   
 
-const mentee1 = new mentee("Kevin Pansawira", "Amazon Inc.", "2018-01-20");
+const mentee1 = new mentee("Gary Professionalism", "Amazon Inc.", "2018-01-20");
 const mentee2 = new mentee("Ariwasnap Nivek", "Microsoft", "2018-05-20");
-const mentee3 = new mentee("Kevin Pansawira", "Palantir", "2018-06-20");
+const mentee3 = new mentee("Hao Yang", "Palantir", "2018-06-20");
 
 
-const mailToSunshine1 = new mail(1,"c","Hello, thank you very much for the invitiation to the interview for the SWE position. I would be availaible...");
-const mailToSunshine2 = new mail(1,"t","Hi, I was supposed to hear back from Amazon last week, but I havent heard back until today regarding position Data Science Intern. I was wondering...");
+const mailToSunshine1 = new mail(1,"s","Hi, I need help to pass the Microsoft first round phone interview. I would appreaciate if..");
+const mailToSunshine2 = new mail(2,"s","Hi, thanks for your help! I passed my last interview with Amazon and just got an offer from them!");
 
 const TutorAPI = {
     tutors: [
@@ -45,6 +45,16 @@ const TutorAPI = {
     get: function(id) {
         const isTutor = t => t.tutorId === id
         return this.tutors.find(isTutor)
+    },
+    setAll: function(id, state) {
+        const isTutor = t => t.tutorId === id
+        let x = this.tutors.find(isTutor);
+        x.name = state.tname;
+        x.school = state.schoolname;
+        x.year = state.year;
+        x.major = state.major;
+        x.status = state.status;
+        x.GPA = state.gpa;
     },
     addMail: function(id,mail) {
         const isTutor = p => p.tutorId === id

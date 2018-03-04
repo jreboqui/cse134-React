@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import CompanyAPI from '../Company/CompanyAPI';
 import StudentAPI from '../Student/StudentAPI';
 import TutorAPI from '../Tutor/TutorAPI';
-import mail from '../../Shared/mail'
+import mail from '../../Shared/mail';
 
 class Inbox extends Component {
     constructor(props){
