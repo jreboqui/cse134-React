@@ -14,11 +14,11 @@ export class ImageLoad extends React.Component{
             <div id="photo">
                      {console.log(this.props.imageURL)}
                      {console.log(this.props.compNumber)}
-                     <Router>   
+                       
                      <Link to={`/company/${compNumber}`}>
                      <button style={{"backgroundColor": "white", "width":"20%"}}><img alt="none" src={require(`${this.props.imageURL}`)} /></button>
                      </Link>
-                     </Router>
+                     
 
             </div>
         )
