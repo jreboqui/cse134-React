@@ -66,7 +66,11 @@ class Company extends Component {
                      style={{backgroundImage: "url(./"+ this.newBannerPath +")"}}>
                 </div>
                 <div className="open-jobs">
-                    <div id ="id-about" style={{ paddingLeft: '1%'}}></div>
+                    <div id ="id-about" style={{ paddingLeft: '1%'}}>
+                        <br></br>
+                        <h4>{this.state.currCompany.title}</h4>
+                        <p>{this.state.currCompany.description}</p>
+                    </div>
                     <hr></hr>
                     <div style={{paddingLeft:'1%'}}>
                         <JobOpening companyId={this.state.currCompany.id}
