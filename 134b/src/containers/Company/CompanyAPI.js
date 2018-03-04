@@ -71,7 +71,7 @@ const CompanyAPI = {
         website: "amazon.com",
         title: "We pioneer", 
         description: "We're a company of pioneers. It's our job to make bold bets, and we get our energy from inventing on behalf of customers. Success is measured against the possible, not the probable. For today’s pioneers, that’s exactly why there’s no place on Earth they’d rather build than Amazon.",
-        photosURL: ["./amazon1.JPG", "./amazon2.JPG", "./amazon3.JPG", "./amazon4.JPG", "./amazon5.JPG", "./amazon6.JPG"],
+        photosURL: ["./amazon1.jpg", "./amazon2.jpg", "./amazon3.jpg", "./amazon4.jpg", "./amazon5.jpg", "./amazon6.jpg"],
         logoURL: "./amazon.jpg",
         openPositions: [amazonPos1,amazonPos2,amazonPos3,amazonPos4,amazonPos5,amazonPos6,amazonPos7],
         mailing: [mailToAmazon1,mailToAmazon2]
@@ -89,7 +89,7 @@ const CompanyAPI = {
         website: "salesforce.com",
         title: "We pioneer", 
         description: "We're a company of pioneers. It's our job to make bold bets, and we get our energy from inventing on behalf of customers. Success is measured against the possible, not the probable. For today’s pioneers, that’s exactly why there’s no place on Earth they’d rather build than Amazon.",
-        photosURL: ["salesforce1.JPG", "salesforce2.JPG", "salesforce3.JPG", "salesforce4.JPG", "salesforcen5.JPG", "salesforce6.JPG"],
+        photosURL: ["salesforce1.jpg", "salesforce2.jpg", "salesforce3.jpg", "salesforce4.jpg", "salesforcen5.jpg", "salesforce6.jpg"],
         logoURL: "./salesforce_icon.png",
         openPositions: [salesforcePos1,salesforcePos2,salesforcePos3,salesforcePos4],
         mailing: [mailToSalesforce1]

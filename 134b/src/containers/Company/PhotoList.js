@@ -1,12 +1,12 @@
 import React from 'react';
 
-function PhotoList (props) {
-        
+class PhotoList extends React.Component{
+    render(){  
         return(
             // <h1>{props.photos}</h1>
-            <li><img alt="image" src={props.img} /></li>
+            <li><img alt="image" src={require(`${this.props.img}`)} /></li>
         )
-    
+    }
 }
 
 export default PhotoList;
