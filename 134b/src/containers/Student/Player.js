@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import StudentAPI from './StudentAPI';
 import CompanyListings from './CompanyListings';
 import ApplicationTable from './ApplicationTable';
-
+import localAPI from '../../Shared/localAPI';
 import {kpan, pp1} from './Images';
 //import { Company } from '../../Shared/Objects';
 import './resume.css';
@@ -28,7 +28,13 @@ export class Player extends React.Component {
     }
 
     componentWillMount() {
-        this.setState({number: this.props.match.params.number})
+        if (this.props.match.params.number){
+            this.setState({number: this.props.match.params.number});
+        }
+        else{
+            this.setState({number: 0});
+        }
+        
     }
     render(){
         console.log(this.state.number);
@@ -43,7 +49,8 @@ export class Player extends React.Component {
             return <div> Sorry, player not found </div>
         }
 
-        let userType = localStorage.getItem("userType");
+        let localStore = localAPI.all();
+        let userType = localStore.userType;
         
         return (
             <div>
