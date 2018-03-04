@@ -49,6 +49,10 @@ class Company extends Component {
         this.props.history.push('/messaging');
     }
 
+    onClickAddPosition = () => {
+        this.props.history.push('/company/newposition/' + this.props.match.params.companyId);
+    }
+
     handleEditCompanyProfile = () => {
         this.props.history.push('/editprofile/company/' + this.props.match.params.companyId);
     }
@@ -77,7 +81,7 @@ class Company extends Component {
                             positions={this.state.currCompany.openPositions}/>
                     </div>
                     <div style={{paddingLeft:'2%'}}>
-                        {/* <button id="btn-add" onClick="addNewPosition(1)" className="btn btn-success" type="button" style="float: left">Add</button> */}
+                        <button id="btn-add" onClick={this.onClickAddPosition} className="btn btn-success" style={{float: "left", width:"7.5em", marginTop:"10px"}}>Add Position</button>
                     </div>   
                 </div>
 
