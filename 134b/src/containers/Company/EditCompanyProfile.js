@@ -8,6 +8,8 @@ class EditCompanyProfile extends React.Component {
         super(props);
 
         this.state = {
+            logoURL: '',
+            bannerURL: '',
             cname: '',
             hq: '',
             size: '',
@@ -27,6 +29,8 @@ class EditCompanyProfile extends React.Component {
         console.log(company);
         
         this.setState({
+            logoURL: company.logoURL,
+            bannerURL: company.bannerURL,
             cname: company.name,
             hq: company.hq,
             size: company.size,
@@ -47,6 +51,8 @@ class EditCompanyProfile extends React.Component {
 
     handleReset = () => {
         this.setState({
+            logoURL: '',
+            bannerURL: '',
             cname: '',
             hq: '',
             size: '',
@@ -73,6 +79,12 @@ class EditCompanyProfile extends React.Component {
                 <h1>Edit Company Profile</h1>
                 <hr />    
                 <form name="profile">
+                    <label for="logoURL">Enter Image URL:</label>
+                    <input name="logoURL" type="text" value={this.state.logoURL} onChange={this.handleChange} />
+
+                    <label for="bannerURL">Enter Banner URL:</label>
+                    <input name="bannerURL" type="text" value={this.state.bannerURL} onChange={this.handleChange} />
+
                     <label for="cname">Company name:</label>
                     <input name="cname" type="text" value={this.state.cname} onChange={this.handleChange} />
 

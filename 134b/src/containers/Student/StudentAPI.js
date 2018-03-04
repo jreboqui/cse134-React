@@ -118,6 +118,7 @@ const StudentAPI = {
     setAll: function(id, state) {
       const isPlayer = p => p.number === id
       let x = this.players.find(isPlayer);
+      x.pic = state.profileImg;
       x.name = state.sname;
       x.school = state.schoolname;
       x.year = state.year;
