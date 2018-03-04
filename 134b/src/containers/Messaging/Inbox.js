@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CompanyAPI from '../Company/CompanyAPI';
 import StudentAPI from '../Student/StudentAPI';
 import TutorAPI from '../Tutor/TutorAPI';
+import localAPI from '../../Shared/localAPI';
 import mail from '../../Shared/mail';
 
 class Inbox extends Component {
@@ -63,11 +64,15 @@ class Inbox extends Component {
     
 
     componentWillMount() {
+        let localStore = localAPI.all();
+        
         this.setState({allCompanies:CompanyAPI.all()});
         this.setState({allStudents:StudentAPI.all()});
         this.setState({allTutors:TutorAPI.all()});
-        this.setState({userType:localStorage.getItem('userType')});
-        this.setState({userId:localStorage.getItem('userId')});
+        //this.setState({userType:localStorage.getItem('userType')});
+        this.setState({userType: localStore.userType});
+        //this.setState({userId:localStorage.getItem('userId')});
+        this.setState({userId: localStore.userId});
     }
 
     populateInbox() {
