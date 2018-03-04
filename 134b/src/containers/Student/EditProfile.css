@@ -64,6 +64,21 @@ input[type=reset]:hover {
   background-color: #c64541; 
 }
 
+.button-preview {
+    width: 15%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-preview:hover {
+    background-color: #45a049;
+}
+
 textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

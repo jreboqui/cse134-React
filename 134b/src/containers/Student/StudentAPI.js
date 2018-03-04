@@ -118,6 +118,7 @@ const StudentAPI = {
     setAll: function(id, state) {
       const isPlayer = p => p.number === id
       let x = this.players.find(isPlayer);
+      x.pic = state.profileImg;
       x.name = state.sname;
       x.school = state.schoolname;
       x.year = state.year;
@@ -133,6 +134,10 @@ const StudentAPI = {
       // console.log(mail);
       // console.log(this.players.find(isStudent));
       this.players.find(isStudent).mailing.push(mail);
+    },
+    apply: function (id, app) {
+      const isStudent = p => p.number === id;
+      this.players.find(isStudent).applications.push(app);
     }
   }
   

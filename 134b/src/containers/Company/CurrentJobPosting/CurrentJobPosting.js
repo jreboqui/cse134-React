@@ -5,6 +5,9 @@ import CompanyAPI from '../CompanyAPI';
 import JobDetails from './JobDetails';
 import CompanyAbout from './CompanyAbout';
 import styles from './CurrentJobPosting.css';
+import localAPI from '../../../Shared/localAPI';
+import ApplicationInfo from '../../../Shared/ApplicationInfo';
+import StudentAPI from '../../Student/StudentAPI';
 
 class CurrentJobPosting extends Component {
 
@@ -16,6 +19,7 @@ class CurrentJobPosting extends Component {
 
     componentWillMount(){
         //this.userType = localStorage.getItem('userType');
+        this.userType = localAPI.all().userType;
         let retrievedCompanies = CompanyAPI.all();
         console.log(retrievedCompanies);
         //console.log(this.props.match.params);
@@ -36,6 +40,15 @@ class CurrentJobPosting extends Component {
         }
     }
 
+    onClickApply = () => {
+        var status = "Under Review";
+        const newApplication = new ApplicationInfo(
+            this.state.currCompany.id, this.state.currCompany.name,this.state.currJobPosting.title,this.state.currJobPosting.positionId,status);
+        
+        StudentAPI.apply(this.localAPI.all().userId,newApplication);
+
+    }
+
     render() {
         //console.log(this.state.currJobPosting);
         return(
@@ -49,7 +62,7 @@ class CurrentJobPosting extends Component {
                     <div style={{paddingTop: "15px"}} className="extra-buttons">
 
                         <button style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}} 
-                                    className="btn btn-success" type="button">Apply</button>
+                                    className="btn btn-success" type="button" onClick={this.onClickApply}>Apply</button>
                         <button style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}} 
                                     className="btn btn-primary" type="button">Edit</button>
                         <button style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}} 

@@ -49,6 +49,7 @@ const TutorAPI = {
     setAll: function(id, state) {
         const isTutor = t => t.tutorId === id
         let x = this.tutors.find(isTutor);
+        x.profilePic = state.profilePic;
         x.name = state.tname;
         x.school = state.schoolname;
         x.year = state.year;

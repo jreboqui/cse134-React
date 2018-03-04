@@ -15,9 +15,11 @@ class Company extends Component {
         userType: '',
         bannerPath: ""
     }
+    newBannerPath;
 
     componentWillMount(){
         let localStore = localAPI.all();
+        console.log(localAPI.all());
         //this.userType = localStorage.getItem('userType');
         this.userType = localStore.userType;
         let retrievedCompanies = CompanyAPI.all();
@@ -28,6 +30,8 @@ class Company extends Component {
                 this.setState({currCompany: retrievedCompanies[i]});
                 //this.setState({bannerPath: "../../Shared/Images/" + retrievedCompanies[i].bannerURL});
                 this.setState({bannerPath: retrievedCompanies[i].bannerURL});
+                //console.log();
+                this.newBannerPath = retrievedCompanies[i].bannerURL;
                 break;
             }
         }
@@ -47,13 +51,15 @@ class Company extends Component {
 
     render(){
         //bannerPath = "'../../Shared/Images/" + this.state.currCompany.bannerURL + "'";
-        console.log(this.state.bannerPath);
+        //console.log(this.state.bannerPath);
+        console.log(this.newBannerPath);
         //style={{backgroundImage: "url("+ this.state.bannerPath + ")" }}
+        //style={{backgroundImage: "url(./"+ this.newBannerPath +")"}}
         console.log("backgroundImage: url(${require('./'+this.state.bannerPath)}");
         return (
             <div>
                 <div className="jumbotron jumbotron-fluid"
-                    style={{backgroundImage: `url(${this.state.bannerPath}`}}>
+                     style={{backgroundImage: "url(./"+ this.newBannerPath +")"}}>
                 </div>
                 <div className="open-jobs">
                     <div id ="id-about" style={{ paddingLeft: '1%'}}></div>
