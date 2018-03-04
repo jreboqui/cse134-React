@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import StudentAPI from '../Student/StudentAPI';
 import CompanyAPI from '../Company/CompanyAPI';
 import localAPI from '../../Shared/localAPI';
@@ -62,23 +63,29 @@ class Applicant extends React.Component{
                 break;
             }
         }
-        console.log(StudentAPI.all());
+        //console.log(StudentAPI.all());
         alert("Student Application Status Updated Successfully!");
         event.preventDefault();
+    }
+
+    onClickBack = () => {
+        this.props.history.goBack();
     }
     
     render(){
         const student = StudentAPI.get(parseInt(this.props.match.params.number, 10));
         
-        let localStore = localAPI.all();
-        let userType = localStore.userType;
-        console.log(userType);
+        let userType = localAPI.all().userType;
+        //console.log(userType);
+        var isCompany = false;
+        (userType === "c") ? isCompany = true: isCompany = false;
         
         return(
             <div>
                 <div id="id-banner" className="jumbotron jumbotron-fluid"></div>
                 <div name="studentProfile">
                     <h1>Applicant Profile</h1>
+                    <button onClick={this.onClickBack} className="btn btn-danger" style={{float:"right", width:"6em"}}>Go Back</button>
                     <img className="img-fluid img-profile rounded-circle mx-auto mb-2" alt="none" 
                         src={require(`${student.pic}`)}
                         height="200px"
@@ -92,16 +99,13 @@ class Applicant extends React.Component{
                         <li className="nav-item"> GPA: {student.GPA} </li>
                         <li className="nav-item"> Year: {student.year} </li>
                     </ul>
-                
-                    {/* {userType === "c"
-
-                    } */}
                 </div>
 
                 <div>
                     <hr></hr>
                     <h3>Current Status for {this.state.currPosition.title} position:</h3>
                     <h2 style={{textAlign: "center"}}>{this.state.currStudentApp.appStatus}</h2>
+                    { isCompany ? (
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <select style={{width:"20em"}} value={this.state.value} onChange={this.handleChange}>
@@ -115,7 +119,12 @@ class Applicant extends React.Component{
                             <input type="submit" style={{marginLeft:"2em", width:"15em", height:"2.8em"}}
                                  className="btn btn-primary" value="Update Application Status"/>
                         </div>
-                    </form>
+                    </form>): null}
+                    <hr></hr>
+                    <h3>Connect with this Student!</h3><br></br>
+                    <Link to={`/messaging`}>
+                        <button className="btn btn-success" style={{width:"20em"}}>Message!</button>
+                    </Link>
                 </div>
         
             </div>

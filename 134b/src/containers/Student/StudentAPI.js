@@ -140,19 +140,19 @@ const StudentAPI = {
       this.players.find(isStudent).applications.push(app);
     },
     updateStatus: function (sid,jobId,compId,status) {
-      console.log("here!");
+      //console.log("here!");
       const isStudent = p => p.number === sid;
       let currStudent = this.players.find(isStudent);
-      console.log(currStudent);
+      //console.log(currStudent);
       for(var i = 0; i < currStudent.applications.length; i++){
         if(currStudent.applications[i].companyId === compId &&
           currStudent.applications[i].positionId === jobId){
             currStudent.applications[i].appStatus = status;
-            console.log("Found the jobId");
+            //console.log("Found the jobId");
             break;
           }
       }
-      console.log(currStudent);
+      //console.log(currStudent);
     }
   }
   
