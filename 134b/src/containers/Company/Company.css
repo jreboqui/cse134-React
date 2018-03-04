@@ -9,14 +9,12 @@
 .open-jobs {
     width:75%;
     float: left; 
-    height: 100vh;
     border-right:  1px solid black;
   }
   
 .extra {
     width:24%;
     float: right;
-    height: 100vh;
 }
 
 .ul-photo-list {

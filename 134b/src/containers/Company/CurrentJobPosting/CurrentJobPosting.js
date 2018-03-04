@@ -8,22 +8,27 @@ import styles from './CurrentJobPosting.css';
 import localAPI from '../../../Shared/localAPI';
 import ApplicationInfo from '../../../Shared/ApplicationInfo';
 import StudentAPI from '../../Student/StudentAPI';
+import ApplicantsList from './ApplicantsList';
 
 class CurrentJobPosting extends Component {
+    constructor(props) {
+        super(props);
 
-    State = {
-        currCompany: null,
-        bannerPath: null,
-        currJobPosting: null
+        this.state = {
+            currCompany: null,
+            bannerPath: "",
+            currJobPosting: ""
+        };
     }
 
     componentWillMount(){
         //this.userType = localStorage.getItem('userType');
         this.userType = localAPI.all().userType;
         let retrievedCompanies = CompanyAPI.all();
-        console.log(retrievedCompanies);
-        //console.log(this.props.match.params);
+        //console.log(retrievedCompanies);
+        //console.log(this.props.match.params.positionId);
         const companyId = this.props.match.params.companyId;
+        const positionId = this.props.match.params.positionId;
         for (var i = 0; i < retrievedCompanies.length; i++){
             if(companyId == retrievedCompanies[i].id){
                 this.setState({currCompany: retrievedCompanies[i]});
@@ -45,8 +50,10 @@ class CurrentJobPosting extends Component {
         const newApplication = new ApplicationInfo(
             this.state.currCompany.id, this.state.currCompany.name,this.state.currJobPosting.title,this.state.currJobPosting.positionId,status);
         
-        StudentAPI.apply(this.localAPI.all().userId,newApplication);
-
+        StudentAPI.apply(parseInt(localAPI.all().userId),newApplication);
+        alert("Success! " + newApplication.positionTitle + " with " + newApplication.companyName + " has been added to your application list.");
+        this.props.history.push("/student/" + localAPI.all().userId);
+        
     }
 
     render() {
@@ -95,6 +102,10 @@ class CurrentJobPosting extends Component {
                         </div>
                     </div>    
                 </div>
+                
+                <ApplicantsList companyId={this.props.match.params.companyId}
+                positionId={this.props.match.params.positionId}/>
+                
             </div>
         )
     }

@@ -19,34 +19,6 @@ Enzyme.configure({ adapter: new Adapter() });
 //   ReactDOM.unmountComponentAtNode(div);
 // });
 
-// it('renders without crashing', () => {
-  
-//     shallow(<CompanyListings/>);
-    
-//   });
-//  it('renders without crashing', () => {
-  
-//     shallow(<ApplicationTable/>);
-    
-//  });
-
-// it('renders without crashing', () => {
-  
-//     shallow(<FullRoster/>);
-     
-//  });
- 
-//  it('renders without crashing', () => {
-  
-//     shallow(<Player />);
-     
-//  });
-
-// it('renders without crashing', () => {
-  
-//     shallow(<EditProfile/>);
-     
-//  });
 let match1 = {
   params: { number:1}
 }
@@ -56,5 +28,44 @@ it('renders without crashing', () => {
   shallow(<Student match={match1}/>);
   
 });
+
+
+it('renders without crashing', () => {
+  
+    shallow(<CompanyListings match={match1}/>);
+    
+  });
+
+ it('renders without crashing', () => {
+  
+    shallow(<ApplicationTable/>);
+    
+ });
+
+ 
+it('renders without crashing', () => {
+  
+    shallow(<FullRoster/>);
+     
+ });
+
+ let location1 = {
+  pathname: "/student/1"
+}
+it('renders without crashing', () => {
+  
+    shallow(<EditProfile location={location1}/>);
+     
+ });
+
+ it('renders without crashing', () => {
+  
+  shallow(<Player match={match1}/>);
+   
+});
+
+
+
+
   
 

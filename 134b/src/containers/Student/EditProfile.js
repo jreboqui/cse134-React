@@ -2,7 +2,7 @@ import React from 'react';
 import { browserRouter, Link, Route } from 'react-router-dom';
 import StudentAPI from '../Student/StudentAPI';
 import './EditProfile.css';
-
+import kpan from './kpan.jpg'
 class EditProfile extends React.Component {
     constructor(props) {
         super(props);
@@ -24,7 +24,7 @@ class EditProfile extends React.Component {
         const player = StudentAPI.get(
             parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10)
         )
-
+        
         console.log(player);
         
         this.setState({
@@ -77,7 +77,9 @@ class EditProfile extends React.Component {
         return (
             <div class ="profile">
                 <h1>Edit Student Profile</h1>
-                <hr />    
+                <hr />   
+                
+                <img src={this.state.profileImg} />
                 <form name="profile">
                     {console.log(this.state.profileImg)}
                     

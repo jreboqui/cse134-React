@@ -9,12 +9,16 @@ import CurrentJobPosting from './CurrentJobPosting/CurrentJobPosting';
 import CompanyAbout from './CurrentJobPosting/CompanyAbout';
 
 class Company extends Component {
-    
-    state = {
-        currCompany: null,
-        userType: '',
-        bannerPath: ""
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currCompany: null,
+            userType: '',
+            bannerPath: ""
+        };
     }
+    
     newBannerPath;
 
     componentWillMount(){
@@ -45,6 +49,10 @@ class Company extends Component {
         this.props.history.push('/messaging');
     }
 
+    onClickAddPosition = () => {
+        this.props.history.push('/company/newposition/' + this.props.match.params.companyId);
+    }
+
     handleEditCompanyProfile = () => {
         this.props.history.push('/editprofile/company/' + this.props.match.params.companyId);
     }
@@ -62,14 +70,18 @@ class Company extends Component {
                      style={{backgroundImage: "url(./"+ this.newBannerPath +")"}}>
                 </div>
                 <div className="open-jobs">
-                    <div id ="id-about" style={{ paddingLeft: '1%'}}></div>
+                    <div id ="id-about" style={{ paddingLeft: '1%'}}>
+                        <br></br>
+                        <h4>{this.state.currCompany.title}</h4>
+                        <p>{this.state.currCompany.description}</p>
+                    </div>
                     <hr></hr>
                     <div style={{paddingLeft:'1%'}}>
                         <JobOpening companyId={this.state.currCompany.id}
                             positions={this.state.currCompany.openPositions}/>
                     </div>
                     <div style={{paddingLeft:'2%'}}>
-                        {/* <button id="btn-add" onClick="addNewPosition(1)" className="btn btn-success" type="button" style="float: left">Add</button> */}
+                        <button id="btn-add" onClick={this.onClickAddPosition} className="btn btn-success" style={{float: "left", width:"7.5em", marginTop:"10px"}}>Add Position</button>
                     </div>   
                 </div>
 

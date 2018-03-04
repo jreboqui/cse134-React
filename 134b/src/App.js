@@ -13,6 +13,7 @@ import EditProfile from './containers/Student/EditProfile';
 import Applicant from './containers/Company/Applicant';
 import EditTutorProfile from './containers/Tutor/EditTutorProfile';
 import EditCompanyProfile from './containers/Company/EditCompanyProfile';
+import NewPosition from './containers/Company/NewPosition';
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
           <Route path="/company/:companyId" exact component={Company}/>
           <Route path="/editProfile/company/:companyId" exact component={EditCompanyProfile} />
           <Route path="/company/:companyId/position/:positionId" exact component={CurrentJobPosting}/>
+          <Route path="/company/newposition/:companyId" exact component = {NewPosition}/>
           <Route path="/messaging" component={Messaging}/>
           <Route path="/student" component={Student} />
           <Route path="/tutor/:tutorId" exact component={Tutor} />
