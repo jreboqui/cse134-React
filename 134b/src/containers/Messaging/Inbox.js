@@ -72,7 +72,7 @@ class Inbox extends Component {
         //this.setState({userType:localStorage.getItem('userType')});
         this.setState({userType: localStore.userType});
         //this.setState({userId:localStorage.getItem('userId')});
-        this.setState({userId: localStore.userId});
+        this.setState({userId: parseInt(localStore.userId)});
     }
 
     populateInbox() {
