@@ -118,6 +118,10 @@ const CompanyAPI = {
     addMail: function(id,mail) {
       const isCompany = p => p.id === id
       this.companies.find(isCompany).mailing.push(mail);
+    },
+    addPosition: function(id, position){
+      const isCompany = p => p.id === id
+      this.companies.find(isCompany).openPositions.push(position);
     }
   }
   

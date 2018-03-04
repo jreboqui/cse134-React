@@ -32,8 +32,8 @@ export class Tutor extends React.Component{
         const tuts = TutorAPI.get(
             parseInt(this.props.match.params.tutorId, 10)
         )
-        console.log(tuts);
-        console.log("Tuts was printed");
+        //console.log(tuts);
+       // console.log("Tuts was printed");
         if (!tuts){
             return <div> Sorry, tutorId not found </div>
         }
@@ -50,11 +50,11 @@ export class Tutor extends React.Component{
                     <h5> School: {tuts.school} </h5>
                     <h5> GPA: {tuts.GPA} </h5>
                     <h5> Year: {tuts.year} </h5>
-                    <button className="btn btn-primary" onClick={this.handleEditTutorProfile}> Edit Profile </button>
+                    <button id="b1" className="btn btn-primary" onClick={this.handleEditTutorProfile}> Edit Profile </button>
                     <br/>
                     <button className="btn btn-warning"> Messaging </button>
                     <br/>
-                    <button className="btn btn-danger" onClick={this.onClickLogout}> Logout </button>
+                    <button id="b3" className="btn btn-danger" onClick={this.onClickLogout}> Logout </button>
                 </nav>            
             </div>
             <ApplicationTable studentObject={tuts}/>
