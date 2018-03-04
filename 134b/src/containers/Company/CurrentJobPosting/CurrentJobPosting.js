@@ -11,11 +11,14 @@ import StudentAPI from '../../Student/StudentAPI';
 import ApplicantsList from './ApplicantsList';
 
 class CurrentJobPosting extends Component {
+    constructor(props) {
+        super(props);
 
-    State = {
-        currCompany: null,
-        bannerPath: null,
-        currJobPosting: null
+        this.state = {
+            currCompany: null,
+            bannerPath: "",
+            currJobPosting: ""
+        };
     }
 
     componentWillMount(){

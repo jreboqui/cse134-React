@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {shallow} from 'enzyme';
+import { expect } from 'chai';
 
 import Company from '../containers/Company/Company';
 import CurrentJobPosting from '../containers/Company/CurrentJobPosting/CurrentJobPosting';
@@ -18,11 +19,18 @@ it('renders without crashing', () => {
   
     shallow(<Company match={match2}/>);
   });
- // const wrapper = shallow(<Company match={match1}/>);
-// it('renders without crashing', () => {
-  
-//   shallow(<CurrentJobPosting match={match2}/>);
-    
+ 
+  // it('should render children when passed in', () => {
+  //   const wrapper = shallow((<CurrentJobPosting match={match2}/>));
+  //   expect(wrapper).to.equal(false);
+  // });
+// it('should render children when passed in', () => {
+//   const wrapper = shallow((
+//     <MyComponent>
+//       <CurrentJobPosting />
+//     </MyComponent>
+//   ));
+//   expect(wrapper.contains(<CurrentJobPosting />)).to.equal(true);
 // });
 // const wrapper = shallow(<CurrentJobPosting match={match2} />);
 // wrapper.setState({currCompany: "Amazon"});

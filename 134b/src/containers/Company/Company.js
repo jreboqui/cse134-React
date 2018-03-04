@@ -9,12 +9,16 @@ import CurrentJobPosting from './CurrentJobPosting/CurrentJobPosting';
 import CompanyAbout from './CurrentJobPosting/CompanyAbout';
 
 class Company extends Component {
-    
-    state = {
-        currCompany: null,
-        userType: '',
-        bannerPath: ""
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            currCompany: null,
+            userType: '',
+            bannerPath: ""
+        };
     }
+    
     newBannerPath;
 
     componentWillMount(){
