@@ -33,7 +33,7 @@ class NewMessage extends Component {
         this.setState({allStudents:StudentAPI.all()});
         this.setState({allTutors:TutorAPI.all()});
         this.setState({userType: localStore.userStype});
-        this.setState({userId: localStorage.userId});
+        this.setState({userId: localStore.userId});
         //this.setState({userType:localStorage.getItem('userType')});
         //this.setState({userId:localStorage.getItem('userId')});
     }

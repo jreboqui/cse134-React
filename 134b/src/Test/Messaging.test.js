@@ -17,13 +17,25 @@ Enzyme.configure({ adapter: new Adapter() });
 //     shallow(<Inbox />);
 //   });
 
+
+  // describe('< Inbox />', () => {
+  //   it('should render', () => {
+  //     const wrapper = shallow(<Inbox name="Example" />);
+  //     expect(wrapper).to.have.length(1);
+  //   });
+  //   describe('check props', ()=> {
+  //     const wrapper = shallow(<Inbox name="Example" />);
+  //     console.log(wrapper.instance().props);
+  //   })
+  // })
+
 it('renders without crashing', () => {
   
     shallow(<Messaging/>);
   });
 
   
-// it('renders without crashing', () => {
+it('renders without crashing', () => {
   
-//     shallow(<NewMessage/>);
-//   });
+    shallow(<NewMessage/>);
+  });

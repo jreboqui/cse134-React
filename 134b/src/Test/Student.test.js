@@ -58,6 +58,13 @@ it('renders without crashing', () => {
      
  });
 
+ it('renders without crashing', () => {
+  
+  shallow(<Player match={match1}/>);
+   
+});
+
+
 
 
   

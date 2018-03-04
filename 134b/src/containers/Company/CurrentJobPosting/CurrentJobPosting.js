@@ -25,7 +25,7 @@ class CurrentJobPosting extends Component {
         //this.userType = localStorage.getItem('userType');
         this.userType = localAPI.all().userType;
         let retrievedCompanies = CompanyAPI.all();
-        console.log(retrievedCompanies);
+        //console.log(retrievedCompanies);
         //console.log(this.props.match.params.positionId);
         const companyId = this.props.match.params.companyId;
         const positionId = this.props.match.params.positionId;
