@@ -7,6 +7,7 @@ import localAPI from '../../Shared/localAPI';
 import JobOpening from './JobOpening/JobOpening'
 import CurrentJobPosting from './CurrentJobPosting/CurrentJobPosting';
 import CompanyAbout from './CurrentJobPosting/CompanyAbout';
+import PhotoList from './PhotoList';
 
 class Company extends Component {
     constructor(props) {
@@ -105,10 +106,11 @@ class Company extends Component {
 
                     <div className="photos">
                         <h4>Photos:</h4>
-                        <div>
                         <ul id="id-ul-photos" className="ul-photo-list">
+                            {this.state.currCompany.photosURL.map((photo,i)=><PhotoList img={photo} key={i}/>)}
+                        {/* <PhotoList photos={this.state.currCompany.photosURL}
+                                    logo={this.state.currCompany.logoURL}/> */}
                         </ul>
-                        </div>
                     </div>
 
                     <br></br>
