@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import StudentAPI from '../Student/StudentAPI';
 import CompanyAPI from '../Company/CompanyAPI';
 import localAPI from '../../Shared/localAPI';
+import Banner from './Banner';
 
 class Applicant extends React.Component{
 
@@ -82,7 +83,7 @@ class Applicant extends React.Component{
         
         return(
             <div>
-                <div id="id-banner" className="jumbotron jumbotron-fluid"></div>
+                <Banner banner={this.state.currCompany.bannerURL}/>
                 <div name="studentProfile">
                     <h1>Applicant Profile</h1>
                     <button onClick={this.onClickBack} className="btn btn-danger" style={{float:"right", width:"6em"}}>Go Back</button>

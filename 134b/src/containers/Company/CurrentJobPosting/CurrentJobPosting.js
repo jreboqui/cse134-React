@@ -9,6 +9,7 @@ import localAPI from '../../../Shared/localAPI';
 import ApplicationInfo from '../../../Shared/ApplicationInfo';
 import StudentAPI from '../../Student/StudentAPI';
 import ApplicantsList from './ApplicantsList';
+import Banner from '../Banner';
 
 class CurrentJobPosting extends Component {
     constructor(props) {
@@ -63,7 +64,7 @@ class CurrentJobPosting extends Component {
         (userType === "c") ? isCompany = true: isCompany = false;
         return(
             <div>
-                <div id="id-banner" className="jumbotron jumbotron-fluid"></div>
+                <Banner banner={this.state.currCompany.bannerURL}/>
                 <div>
                     <div id="id-curr-job-title" className="curr-job-title" style={{paddingLeft: "1%"}}>
                         <h1>{this.state.currJobPosting.title}</h1>
