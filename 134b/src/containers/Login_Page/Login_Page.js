@@ -5,6 +5,7 @@ import styles from './Login_Page.css';
 import CompanyAPI from '../Company/CompanyAPI';
 import StudentAPI from '../Student/StudentAPI';
 import TutorAPI from '../Tutor/TutorAPI';
+import localAPI from '../../Shared/localAPI';
 
 class Login_Page extends Component {
 
@@ -42,8 +43,9 @@ class Login_Page extends Component {
                     if(this.state.username == retrivedCompanies[i].username &&
                         this.state.password == retrivedCompanies[i].password){
                             alert("Sign in Successful!");
-                            localStorage.setItem("userType", 'c');
-                            localStorage.setItem("userId",retrivedCompanies[i].id);
+                            //localStorage.setItem("userType", 'c');
+                            //localStorage.setItem("userId",retrivedCompanies[i].id);
+                            localAPI.set('c',retrivedCompanies[i].id);
                             valid = true;
                             this.props.history.push(`/company/${retrivedCompanies[i].id}`);
                             break;
@@ -57,8 +59,9 @@ class Login_Page extends Component {
                     if(this.state.username == retrivedStudents[i].username &&
                         this.state.password == retrivedStudents[i].password){
                             alert("Sign in Successful!");
-                            localStorage.setItem("userType", 's');
-                            localStorage.setItem("userId",retrivedStudents[i].number);
+                            // localStorage.setItem("userType", 's');
+                            // localStorage.setItem("userId",retrivedStudents[i].number);
+                            localAPI.set('s',retrivedStudents[i].number);
                             valid = true;
                             this.props.history.push(`/student/${retrivedStudents[i].number}`);
                             break;
@@ -72,8 +75,9 @@ class Login_Page extends Component {
                     if(this.state.username == retrivedTutors[i].username &&
                         this.state.password == retrivedTutors[i].password){
                             alert("Sign in Successful!");
-                            localStorage.setItem("userType", 't');
-                            localStorage.setItem("userId",retrivedTutors[i].tutorId);
+                            // localStorage.setItem("userType", 't');
+                            // localStorage.setItem("userId",retrivedTutors[i].tutorId);
+                            localAPI.set('t',retrivedTutors[i].id);
                             valid = true;
                             this.props.history.push(`/tutor/${retrivedTutors[i].tutorId}`);
                             break;
