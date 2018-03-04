@@ -96,7 +96,7 @@ class ApplicationTable extends React.Component{
         }
         else {
             return (
-                <h1> Nothing was returned </h1>
+                <h1> No mentees yet </h1>
             )
         }
     }//end of render

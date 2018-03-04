@@ -27,19 +27,10 @@ export class Player extends React.Component {
         this.props.history.push('/messaging');
     }
 
-    componentWillMount() {
-        if (this.props.match.params.number){
-            this.setState({number: this.props.match.params.number});
-        }
-        else{
-            this.setState({number: 0});
-        }
-        
-    }
     render(){
-        console.log(this.state.number);
+       
         const player = StudentAPI.get(
-            parseInt(this.state.number, 10)
+            parseInt(this.props.match.params.number, 10)
         )
         //console.log("Number is:" + player.number);
         //StudentAPI.set(1);

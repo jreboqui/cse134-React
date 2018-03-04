@@ -3,6 +3,7 @@ import StudentAPI from '../Student/StudentAPI';
 import CompanyAPI from '../Company/CompanyAPI';
 import TutorAPI from  '../Tutor/TutorAPI';
 import mail from '../../Shared/mail';
+import localAPI from '../../Shared/localAPI';
 
 class NewMessage extends Component {
     constructor(props){
@@ -27,11 +28,14 @@ class NewMessage extends Component {
     rId = 0;
 
     componentWillMount() {
+        let localStore = localAPI.all();
         this.setState({allCompanies:CompanyAPI.all()});
         this.setState({allStudents:StudentAPI.all()});
         this.setState({allTutors:TutorAPI.all()});
-        this.setState({userType:localStorage.getItem('userType')});
-        this.setState({userId:localStorage.getItem('userId')});
+        this.setState({userType: localStore.userStype});
+        this.setState({userId: localStorage.userId});
+        //this.setState({userType:localStorage.getItem('userType')});
+        //this.setState({userId:localStorage.getItem('userId')});
     }
 
     handleChange = (event) => {
