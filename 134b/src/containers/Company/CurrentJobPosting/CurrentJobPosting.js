@@ -58,6 +58,9 @@ class CurrentJobPosting extends Component {
 
     render() {
         //console.log(this.state.currJobPosting);
+        let userType = localAPI.all().userType;
+        var isCompany = false;
+        (userType === "c") ? isCompany = true: isCompany = false;
         return(
             <div>
                 <div id="id-banner" className="jumbotron jumbotron-fluid"></div>
@@ -68,12 +71,17 @@ class CurrentJobPosting extends Component {
 
                     <div style={{paddingTop: "15px"}} className="extra-buttons">
 
+                        { !isCompany ?(
                         <button style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}} 
                                     className="btn btn-success" type="button" onClick={this.onClickApply}>Apply</button>
+                        ):null}
+
+                        { isCompany ?(<span>
                         <button style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}} 
                                     className="btn btn-primary" type="button">Edit</button>
                         <button style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}} 
                                     className="btn btn-danger" type="button">Remove</button> 
+                        </span>):null}
                     </div>
                 </div>
 

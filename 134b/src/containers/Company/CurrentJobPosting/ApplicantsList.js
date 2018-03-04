@@ -44,7 +44,7 @@ class ApplicantsList extends Component {
                             <img alt="none" src={require(`${app.pic}`)} />
                             <br></br>{app.name}<br></br>{app.school}<br></br>{app.gpa}
                             {this.state.applicantsStatus[i]}<br></br>
-                            <Link to={`/applicant/${app.number}`}>
+                            <Link to={`/company/${this.props.companyId}/posid/${this.props.positionId}/applicant/${app.number}`}>
                                 <button class="btn btn-success" style={{width:"7em"}}>To Profile</button>
                             </Link>
                         </li>

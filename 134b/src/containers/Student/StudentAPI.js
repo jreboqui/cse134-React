@@ -17,8 +17,8 @@ class mail {
   }
 }
 
-const app1 = new ApplicationInfo(1, "Amazon Inc.", "Software Engineering", 1, "Under Review");
-const app2 = new ApplicationInfo(1, "Amazon Inc.", "Software Engineering Intern", 2, "Under Review");
+const app1 = new ApplicationInfo(1, "Amazon Inc.", "Software Development Engineer Intern", 1, "Under Review");
+const app2 = new ApplicationInfo(2, "Salesforce.com", "Software Infrastructure Intern", 1, "Under Review");
 const app3 = new ApplicationInfo(1, "Amazon Inc.", "Data Science Intern", 3, "Under Review");
 
 const mailToKevin1 = new mail(1,"c","Hello, good news, we dould like to invite you to be interning for us for summer 2018 at our headquarter, Seattle, WA");
@@ -138,6 +138,21 @@ const StudentAPI = {
     apply: function (id, app) {
       const isStudent = p => p.number === id;
       this.players.find(isStudent).applications.push(app);
+    },
+    updateStatus: function (sid,jobId,compId,status) {
+      //console.log("here!");
+      const isStudent = p => p.number === sid;
+      let currStudent = this.players.find(isStudent);
+      //console.log(currStudent);
+      for(var i = 0; i < currStudent.applications.length; i++){
+        if(currStudent.applications[i].companyId === compId &&
+          currStudent.applications[i].positionId === jobId){
+            currStudent.applications[i].appStatus = status;
+            //console.log("Found the jobId");
+            break;
+          }
+      }
+      //console.log(currStudent);
     }
   }
   

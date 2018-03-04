@@ -64,6 +64,11 @@ class Company extends Component {
         //style={{backgroundImage: "url("+ this.state.bannerPath + ")" }}
         //style={{backgroundImage: "url(./"+ this.newBannerPath +")"}}
         console.log("backgroundImage: url(${require('./'+this.state.bannerPath)}");
+
+        let userType = localAPI.all().userType;
+        var isCompany = false;
+        (userType === "c") ? isCompany = true: isCompany = false;
+
         return (
             <div>
                 <div className="jumbotron jumbotron-fluid"
@@ -81,7 +86,10 @@ class Company extends Component {
                             positions={this.state.currCompany.openPositions}/>
                     </div>
                     <div style={{paddingLeft:'2%'}}>
-                        <button id="btn-add" onClick={this.onClickAddPosition} className="btn btn-success" style={{float: "left", width:"7.5em", marginTop:"10px"}}>Add Position</button>
+                        { isCompany ? ( 
+                            <button id="btn-add" onClick={this.onClickAddPosition} className="btn btn-success" style={{float: "left", width:"7.5em", marginTop:"10px"}}>Add Position</button>
+                            ):null
+                        }
                     </div>   
                 </div>
 
@@ -104,14 +112,15 @@ class Company extends Component {
                     </div>
 
                     <br></br>
-                
+                        
+                    {isCompany ? (<div>    
                     <button className="btn btn-primary"  onClick={this.handleEditCompanyProfile}
                         style={{width: "6.5em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}}>Edit Profile</button>
                     <button className="btn btn-warning"  onClick={this.onClickMessage}
                         style={{width: "6.5em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}}>Messaging</button>
                     <button className="btn btn-danger"  onClick={this.onClickLogout}
                         style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px", marginLeft:"10px"}}>Logout</button> 
-
+                    </div>):null}
                 </div>
 
             </div>
