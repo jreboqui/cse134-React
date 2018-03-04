@@ -82,20 +82,35 @@ const CompanyAPI = {
         name: "Salesforce.com",
         username: "recruiting@salesforce.com",
         password: "salesforce12345",  
-        bannerURL: "salesforce-banner.png",
+        bannerURL: "./salesforce-banner.PNG",
         hq: "San Francisco, WA",
         size: "125000",
         Industry: ["Cloud Computing"],
         website: "salesforce.com",
         title: "We pioneer", 
         description: "We're a company of pioneers. It's our job to make bold bets, and we get our energy from inventing on behalf of customers. Success is measured against the possible, not the probable. For today’s pioneers, that’s exactly why there’s no place on Earth they’d rather build than Amazon.",
-        photosURL: ["salesforce1.jpg", "salesforce2.jpg", "salesforce3.jpg", "salesforce4.jpg", "salesforcen5.jpg", "salesforce6.jpg"],
+        photosURL: ["./salesforce1.jpg", "./salesforce2.jpg", "./salesforce3.jpg", "./salesforce4.jpg", "./salesforcen5.jpg", "./salesforce6.jpg"],
         logoURL: "./salesforce_icon.png",
         openPositions: [salesforcePos1,salesforcePos2,salesforcePos3,salesforcePos4],
         mailing: [mailToSalesforce1]
-      },
-        
-      { id: 3, name: "Microsoft", bannerURL: "./salesforce_icon.png", openPositions: [salesforcePos1,salesforcePos2,salesforcePos3,salesforcePos4], logoURL: "./microsoft_icon.jpg"}
+      },  
+      { 
+        id: 3,
+        name: "Mircrosoft",
+        username: "recruiting@microsoft.com",
+        password: "microsoft12345",  
+        bannerURL: "./microsoft-banner.png",
+        hq: "Seattle, WA",
+        size: "75000",
+        Industry: ["E-Commerce", "Web-Services"],
+        website: "microsoft.com",
+        title: "We pioneer", 
+        description: "We're a company of pioneers. It's our job to make bold bets, and we get our energy from inventing on behalf of customers. Success is measured against the possible, not the probable. For today’s pioneers, that’s exactly why there’s no place on Earth they’d rather build than Amazon.",
+        photosURL: ["./microsoft1.jpg", "./microsoft2.jpg", "./microsoft3.jpg", "./microsoft4.jpg", "./microsoft5.jpeg"],
+        logoURL: "./microsoft_logo.jpg",
+        openPositions: [amazonPos1,amazonPos2,amazonPos4,amazonPos6,amazonPos7],
+        mailing: [mailToAmazon1,mailToSalesforce1]
+      }
     ],
     all: function() { return this.companies},
     get: function(id) {
