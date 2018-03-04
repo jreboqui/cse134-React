@@ -8,6 +8,7 @@ class EditProfile extends React.Component {
         super(props);
 
         this.state = {
+            profileImg: '',
             sname: '',
             schoolname: '',
             year: '',
@@ -27,6 +28,7 @@ class EditProfile extends React.Component {
         console.log(player);
         
         this.setState({
+            profileImg: player.pic,
             sname: player.name,
             schoolname: player.school,
             year: player.year,
@@ -35,6 +37,8 @@ class EditProfile extends React.Component {
             gpa: player.GPA,
             intern: player.intern
         });
+
+
     }
 
     handleChange = (event) => {
@@ -47,6 +51,7 @@ class EditProfile extends React.Component {
 
     handleReset = () => {
         this.setState({
+            profileImg: '',
             sname: '',
             schoolname: '',
             year: '',
@@ -66,13 +71,19 @@ class EditProfile extends React.Component {
         this.props.history.push('/student/' + this.props.location.pathname[this.props.location.pathname.length-1]);
     }
 
+
     render() {
-    
+
         return (
             <div class ="profile">
                 <h1>Edit Student Profile</h1>
                 <hr />    
                 <form name="profile">
+                    {console.log(this.state.profileImg)}
+                    
+                    <label for="profileImg">Enter Image URL:</label>
+                    <input name="profileImg" type="text" value={this.state.profileImg} onChange={this.handleChange} />
+
                     <label for="sname">Full name:</label>
                     <input name="sname" type="text" value={this.state.sname} onChange={this.handleChange} />
 

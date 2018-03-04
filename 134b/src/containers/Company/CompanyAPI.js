@@ -105,6 +105,8 @@ const CompanyAPI = {
     setAll: function(id, state) {
       const isCompany = p => p.id === id
       let x = this.companies.find(isCompany);
+      x.logoURL = state.logoURL;
+      x.bannerURL = state.bannerURL;
       x.name = state.cname;
       x.hq = state.hq;
       x.size = state.size;

@@ -8,6 +8,7 @@ class EditTutorProfile extends React.Component {
         super(props);
 
         this.state = {
+            profileImg: '',
             tname: '',
             schoolname: '',
             year: '',
@@ -26,6 +27,7 @@ class EditTutorProfile extends React.Component {
         console.log(tuts);
         
         this.setState({
+            profileImg: tuts.profilePic,
             tname: tuts.name,
             schoolname: tuts.school,
             year: tuts.year,
@@ -45,6 +47,7 @@ class EditTutorProfile extends React.Component {
 
     handleReset = () => {
         this.setState({
+            profileImg: '',
             tname: '',
             schoolname: '',
             year: '',
@@ -70,6 +73,9 @@ class EditTutorProfile extends React.Component {
                 <h1>Edit Tutor Profile</h1>
                 <hr />    
                 <form name="profile">
+                    <label for="profileImg">Enter Image URL:</label>
+                    <input name="profileImg" type="text" value={this.state.profileImg} onChange={this.handleChange} />
+
                     <label for="tname">Full name:</label>
                     <input name="tname" type="text" value={this.state.tname} onChange={this.handleChange} />
 
