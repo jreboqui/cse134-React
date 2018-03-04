@@ -32,7 +32,7 @@ class App extends Component {
           <Route path="/tutor/:tutorId" exact component={Tutor} />
           <Route path="/editprofile/tutor/:tutorId" exact component={EditTutorProfile} />
           <Route path="/editProfile" component={EditProfile} />
-          <Route path="/applicant/:number" exact component={Applicant} />         
+          <Route path="/company/:companyId/posid/:positionId/applicant/:number" exact component={Applicant} />         
         </Switch>
       </div>
       </BrowserRouter>
