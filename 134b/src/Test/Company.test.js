@@ -60,7 +60,6 @@ describe('< CurrentJobPosting />', () => {
   })
 })
 
-
 it('renders without crashing', () => {
   
   shallow(<ApplicantList />);

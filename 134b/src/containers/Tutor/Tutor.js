@@ -13,7 +13,7 @@ export class Tutor extends React.Component{
     }
     componentWillMount(){
         let allTutors = TutorAPI.all();
-        console.log(allTutors);
+        //console.log(allTutors);
         //console.log(this.props.match.params);
         const tutorId = this.props.match.params.tutorId;
         this.setState({currTutor: tutorId});

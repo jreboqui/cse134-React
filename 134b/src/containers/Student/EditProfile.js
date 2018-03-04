@@ -25,7 +25,7 @@ class EditProfile extends React.Component {
             parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10)
         )
         
-        console.log(player);
+        //console.log(player);
         
         this.setState({
             profileImg: player.pic,
@@ -81,7 +81,7 @@ class EditProfile extends React.Component {
                 
                 <img src={this.state.profileImg} />
                 <form name="profile">
-                    {console.log(this.state.profileImg)}
+                    {/* console.log(this.state.profileImg) */}
                     
                     <label for="profileImg">Enter Image URL:</label>
                     <input name="profileImg" type="text" value={this.state.profileImg} onChange={this.handleChange} />

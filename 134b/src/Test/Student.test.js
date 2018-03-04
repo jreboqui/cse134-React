@@ -11,6 +11,7 @@ import EditProfile from '../containers/Student/EditProfile';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {shallow} from 'enzyme';
+import { expect } from 'chai';
 
 Enzyme.configure({ adapter: new Adapter() });
 // it('renders without crashing', () => {
@@ -28,7 +29,6 @@ it('renders without crashing', () => {
   shallow(<Student match={match1}/>);
   
 });
-
 
 it('renders without crashing', () => {
   
@@ -63,7 +63,45 @@ it('renders without crashing', () => {
   shallow(<Player match={match1}/>);
    
 });
+//Some editProfile testings
 
+
+describe('<form />', () => {
+  it('renders a form crashing', () => {
+    const eProfile = shallow(<EditProfile location={location1}/>);
+    expect(eProfile.find('form').length).to.equal(1);
+  });
+  
+  it('`<form>` element should have an `<input />` element', () => {
+    const eProfile = shallow(<EditProfile location={location1}/>);
+    expect(eProfile.find('input').exist);
+  });
+  it('`<form>` element should have an `<label />` element', () => {
+    const eProfile = shallow(<EditProfile location={location1}/>);
+    expect(eProfile.find('label').exist);
+  });
+  it('`<form>` element should have 8 `<input />` element', () => {
+    const eProfile = shallow(<EditProfile location={location1}/>);
+    expect(eProfile.find('input').length).to.equal(8);
+  });
+  it('`<form>` element should have textarea element', () => {
+    const eProfile = shallow(<EditProfile location={location1}/>);
+    expect(eProfile.find('textarea').exist);
+  });
+  it('`<form>` element should have textarea element', () => {
+    const eProfile = shallow(<EditProfile location={location1}/>);
+    expect(eProfile.find('textarea').length).to.equal(1);
+  });
+  it('`<form>` element should have 2 button elements', () => {
+    const eProfile = shallow(<EditProfile location={location1}/>);
+    expect(eProfile.find('button').length).to.equal(2);
+  });
+
+
+
+
+
+})
 
 
 

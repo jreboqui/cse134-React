@@ -6,19 +6,19 @@ export class CompanyListings extends React.Component{
     
     render(){
         const allCompanies = CompanyAPI.all();
-        console.log(allCompanies);
-        console.log(allCompanies.length);
+        //console.log(allCompanies);
+        //console.log(allCompanies.length);
         const logoArray = [];
         let i;
         for (i = 0; i < allCompanies.length; i++){
             if (allCompanies[i].openPositions.length > 0){
-                console.log("There's an opening so post photo");
-                console.log(allCompanies[i].logoURL);
+                //console.log("There's an opening so post photo");
+                //console.log(allCompanies[i].logoURL);
                 logoArray.push([allCompanies[i].logoURL, allCompanies[i].id]);
                 
             }
         }
-        console.log(logoArray);
+        //console.log(logoArray);
 
         return (
             <div>
