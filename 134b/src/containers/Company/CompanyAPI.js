@@ -89,7 +89,7 @@ const CompanyAPI = {
         website: "salesforce.com",
         title: "We pioneer", 
         description: "We're a company of pioneers. It's our job to make bold bets, and we get our energy from inventing on behalf of customers. Success is measured against the possible, not the probable. For today’s pioneers, that’s exactly why there’s no place on Earth they’d rather build than Amazon.",
-        photosURL: ["./salesforce1.jpg", "./salesforce2.jpg", "./salesforce3.jpg", "./salesforce4.jpg", "./salesforcen5.jpg", "./salesforce6.jpg"],
+        photosURL: ["./salesforce1.jpg", "./salesforce2.jpg", "./salesforce3.jpg", "./salesforce4.jpg", "./salesforce5.jpg"],
         logoURL: "./salesforce_icon.png",
         openPositions: [salesforcePos1,salesforcePos2,salesforcePos3,salesforcePos4],
         mailing: [mailToSalesforce1]
