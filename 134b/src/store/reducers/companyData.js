@@ -131,6 +131,7 @@ const reducer = (state = CompanyData, action) => {
       }
       break;
   }
+  return state;
 };
 
 export default reducer;
