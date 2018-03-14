@@ -4,7 +4,8 @@ import StudentAPI from './StudentAPI';
 import CompanyListings from './CompanyListings';
 import ApplicationTable from './ApplicationTable';
 import localAPI from '../../Shared/localAPI';
-import {kpan, pp1} from './Images';
+//import Sidebar from './Sidebar';
+//import {kpan, pp1} from './Images';
 //import { Company } from '../../Shared/Objects';
 import './resume.css';
 import './resume.min.css';
@@ -12,8 +13,17 @@ import './resume.min.css';
 export class Player extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {number: ''};
+        this.state = {
+            userId: '',
+            profileImg: '',
+            sname: '',
+            schoolname: '',
+            year: '',
+            major: '',
+            status: '',
+            gpa: '',
+            intern: ''
+        };
     }
     onClickLogout = () => {
         this.props.history.push('/login');
@@ -62,7 +72,6 @@ export class Player extends React.Component {
                             </ul>
                         </div>
                        
-                        
                         <button className="btn btn-primary" style={{"width": "50%"}} onClick={this.handleEditProfile}> Edit Profile </button>
                         <br/>
                         <button className="btn btn-warning" style={{"width": "50%"}} onClick={this.handleMessaging}> Messaging </button>
@@ -70,6 +79,7 @@ export class Player extends React.Component {
                         <button className="btn btn-danger" style={{"width": "50%"}} onClick={this.onClickLogout}> Logout </button>
                     </nav>
                 </div>
+               
                 <ApplicationTable studentObject={player}/>
                 <CompanyListings />
             </div>
@@ -77,4 +87,5 @@ export class Player extends React.Component {
 
     }
 }
-export default Player
+
+export default Player;

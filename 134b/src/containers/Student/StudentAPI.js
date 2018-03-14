@@ -159,4 +159,4 @@ const StudentAPI = {
     }
   }
   
-  export default StudentAPI  
+  export default StudentAPI

@@ -9,11 +9,8 @@ import localAPI from '../../../Shared/localAPI';
 import ApplicationInfo from '../../../Shared/ApplicationInfo';
 import StudentAPI from '../../Student/StudentAPI';
 import ApplicantsList from './ApplicantsList';
-<<<<<<< HEAD
-import PhotoList from '../PhotoList';
-=======
 import Banner from '../Banner';
->>>>>>> 0272363986a1c5ae94d6f699343f58c7d52cf563
+import PhotoList from '../PhotoList';
 
 class CurrentJobPosting extends Component {
     constructor(props) {

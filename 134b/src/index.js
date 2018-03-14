@@ -6,15 +6,22 @@ import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
+import {loadCourses} from './actions/courseActions';
+import {loadAuthors} from './actions/authorActions';
+//import companyDataReducer from './store/reducers/companyData';
+import configureStore from './store/configureStore';
+import { loadStudents } from './actions/studentActions';
+// const rootReducer = combineReducers({
+//     companyData: companyDataReducer
+//     //Combine all reducers here..
+// });
 
-import companyDataReducer from './store/reducers/companyData';
+//const store = createStore(rootReducer);
 
-const rootReducer = combineReducers({
-    companyData: companyDataReducer
-    //Combine all reducers here..
-});
+const store = configureStore();
+store.dispatch(loadCourses());
+store.dispatch(loadAuthors());
+store.dispatch(loadStudents());
 
-const store = createStore(rootReducer);
-
-ReactDOM.render(<Provider><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();

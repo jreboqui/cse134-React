@@ -14,6 +14,7 @@ import Applicant from './containers/Company/Applicant';
 import EditTutorProfile from './containers/Tutor/EditTutorProfile';
 import EditCompanyProfile from './containers/Company/EditCompanyProfile';
 import NewPosition from './containers/Company/NewPosition';
+import Magic from './containers/Student/Magic';
 
 class App extends Component {
   render() {
@@ -33,6 +34,7 @@ class App extends Component {
           <Route path="/editprofile/tutor/:tutorId" exact component={EditTutorProfile} />
           <Route path="/editProfile" component={EditProfile} />
           <Route path="/company/:companyId/posid/:positionId/applicant/:number" exact component={Applicant} />         
+          <Route path="/magic" component={Magic} />
         </Switch>
       </div>
       </BrowserRouter>
