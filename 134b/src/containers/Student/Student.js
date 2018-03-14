@@ -25,7 +25,7 @@ export class Student extends React.Component{
            
            <Switch>
                 <Route exact path='/student' component={FullRoster}/>
-                <Route path='/student/:number' exact component={Player} />
+                <Route path='/student/:number' render={() => <Player allStudents={students}/>} />
                 <Route path='/editprofile/student/:number' exact component={EditProfile} />
             </Switch>
         </div>
@@ -34,7 +34,8 @@ export class Student extends React.Component{
 }
 function mapStateToProps(state, ownProps) {
     return {
-      students: state.students
+      students: state.students,
+      params: ownProps
     };
   }
   

@@ -1,25 +1,66 @@
 import delay from './delay';
 
+class ApplicationInfo {
+  constructor(companyId, companyName, positionTitle, positionId, appStatus){
+    this.companyId = companyId;
+    this.companyName = companyName;
+    this.positionTitle = positionTitle;
+    this.positionId = positionId;
+    this.appStatus  = appStatus;
+  }
+}
+
+class mail {
+  constructor(senderId, senderType, message){
+    this.senderId = senderId;
+    this.senderType = senderType,
+    this.message = message;
+  }
+}
+
+const app1 = new ApplicationInfo(1, "Amazon Inc.", "Software Development Engineer Intern", 1, "Under Review");
+const app2 = new ApplicationInfo(2, "Salesforce.com", "Software Infrastructure Intern", 1, "Under Review");
+const app3 = new ApplicationInfo(1, "Amazon Inc.", "Data Science Intern", 3, "Under Review");
+const app4 = new ApplicationInfo(3, "Microsoft", "Software Development Engineer Intern", 1, "Under Review");
+const app5 = new ApplicationInfo(1, "Amazon Inc.", "Hardware Development Intern", 2, "Under Review");
+
+const mailToKevin1 = new mail(1,"c","Hello, good news, we dould like to invite you to be interning for us for summer 2018 at our headquarter, Seattle, WA");
+const mailToKevin3 = new mail(3,"c","Hello, Thank you for applying. While you have a great skill set, however,...");
+const mailToKevin2 = new mail(1,"t","Hey, do you want to pass your interview? You better start hiring me as your tutor!");
+
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
 // All calls return promises.
 const students = [
   {
-    id: "1",
-    username: "kpan04",
-    password: "kp12345",
-    sname: "Kevin Pansawira",
-    school: "UCSD",
-    gpa: "3.99"
-  },
-  {
-    id: "2",
-    username: "mwijaya",
-    password: "mw12345",
-    sname: "Melvin Wijaya",
-    school: "UCSD",
-    gpa: "3.99"
-  }
+    number: 1, 
+        name: "Kevin Pansawira",  
+        school: "UCSD", 
+        GPA: "3.99", 
+        year:"2018", 
+        pic: "./kpan.jpg",
+        major: "Computer Science", 
+        status: "Looking for internship",
+        applications: [app1, app2, app5,app4], 
+        username: "kp", 
+        password: "kp12345", 
+        intern: "", 
+        mailing: [mailToKevin1, mailToKevin2, mailToKevin3]
+      },
+      { number: 2, 
+        name: "Dave Defender", 
+        school: "MIT", 
+        GPA: "3.99", 
+        year:"2019", 
+        pic:"./pp1.jpeg",
+        major: "Computer Science", 
+        status: "",
+        applications: [app1, app3], 
+        username: "dd", 
+        password: "kp12345", 
+        intern: "", 
+        mailing: [mailToKevin2, mailToKevin1]
+      }
 ];
 
 // function replaceAll(str, find, replace) {
