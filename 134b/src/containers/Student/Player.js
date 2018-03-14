@@ -9,36 +9,48 @@ import localAPI from '../../Shared/localAPI';
 //import { Company } from '../../Shared/Objects';
 import './resume.css';
 import './resume.min.css';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+//import * as courseActions from '../../actions/courseActions';
+import * as studentActions from '../../actions/studentActions';
+//import CourseList from './CourseList';
+//import {browserHistory} from 'react-router';
+
 
 export class Player extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            userId: '',
-            profileImg: '',
-            sname: '',
-            schoolname: '',
-            year: '',
-            major: '',
-            status: '',
-            gpa: '',
-            intern: ''
-        };
-    }
-    onClickLogout = () => {
-        this.props.history.push('/login');
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         userId: '',
+    //         profileImg: '',
+    //         sname: '',
+    //         schoolname: '',
+    //         year: '',
+    //         major: '',
+    //         status: '',
+    //         gpa: '',
+    //         intern: ''
+    //     };
+    // // }
+    // onClickLogout = () => {
+    //     this.props.history.push('/login');
+    // }
 
-    handleEditProfile = () => {
-        this.props.history.push('/editprofile/student/' + this.props.match.params.number);
-    }
+    // handleEditProfile = () => {
+    //     this.props.history.push('/editprofile/student/' + this.props.match.params.number);
+    // }
 
-    handleMessaging = () => {
-        this.props.history.push('/messaging');
-    }
+    // handleMessaging = () => {
+    //     this.props.history.push('/messaging');
+    // }
+        constructor(props){
+            super(props);
+        }
 
     render(){
-       
+       console.log(this.props);
+        const {students} = this.props;
+        console.log(students);
         const player = StudentAPI.get(
             parseInt(this.props.match.params.number, 10)
         )
@@ -87,5 +99,16 @@ export class Player extends React.Component {
 
     }
 }
+function mapStateToProps(state, ownProps) {
+    return {
+      students: state.students
+    };
+  }
+  
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(studentActions, dispatch)
+  };
+}
 
-export default Player;
+export default connect(mapStateToProps, mapDispatchToProps)(Player);
