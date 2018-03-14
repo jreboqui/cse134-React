@@ -113,7 +113,8 @@ class Position {
         openPositions: [amazonPos1,amazonPos2,amazonPos4,amazonPos6,amazonPos7],
         mailing: [mailToAmazon1,mailToSalesforce1]
       }
-    ]
+    ],
+    currCompany: null
   }
 
 const reducer = (state = CompanyData, action) => {
@@ -127,7 +128,8 @@ const reducer = (state = CompanyData, action) => {
     case actionTypes.GET_SINGLE_COMPANY:
     const isCompany = state.companies.filter(company => company.id === action.companyId)
       return {
-        isCompany
+        ...state,
+        currCompany: isCompany[0]
       }
       break;
   }
