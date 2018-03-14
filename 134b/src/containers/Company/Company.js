@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as companyActions from '../../actions/companyActions';
 
 import styles from './Company.css';
 import CompanyAPI from './CompanyAPI';
@@ -60,6 +63,9 @@ class Company extends Component {
     }
 
     render(){
+        console.log(this.props);
+        const {companies} = this.props;
+        console.log(companies);
         //bannerPath = "'../../Shared/Images/" + this.state.currCompany.bannerURL + "'";
         //console.log(this.state.bannerPath);
         console.log(this.newBannerPath);
@@ -127,6 +133,18 @@ class Company extends Component {
             </div>
         ); 
     } 
+}
+
+function mapStateToProps(state, ownProps) {
+    return {
+      companies: state.companies
+    };
+  }
+  
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(companyActions, dispatch)
+  };
 }
 
 export default Company;
