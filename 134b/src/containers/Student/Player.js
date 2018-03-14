@@ -32,39 +32,50 @@ export class Player extends React.Component {
     //         intern: ''
     //     };
     // // }
-    // onClickLogout = () => {
-    //     this.props.history.push('/login');
-    // }
+    onClickLogout = () => {
+        this.props.history.push('/login');
+    }
 
-    // handleEditProfile = () => {
-    //     this.props.history.push('/editprofile/student/' + this.props.match.params.number);
-    // }
+    handleEditProfile = () => {
+        this.props.history.push('/editprofile/student/' + this.props.match.params.number);
+    }
 
-    // handleMessaging = () => {
-    //     this.props.history.push('/messaging');
-    // }
+    handleMessaging = () => {
+        this.props.history.push('/messaging');
+    }
         constructor(props){
             super(props);
         }
-
+        
     render(){
-       console.log(this.props);
-        const {students} = this.props;
-        console.log(students);
-        const player = StudentAPI.get(
-            parseInt(this.props.match.params.number, 10)
-        )
+        console.log(this.props);
+        console.log(this.props.allStudents[0]);
+        let localStore = localAPI.all();
+        let userType = localStore.userType;
+        let userId = localStore.userId;
+        let i;
+        console.log(userType);
+        console.log(userId);
+        let player;
+        //find userId in allStudents
+        for (i = 0; i < this.props.allStudents.length; i++){
+            if (this.props.allStudents[i].number == userId){
+                player = this.props.allStudents[i];
+                break;
+            }
+        }
+        console.log(player);
+        //const player = StudentAPI.get(
+           // parseInt(this.props.match.params.number, 10)
+        //)
         //console.log("Number is:" + player.number);
         //StudentAPI.set(1);
         //console.log(player.number);
 
-        if (!player){
-            return <div> Sorry, player not found </div>
-        }
+        // if (!player){
+        //     return <div> Sorry, player not found </div>
+        // }
 
-        let localStore = localAPI.all();
-        let userType = localStore.userType;
-        
         return (
             <div>
                 <div id="sidebar"> 
@@ -99,16 +110,4 @@ export class Player extends React.Component {
 
     }
 }
-function mapStateToProps(state, ownProps) {
-    return {
-      students: state.students
-    };
-  }
-  
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(studentActions, dispatch)
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
+export default Player;
