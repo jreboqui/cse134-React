@@ -17,32 +17,33 @@ export class Student extends React.Component{
         }
       
     render(){
-        console.log(this.props);
-        const {students} = this.props;
-        console.log(students);
+        // console.log(this.props);
+        // const {students} = this.props;
+        // console.log(students);
         return (
         <div>
            
            <Switch>
                 <Route exact path='/student' component={FullRoster}/>
-                <Route path='/student/:number' render={() => <Player allStudents={students}/>} />
+                {/* <Route path='/student/:number' render={() => <Player allStudents={students}/>} /> */}
+                
                 <Route path='/editprofile/student/:number' exact component={EditProfile} />
             </Switch>
         </div>
         );
     };
-}
-function mapStateToProps(state, ownProps) {
-    return {
-      students: state.students,
-      params: ownProps
-    };
-  }
+ }
+// function mapStateToProps(state, ownProps) {
+//     return {
+//       students: state.students,
+//       //params: ownProps
+//     };
+//   }
   
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(studentActions, dispatch)
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(studentActions, dispatch)
+//   };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Student);
+export default (Student);

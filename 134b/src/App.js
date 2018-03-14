@@ -14,6 +14,7 @@ import Applicant from './containers/Company/Applicant';
 import EditTutorProfile from './containers/Tutor/EditTutorProfile';
 import EditCompanyProfile from './containers/Company/EditCompanyProfile';
 import NewPosition from './containers/Company/NewPosition';
+import Player from './containers/Student/Player';
 import Magic from './containers/Student/Magic';
 
 class App extends Component {
@@ -29,7 +30,8 @@ class App extends Component {
           <Route path="/company/:companyId/position/:positionId" exact component={CurrentJobPosting}/>
           <Route path="/company/newposition/:companyId" exact component = {NewPosition}/>
           <Route path="/messaging" component={Messaging}/>
-          <Route path="/student" component={Student} />
+          {/* <Route path="/student" component={Student} /> */}
+          <Route path='/student/:number' exact component={Player} />
           <Route path="/tutor/:tutorId" exact component={Tutor} />
           <Route path="/editprofile/tutor/:tutorId" exact component={EditTutorProfile} />
           <Route path="/editProfile" component={EditProfile} />
