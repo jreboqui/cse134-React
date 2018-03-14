@@ -8,6 +8,7 @@ import JobOpening from './JobOpening/JobOpening'
 import CurrentJobPosting from './CurrentJobPosting/CurrentJobPosting';
 import CompanyAbout from './CurrentJobPosting/CompanyAbout';
 import PhotoList from './PhotoList';
+import Banner from './Banner';
 
 class Company extends Component {
     constructor(props) {
@@ -72,9 +73,7 @@ class Company extends Component {
 
         return (
             <div>
-                <div className="jumbotron jumbotron-fluid"
-                     style={{backgroundImage: "url(./"+ this.newBannerPath +")"}}>
-                </div>
+                <Banner banner={this.state.currCompany.bannerURL}/>
                 <div className="open-jobs">
                     <div id ="id-about" style={{ paddingLeft: '1%'}}>
                         <br></br>

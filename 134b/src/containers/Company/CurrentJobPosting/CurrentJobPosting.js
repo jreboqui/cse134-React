@@ -9,7 +9,11 @@ import localAPI from '../../../Shared/localAPI';
 import ApplicationInfo from '../../../Shared/ApplicationInfo';
 import StudentAPI from '../../Student/StudentAPI';
 import ApplicantsList from './ApplicantsList';
+<<<<<<< HEAD
 import PhotoList from '../PhotoList';
+=======
+import Banner from '../Banner';
+>>>>>>> 0272363986a1c5ae94d6f699343f58c7d52cf563
 
 class CurrentJobPosting extends Component {
     constructor(props) {
@@ -64,7 +68,7 @@ class CurrentJobPosting extends Component {
         (userType === "c") ? isCompany = true: isCompany = false;
         return(
             <div>
-                <div id="id-banner" className="jumbotron jumbotron-fluid"></div>
+                <Banner banner={this.state.currCompany.bannerURL}/>
                 <div>
                     <div id="id-curr-job-title" className="curr-job-title" style={{paddingLeft: "1%"}}>
                         <h1>{this.state.currJobPosting.title}</h1>
