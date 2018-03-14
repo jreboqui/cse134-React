@@ -11,6 +11,7 @@ import {loadAuthors} from './actions/authorActions';
 //import companyDataReducer from './store/reducers/companyData';
 import configureStore from './store/configureStore';
 import { loadStudents } from './actions/studentActions';
+import { loadCompanies } from './actions/companyActions';
 // const rootReducer = combineReducers({
 //     companyData: companyDataReducer
 //     //Combine all reducers here..
@@ -22,6 +23,7 @@ const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
 store.dispatch(loadStudents());
+store.dispatch(loadCompanies());
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
