@@ -4,11 +4,33 @@ import initialState from './initialState';
 export default function companyReducer(state = initialState.companies, action) {
   switch (action.type) {
     case types.LOAD_COMPANIES_SUCCESS:
-      console.log("[REDUCER: LOAD_COMPANIES_SUCCESS]");
-      console.log(action.companies);
+      //console.log("[REDUCER: LOAD_COMPANIES_SUCCESS]");
+      //console.log(action.companies);
       return action.companies;
 
-    default:
+    // case types.ON_APPLY:
+    //   console.log("[REDUCER: ON_APPLY]");
+    //   console.log(action);
+    //   console.log(state);
+    //   const newState = [...state] //clone the state in the store
+    //   console.log(newState);
+    //   const currStudent = newState.students.findIndex(student=>{
+    //     return student.number === action.id;
+    //   });
+    //   currStudent.applications.push(action.postion);
+    //   console.log(newState);
+    //   return newState;
+
+    
+      // const index = state.students.findIndex(student => {
+      //   return student.number === action.id;
+      // });
+      // const applyingStudent = state.students.slice()
+      // return [
+      //   ...state.students.filter(student =>)
+      // ]
+
+      default:
       return state;
   }
 }

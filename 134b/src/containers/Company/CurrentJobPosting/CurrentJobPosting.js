@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'
 import * as actionType from '../../../actions/actionTypes';
-import * as companyActions from '../../../actions/companyActions';
-
+// import * as companyActions from '../../../actions/companyActions';
+import * as studentActions from '../../../actions/studentActions';
 
 import Company from '../Company';
 import CompanyAPI from '../CompanyAPI';
@@ -79,14 +79,20 @@ class CurrentJobPosting extends Component {
     }
 
     onClickApply = () => {
+        let {dispatch} = this.props;
+
+        console.log("[onClickApply]");
+        console.log(this.props);    
         var status = "Under Review";
         const newApplication = new ApplicationInfo(
             this.state.currCompany.id, this.state.currCompany.name,this.state.currJobPosting.title,this.state.currJobPosting.positionId,status);
-        
-        StudentAPI.apply(parseInt(localAPI.all().userId),newApplication);
+       
+            
+        this.props.actions.onApply(parseInt(localAPI.all().userId),newApplication);
+        // StudentAPI.apply(parseInt(localAPI.all().userId),newApplication);
+        // alert("Success! " + newApplication.positionTitle + " with " + newApplication.companyName + " has been added to your application list.");
+        // this.props.history.push("/student/" + localAPI.all().userId);
         alert("Success! " + newApplication.positionTitle + " with " + newApplication.companyName + " has been added to your application list.");
-        this.props.history.push("/student/" + localAPI.all().userId);
-        
     }
 
     render() {
@@ -166,7 +172,7 @@ function mapStateToProps(state) {
 //Need this to dispatch onApply action (havent made one yet!)
 function mapDispatchToProps(dispatch) {
   return {
-    //actions: bindActionCreators(companyActions, dispatch)
+    actions: bindActionCreators(studentActions, dispatch)
   };
 }
 

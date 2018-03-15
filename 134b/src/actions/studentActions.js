@@ -38,3 +38,11 @@ export function saveCourse(course) {
     });
   };
 }
+
+export function onApply(sid,position) {
+  return {
+    type: types.ON_APPLY,
+    sid,
+    position
+  }
+}
