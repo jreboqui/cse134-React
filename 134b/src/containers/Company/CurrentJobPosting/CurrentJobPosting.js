@@ -169,7 +169,7 @@ function mapStateToProps(state) {
     };
   }
 
-//Need this to dispatch onApply action (havent made one yet!)
+//Need this to dispatch onApply action in the onClickApply() function above.
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(studentActions, dispatch)
