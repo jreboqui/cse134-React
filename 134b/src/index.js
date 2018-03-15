@@ -20,8 +20,8 @@ import { loadCompanies } from './actions/companyActions';
 //const store = createStore(rootReducer);
 
 const store = configureStore();
-store.dispatch(loadCourses());
-store.dispatch(loadAuthors());
+//store.dispatch(loadCourses());
+//store.dispatch(loadAuthors());
 store.dispatch(loadStudents());
 store.dispatch(loadCompanies());
 

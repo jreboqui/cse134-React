@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as companyActions from '../../actions/companyActions';
+import * as actionType from '../../actions/actionTypes'
 
 import styles from './Company.css';
 import CompanyAPI from './CompanyAPI';
@@ -20,22 +21,26 @@ class Company extends Component {
         this.state = {
             currCompany: null,
             userType: '',
-            bannerPath: ""
+            bannerPath: "",
         };
     }
     
     newBannerPath;
 
     componentWillMount(){
+        console.log("[COMPONENTWILLMOUNT]");
+        console.log(this.props);
+        console.log(this.props.allCompanies);
+
+        
+        let retrievedCompanies = this.props.allCompanies;
         let localStore = localAPI.all();
-        console.log(localAPI.all());
-        //this.userType = localStorage.getItem('userType');
         this.userType = localStore.userType;
-        let retrievedCompanies = CompanyAPI.all();
-        console.log(retrievedCompanies);
+        //console.log(retrievedCompanies);
         const companyId = this.props.match.params.companyId;
         for (var i = 0; i < retrievedCompanies.length; i++){
             if(companyId == retrievedCompanies[i].id){
+                
                 this.setState({currCompany: retrievedCompanies[i]});
                 //this.setState({bannerPath: "../../Shared/Images/" + retrievedCompanies[i].bannerURL});
                 this.setState({bannerPath: retrievedCompanies[i].bannerURL});
@@ -45,6 +50,31 @@ class Company extends Component {
             }
         }
     }
+
+    // componentWillReceiveProps(nextProps){
+    //     console.log("[COMPONENTWILLRECEIVEPROPS] ");
+    //     console.log(nextProps.allCompanies);
+    //     console.log(nextProps);
+    //     //nextProps.dispatch(actionType.LOAD_COMPANIES_SUCCESS);
+    //     // nextProps.dispatch(nextProps.actions.loadCompanies());
+
+    //     let localStore = localAPI.all();
+    //     this.userType = localStore.userType;
+    //     let retrievedCompanies = nextProps.allCompanies;
+    //     //console.log(retrievedCompanies);
+    //     const companyId = this.props.match.params.companyId;
+    //     for (var i = 0; i < retrievedCompanies.length; i++){
+    //         if(companyId == retrievedCompanies[i].id){
+                
+    //             this.setState({currCompany: retrievedCompanies[i]});
+    //             //this.setState({bannerPath: "../../Shared/Images/" + retrievedCompanies[i].bannerURL});
+    //             this.setState({bannerPath: retrievedCompanies[i].bannerURL});
+    //             //console.log();
+    //             this.newBannerPath = retrievedCompanies[i].bannerURL;
+    //             break;
+    //         }
+    //     }
+    // }
 
     onClickLogout = () => {
         this.props.history.push('/login');
@@ -63,9 +93,7 @@ class Company extends Component {
     }
 
     render(){
-        console.log(this.props);
-        const {companies} = this.props;
-        console.log(companies);
+        console.log(this.props.allCompanies);
         //bannerPath = "'../../Shared/Images/" + this.state.currCompany.bannerURL + "'";
         //console.log(this.state.bannerPath);
         console.log(this.newBannerPath);
@@ -77,6 +105,7 @@ class Company extends Component {
         var isCompany = false;
         (userType === "c") ? isCompany = true: isCompany = false;
 
+        if(this.state.currCompany != null){
         return (
             <div>
                 <Banner banner={this.state.currCompany.bannerURL}/>
@@ -131,20 +160,28 @@ class Company extends Component {
                 </div>
 
             </div>
-        ); 
+        );}
+        else {
+            //this.render();
+            
+            return null;
+        } 
     } 
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
     return {
-      companies: state.companies
+      allCompanies: state.companies
     };
   }
   
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(companyActions, dispatch)
-  };
-}
+//Dont need this since we're not dispatching any action from this component.. 
+//this component just needs to render the component using the state in the redux store.. 
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(companyActions, dispatch)
+//   };
+// }
 
-export default Company;
+// export default connect(mapStateToProps, mapDispatchToProps)(Company);
+export default connect(mapStateToProps, null)(Company);

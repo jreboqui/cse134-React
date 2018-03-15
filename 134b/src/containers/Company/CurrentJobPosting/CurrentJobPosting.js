@@ -1,4 +1,9 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux'
+import * as actionType from '../../../actions/actionTypes';
+import * as companyActions from '../../../actions/companyActions';
+
 
 import Company from '../Company';
 import CompanyAPI from '../CompanyAPI';
@@ -23,10 +28,36 @@ class CurrentJobPosting extends Component {
         };
     }
 
+    // componentWillMount(){
+    //     //this.userType = localStorage.getItem('userType');
+    //     this.userType = localAPI.all().userType;
+    //     let retrievedCompanies = CompanyAPI.all();
+    //     //console.log(retrievedCompanies);
+    //     //console.log(this.props.match.params.positionId);
+    //     const companyId = this.props.match.params.companyId;
+    //     const positionId = this.props.match.params.positionId;
+    //     for (var i = 0; i < retrievedCompanies.length; i++){
+    //         if(companyId == retrievedCompanies[i].id){
+    //             this.setState({currCompany: retrievedCompanies[i]});
+    //             this.setState({bannerPath: "'../../Shared/Images/" + retrievedCompanies[i].bannerURL + "'"});
+    //             break;
+    //         }
+    //     }
+
+    //     for (var j = 0; j < retrievedCompanies[i].openPositions.length; j++){
+    //         if(retrievedCompanies[i].openPositions[j].id == this.props.match.params.positionId){
+    //             this.setState({currJobPosting: retrievedCompanies[i].openPositions[j]});
+    //             break;
+    //         }
+    //     }
+    // }
+
     componentWillMount(){
         //this.userType = localStorage.getItem('userType');
         this.userType = localAPI.all().userType;
-        let retrievedCompanies = CompanyAPI.all();
+        console.log("[COMPONENTWILLMOUNT of CurrentJobPosting]");
+        console.log(this.props);
+        let retrievedCompanies = this.props.allCompanies;
         //console.log(retrievedCompanies);
         //console.log(this.props.match.params.positionId);
         const companyId = this.props.match.params.companyId;
@@ -63,6 +94,8 @@ class CurrentJobPosting extends Component {
         let userType = localAPI.all().userType;
         var isCompany = false;
         (userType === "c") ? isCompany = true: isCompany = false;
+        
+        if(this.state.currCompany != null){
         return(
             <div>
                 <Banner banner={this.state.currCompany.bannerURL}/>
@@ -118,8 +151,23 @@ class CurrentJobPosting extends Component {
                 positionId={this.props.match.params.positionId}/>
                 
             </div>
-        )
+        )}
+        else {return null;}
     }
 }
 
-export default CurrentJobPosting;
+function mapStateToProps(state) {
+    return {
+      allCompanies: state.companies,
+      allStudents: state.students
+    };
+  }
+
+//Need this to dispatch onApply action (havent made one yet!)
+function mapDispatchToProps(dispatch) {
+  return {
+    //actions: bindActionCreators(companyActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentJobPosting);

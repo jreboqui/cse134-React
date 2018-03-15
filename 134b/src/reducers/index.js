@@ -5,8 +5,6 @@ import students from './studentReducer';
 import companies from './companyReducer';
 
 const rootReducer = combineReducers({
-  courses,
-  authors,
   students,
   companies
 });
