@@ -43,27 +43,28 @@ export class Player extends React.Component {
     handleMessaging = () => {
         this.props.history.push('/messaging');
     }
-        constructor(props){
-            super(props);
-        }
+    constructor(props, context){
+            super(props, context);
+    }
         
     render(){
         console.log(this.props);
-        console.log(this.props.allStudents[0]);
-        let localStore = localAPI.all();
-        let userType = localStore.userType;
-        let userId = localStore.userId;
+        const {allStudents} = this.props;
+        // let localStore = localAPI.all();
+        // let userType = localStore.userType;
+        // let userId = localStore.userId;
         let i;
-        console.log(userType);
-        console.log(userId);
+        // console.log(userType);
+        // console.log(userId);
         let player;
+        let userId = parseInt(this.props.match.params.number,10);
         //find userId in allStudents
-        for (i = 0; i < this.props.allStudents.length; i++){
-            if (this.props.allStudents[i].number == userId){
-                player = this.props.allStudents[i];
-                break;
-            }
-        }
+        for (i = 0; i < allStudents.length; i++){
+             if (allStudents[i].number == userId){
+                 player = allStudents[i];
+                 break;
+             }
+         }
         console.log(player);
         //const player = StudentAPI.get(
            // parseInt(this.props.match.params.number, 10)
@@ -78,7 +79,8 @@ export class Player extends React.Component {
 
         return (
             <div>
-                <div id="sidebar"> 
+                <h1> Profile Page </h1>
+                 <div id="sidebar"> 
                     <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="sideNav" style={{"backgroundColor":"#bd5d38"}}>
                         <img className="img-fluid img-profile rounded-circle mx-auto mb-2" alt="none" 
                         src={require(`${player.pic}`)}
@@ -103,11 +105,24 @@ export class Player extends React.Component {
                     </nav>
                 </div>
                
-                <ApplicationTable studentObject={player}/>
+                 <ApplicationTable studentObject={player}/>
                 <CompanyListings />
             </div>
         )
 
     }
 }
-export default Player;
+
+function mapStateToProps(state, ownProps) {
+    return {
+      allStudents: state.students
+    };
+  }
+  
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(studentActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps)(Player);
