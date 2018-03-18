@@ -2,6 +2,9 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom'
 import CompanyListings from '../Student/CompanyListings';
 import ApplicationTable from '../Student/ApplicationTable';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as tutorActions from '../../actions/tutorActions';
 
 import '../Student/resume.css';
 import '../Student/resume.min.css';
@@ -32,8 +35,13 @@ export class Tutor extends React.Component{
         const tuts = TutorAPI.get(
             parseInt(this.props.match.params.tutorId, 10)
         )
+        
+        console.log("[Tutor.js]");
+        console.log(this.props.allTutors);
+        //const {allTutors} = this.props;
+        //console.log(allTutors);
         //console.log(tuts);
-       // console.log("Tuts was printed");
+        //console.log("Tuts was printed");
         if (!tuts){
             return <div> Sorry, tutorId not found </div>
         }
@@ -64,4 +72,16 @@ export class Tutor extends React.Component{
     };
 }
 
-export default Tutor
+function mapStateToProps(state, ownProps) {
+    return {
+      allTutors: state.tutors
+    };
+  }
+  
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(tutorActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tutor);
