@@ -2,6 +2,7 @@ import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 
 export default function studentReducer(state = initialState.students, action) {
+  let currStudent = null;
   switch (action.type) {
     case types.LOAD_STUDENTS_SUCCESS:
       console.log("[REDUCER: ON_STUDENTS_SUCCESS]");
@@ -9,7 +10,7 @@ export default function studentReducer(state = initialState.students, action) {
 
     case types.ON_APPLY:
       console.log("[REDUCER: ON_APPLY]");
-      let currStudent = null;
+      
       for(var i = 0; i <state.length;i++){
           if(state[i].number === action.sid){
             currStudent = Object.assign({},state[i]);
@@ -57,9 +58,8 @@ export default function studentReducer(state = initialState.students, action) {
       return student;
     });
 
-    case types.ON_UPDATE_STATUS:
-    
 
+    case types.ON_UPDATE_STATUS:  
         console.log("[REDUCER: ON_UPDATE_STATUS]");
         //console.log(action);
 
@@ -83,7 +83,32 @@ export default function studentReducer(state = initialState.students, action) {
           }
           return student;
         })
-      
+
+      case types.ON_ADD_MESSAGE_STUDENT:
+        console.log("[STUDENT REDUCER: ON_ADD_MESSAGE]");
+        console.log(state);
+        
+        for(var i = 0; i <state.length;i++){
+            if(state[i].number === action.userId){
+              console.log("In if");
+              currStudent = Object.assign({},state[i]);
+              break;
+            }
+        }
+
+        //console.log(currStudent);
+
+        currStudent.mailing = [...currStudent.mailing, action.newMessage];  
+    
+        //console.log(currStudent);
+
+        return state.map((student,i) => {
+          if(student.number === action.userId){
+            return Object.assign({},student,currStudent)
+          }
+          return student;
+        })
+
     default:
       return state;
   }

@@ -26,3 +26,11 @@ export function onPost(companyId, newPosition) {
     newPosition
   }
 }
+
+export function onAddMailCompany(userId, newMessage){
+  return {
+    type: types.ON_ADD_MESSAGE_COMPANY,
+    userId,
+    newMessage
+  }
+}

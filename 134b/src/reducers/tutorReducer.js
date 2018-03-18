@@ -8,17 +8,29 @@ export default function tutorReducer(state = initialState.courses, action) {
       console.log(action.tutors);
       return action.tutors;
 
-    case types.CREATE_COURSE_SUCCESS:
-      return [
-        ...state,
-        Object.assign({}, action.tutor)
-      ];
+    case types.ON_ADD_MESSAGE_TUTOR:
+    console.log("[TUTOR REDUCER: ON_ADD_MESSAGE]");
+    //console.log(state);
+    
+    let currTutor = null;
+    for(var i = 0; i <state.length;i++){
+        if(state[i].tutorId === action.userId){     
+          currTutor = Object.assign({},state[i]);
+          break;
+        }
+    }
 
-    case types.UPDATE_COURSE_SUCCESS:
-      return [
-        ...state.filter(tutor => tutor.tutorId !== action.tutor.tutorId),
-        Object.assign({}, action.tutor)
-      ];
+    console.log(currTutor);      
+    currTutor.mailing = [...currTutor.mailing, action.newMessage];  
+    console.log(currTutor);
+
+    return state.map((tutor,i) => {
+      if(tutor.tutorId === action.userId){
+        return Object.assign({},tutor,currTutor)
+      }
+      return tutor;
+    })
+      
 
     default:
       return state;

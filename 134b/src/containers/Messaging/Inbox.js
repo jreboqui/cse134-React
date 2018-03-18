@@ -5,6 +5,13 @@ import TutorAPI from '../Tutor/TutorAPI';
 import localAPI from '../../Shared/localAPI';
 import mail from '../../Shared/mail';
 
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as studentActions from '../../actions/studentActions';
+import * as companyActions from '../../actions/companyActions';
+import * as tutorActions from '../../actions/tutorActions';
+import * as actionType from '../../actions/actionTypes';
+
 class Inbox extends Component {
     constructor(props){
         super(props);
@@ -30,6 +37,8 @@ class Inbox extends Component {
     onClickReply = (event,sender) => {
         console.log(this.state.sendMessageContent);
         console.log(sender);
+        console.log(this.props);
+        event.preventDefault();
         //var senderId, senderType, message;
         // const newMessage = {
         //     senderId: sender.senderId,
@@ -40,26 +49,29 @@ class Inbox extends Component {
 
         switch(sender.senderType){
             case("c"):{
-                CompanyAPI.addMail(parseInt(sender.senderId),newMessage);
-                console.log(CompanyAPI.all());
+                // CompanyAPI.addMail(parseInt(sender.senderId),newMessage);
+                // console.log(CompanyAPI.all());
+                this.props.companyActions.onAddMailCompany(parseInt(sender.senderId),newMessage);
                 alert("Reply Succesfully Sent!");
                 break;       
             }
             case("s"):{
-                StudentAPI.addMail(parseInt(sender.senderId),newMessage);
-                console.log(StudentAPI.all());
+                //StudentAPI.addMail(parseInt(sender.senderId),newMessage);
+                //console.log(StudentAPI.all());
+                this.props.studentActions.onAddMailStudent(parseInt(sender.senderId),newMessage);
                 alert("Reply Succesfully Sent!");
                 break;
             }
-            default:{
-                TutorAPI.addMail(parseInt(sender.senderId),newMessage);
-                console.log(TutorAPI.all());
+            case("t"):{
+                console.log("In case t Reply");
+                // TutorAPI.addMail(parseInt(sender.senderId),newMessage);
+                // console.log(TutorAPI.all());
+                this.props.tutorActions.onAddMailTutor(parseInt(sender.senderId),newMessage);
                 alert("Reply Succesfully Sent!");
                 break;
             }
         }
-        
-        event.preventDefault();
+
     }
     
 
@@ -76,13 +88,19 @@ class Inbox extends Component {
     }
 
     populateInbox() {
+        console.log("[INBOX]");
+        console.log(this.props);
         let currUser = null;
         var tempMessages = [];
         var tempSenders = [];
         var tempNames = [];
+        console.log(this.state.userType);
+        console.log(this.state.userId);
         switch(this.state.userType){
             case('s'): {
-                currUser = StudentAPI.get(parseInt(this.state.userId));
+                currUser = this.props.allStudents.filter(student => student.number ===
+                     parseInt(this.state.userId))[0];
+                //currUser = StudentAPI.get(parseInt(this.state.userId));
                 for(var j = 0; j < currUser.mailing.length;j++){
                     //Mailing loop for student starts from here
                     if(currUser.mailing[j].senderType == 's'){
@@ -133,7 +151,9 @@ class Inbox extends Component {
 
 
             case('c'): {
-                currUser = CompanyAPI.get(parseInt(this.state.userId));
+                currUser = this.props.allCompanies.filter(company => company.id ===
+                    parseInt(this.state.userId))[0];
+                //currUser = CompanyAPI.get(parseInt(this.state.userId));
                 for(var j = 0; j < currUser.mailing.length;j++){
                     //Mailing loop for student starts from here
                     if(currUser.mailing[j].senderType == 's'){
@@ -182,8 +202,15 @@ class Inbox extends Component {
                 break;
             }
 
-            default: {
-                currUser = TutorAPI.get(this.state.userId);
+            case('t'): {
+                console.log(currUser);
+                console.log(this.props);
+                console.log(this.props.allTutors);
+                console.log(this.state.userId);
+                currUser = this.props.allTutors.filter(tutor => tutor.tutorId ===
+                    parseInt(this.state.userId))[0];
+                console.log(currUser);
+                //currUser = TutorAPI.get(this.state.userId);
                 for(var j = 0; j < currUser.mailing.length;j++){
                     //Mailing loop for student starts from here
                     if(currUser.mailing[j].senderType == 's'){
@@ -267,4 +294,21 @@ class Inbox extends Component {
     }
 }
 
-export default Inbox;
+function mapStateToProps(state) {
+    return {
+      allCompanies: state.companies,
+      allStudents: state.students,
+      allTutors: state.tutors
+    };
+  }
+
+//Need this to dispatch onApply action in the onClickApply() function above.
+function mapDispatchToProps(dispatch) {
+  return {
+    studentActions: bindActionCreators(studentActions, dispatch),
+    companyActions: bindActionCreators(companyActions, dispatch),
+    tutorActions: bindActionCreators(tutorActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Inbox);

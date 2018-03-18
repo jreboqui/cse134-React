@@ -40,3 +40,11 @@ export function onSubmit(sid, newInfo) {
     newInfo
   }
 }
+
+export function onAddMailStudent(userId, newMessage){
+  return {
+    type: types.ON_ADD_MESSAGE_STUDENT,
+    userId,
+    newMessage
+  }
+}

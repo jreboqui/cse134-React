@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
 import StudentAPI from '../Student/StudentAPI';
 import CompanyAPI from '../Company/CompanyAPI';
 import TutorAPI from  '../Tutor/TutorAPI';
 import mail from '../../Shared/mail';
 import localAPI from '../../Shared/localAPI';
+import * as studentActions from '../../actions/studentActions';
+import * as companyActions from '../../actions/companyActions';
+import * as tutorActions from '../../actions/tutorActions';
+import * as actionType from '../../actions/actionTypes';
+
 
 class NewMessage extends Component {
     constructor(props){
@@ -30,11 +38,18 @@ class NewMessage extends Component {
     rId = 0;
 
     componentWillMount() {
+        console.log("[NEW MESSAGE]");
+        console.log(this.props);
         let localStore = localAPI.all();
         console.log(localAPI.all());
-        this.setState({allCompanies:CompanyAPI.all()});
-        this.setState({allStudents:StudentAPI.all()});
-        this.setState({allTutors:TutorAPI.all()});
+        // this.setState({allCompanies:CompanyAPI.all()});
+        // this.setState({allStudents:StudentAPI.all()});
+        // this.setState({allTutors:TutorAPI.all()});
+
+        this.setState({allCompanies:this.props.allCompanies});
+        this.setState({allStudents:this.props.allStudents});
+        this.setState({allTutors:this.props.allTutors});
+
         this.setState({userType: localStore.userStype});
         this.setState({userId: localStore.userId});
         //this.setState({userType:localStorage.getItem('userType')});
@@ -120,7 +135,7 @@ class NewMessage extends Component {
     // }
     
     handleSubmit = (event) => {
-
+        event.preventDefault();
         const newMessage = new mail(parseInt(localAPI.all().userId),localAPI.all().userType,this.state.message);
         console.log(this.state.userId);
         console.log(this.state.userType);
@@ -128,26 +143,23 @@ class NewMessage extends Component {
 
         switch(this.state.toType){
             case("c"):{
-                CompanyAPI.addMail(parseInt(this.state.recipientId),newMessage);
-                //console.log(CompanyAPI.all());
-                //alert("Reply Succesfully Sent!");
+                //CompanyAPI.addMail(parseInt(this.state.recipientId),newMessage);
+                this.props.companyActions.onAddMailCompany(parseInt(this.state.recipientId),newMessage);
                 break;       
             }
             case("s"):{
-                StudentAPI.addMail(parseInt(this.state.recipientId),newMessage);
-                console.log(StudentAPI.all());
-                //alert("Reply Succesfully Sent!");
+                // StudentAPI.addMail(parseInt(this.state.recipientId),newMessage);
+                this.props.studentActions.onAddMailStudent(parseInt(this.state.recipientId),newMessage);
                 break;
             }
             default:{
-                TutorAPI.addMail(parseInt(this.state.recipientId),newMessage);
-                //console.log(TutorAPI.all());
-                //alert("Reply Succesfully Sent!");
+                //TutorAPI.addMail(parseInt(this.state.recipientId),newMessage);
+                this.props.tutorActions.onAddMailTutor(parseInt(this.state.recipientId),newMessage);
                 break;
             }
         }
         alert("Message Succesfully Sent!");
-        event.preventDefault();
+        
     }
 
     render () {
@@ -221,4 +233,21 @@ class NewMessage extends Component {
     }
 }
 
-export default NewMessage;
+function mapStateToProps(state) {
+    return {
+      allCompanies: state.companies,
+      allStudents: state.students,
+      allTutors: state.tutors
+    };
+  }
+
+//Need this to dispatch onApply action in the onClickApply() function above.
+function mapDispatchToProps(dispatch) {
+  return {
+    studentActions: bindActionCreators(studentActions, dispatch),
+    companyActions: bindActionCreators(companyActions, dispatch),
+    tutorActions: bindActionCreators(tutorActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(NewMessage);
