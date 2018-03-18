@@ -97,8 +97,8 @@ export class EditProfile extends React.Component {
             <div className ="profile">
                 <h1>Edit Student Profile</h1>
                 <hr />   
-                
-                <img src={this.state.profileImg} />
+            
+                {/*<img src={this.state.profileImg} />*/}
                 <form name="profile">
                     {/* console.log(this.state.profileImg) */}
                     

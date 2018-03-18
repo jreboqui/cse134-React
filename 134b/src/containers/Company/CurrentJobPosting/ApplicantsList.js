@@ -7,8 +7,7 @@ import * as actionType from '../../../actions/actionTypes';
 import StudentAPI from '../../Student/StudentAPI';
 import style from './ApplicantsList.css';
 
-
-class ApplicantsList extends Component {
+export class ApplicantsList extends Component {
     State={
         currApplicants: [],
         applicantsStatus: []
