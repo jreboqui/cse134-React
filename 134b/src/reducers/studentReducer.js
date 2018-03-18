@@ -9,46 +9,57 @@ export default function studentReducer(state = initialState.students, action) {
 
     case types.ON_APPLY:
       console.log("[REDUCER: ON_APPLY]");
-      // console.log(action);
-      // // const newStudentsState = [...state] //clone the state in the store
-      // // const newStudentsState = Object.assign([],state);
-      // let newStudentsState = state.map(student => Object.assign({},student)); //clone the state in the store
-      // let currStudent = null;
-      // //let studentIndex = 0;
-      // for(var i = 0; i <newStudentsState.length;i++){
-      //   if(newStudentsState[i].number === action.sid){
-      //     //newStudentsState[i].applications.push(action.position);
-      //     currStudent = Object.assign({}, newStudentsState[i]);
-      //     break;
-      //   }
-      // }
-      // currStudent.applications.push(action.position);
-      // console.log(currStudent);
-      // //return newStudentsState;
-      // //return Object.assign([],newStudentsState);
-      // return [
-      //   ...state.filter(student => student.number !== action.sid),
-      //   Object.assign({},currStudent)
-      // ]
-      // return state;
+      
 
-    let currStudent = null;
-    for(var i = 0; i <state.length;i++){
-        if(state[i].number === action.sid){
-          currStudent = Object.assign({},state[i]);
-          break;
+      let currStudent = null;
+      for(var i = 0; i <state.length;i++){
+          if(state[i].number === action.sid){
+            currStudent = Object.assign({},state[i]);
+            break;
+          }
+      }
+      
+      //currStudent.applications.push(action.position);
+      currStudent.applications = [...currStudent.applications, action.position];  
+
+      return state.map((student,i) => {
+        if(student.number === action.sid){
+          return Object.assign({},student,currStudent)
         }
-    }
-    
+        return student;
+      });
+      break;
+
+    case types.ON_SUBMIT:
+      console.log("[REDUCER: ON_SUBMIT]");
+
+      currStudent = null;
+      for(var i = 0; i <state.length;i++){
+          if(state[i].number === action.sid){
+            currStudent = Object.assign({},state[i]);
+            break;
+          }
+      }
+      currStudent.GPA = action.newInfo.gpa;
+      currStudent.name = action.newInfo.sname;
+      currStudent.intern = action.newInfo.intern;
+      currStudent.school = action.newInfo.schoolname;
+      currStudent.pic = action.newInfo.profileImg;
+      currStudent.status = action.newInfo.status;
+      currStudent.year = action.newInfo.year;
+      currStudent.major = action.newInfo.major;
+
     //currStudent.applications.push(action.position);
-    currStudent.applications = [...currStudent.applications, action.position];  
+    //currStudent.applications = [...currStudent.applications, action.position];  
 
     return state.map((student,i) => {
       if(student.number === action.sid){
         return Object.assign({},student,currStudent)
       }
       return student;
-    })
+    });
+
+    //   return state;
 
 
 

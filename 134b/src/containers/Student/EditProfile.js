@@ -6,6 +6,7 @@ import kpan from './kpan.jpg';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as studentActions from '../../actions/studentActions';
+import * as allActions from '../../actions/allActions';
 
 class EditProfile extends React.Component {
     constructor(props) {
@@ -84,6 +85,7 @@ class EditProfile extends React.Component {
         //StudentAPI.setAll(parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10), this.state);
         //call action to change store state
         let userId = parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10);        
+        this.props.actions.onCheck(userId);
         this.props.actions.onSubmit(userId, this.state);
         this.props.history.push('/student/' + this.props.location.pathname[this.props.location.pathname.length-1]);
     }
@@ -92,7 +94,7 @@ class EditProfile extends React.Component {
     render() {
 
         return (
-            <div class ="profile">
+            <div className ="profile">
                 <h1>Edit Student Profile</h1>
                 <hr />   
                 
@@ -141,9 +143,9 @@ function mapStateToProps(state, ownProps) {
   
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(studentActions, dispatch)
+    actions: bindActionCreators(Object.assign({}, studentActions, allActions),dispatch)
   };
 }
 
-export default connect(mapStateToProps)(EditProfile);
+export default connect(mapStateToProps,mapDispatchToProps)(EditProfile);
 
