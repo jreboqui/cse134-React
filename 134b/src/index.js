@@ -8,6 +8,7 @@ import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
 import { loadStudents } from './actions/studentActions';
 import { loadCompanies } from './actions/companyActions';
+import { loadTutors } from './actions/tutorActions';
 // const rootReducer = combineReducers({
 //     companyData: companyDataReducer
 //     //Combine all reducers here..
@@ -18,6 +19,7 @@ import { loadCompanies } from './actions/companyActions';
 const store = configureStore();
 store.dispatch(loadStudents());
 store.dispatch(loadCompanies());
+store.dispatch(loadTutors());
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
