@@ -14,7 +14,7 @@ import CompanyAbout from './CurrentJobPosting/CompanyAbout';
 import PhotoList from './PhotoList';
 import Banner from './Banner';
 
-class Company extends Component {
+export class Company extends Component {
     constructor(props) {
         super(props);
 
