@@ -28,9 +28,9 @@ class Company extends Component {
     newBannerPath;
 
     componentWillMount(){
-        console.log("[COMPONENTWILLMOUNT]");
-        console.log(this.props);
-        console.log(this.props.allCompanies);
+        // console.log("[COMPONENTWILLMOUNT]");
+        // console.log(this.props);
+        // console.log(this.props.allCompanies);
 
         
         let retrievedCompanies = this.props.allCompanies;
@@ -93,13 +93,13 @@ class Company extends Component {
     }
 
     render(){
-        console.log(this.props.allCompanies);
+        //console.log(this.props.allCompanies);
         //bannerPath = "'../../Shared/Images/" + this.state.currCompany.bannerURL + "'";
         //console.log(this.state.bannerPath);
-        console.log(this.newBannerPath);
+        //console.log(this.newBannerPath);
         //style={{backgroundImage: "url("+ this.state.bannerPath + ")" }}
         //style={{backgroundImage: "url(./"+ this.newBannerPath +")"}}
-        console.log("backgroundImage: url(${require('./'+this.state.bannerPath)}");
+        //console.log("backgroundImage: url(${require('./'+this.state.bannerPath)}");
 
         let userType = localAPI.all().userType;
         var isCompany = false;

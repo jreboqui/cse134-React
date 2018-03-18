@@ -4,36 +4,53 @@ import initialState from './initialState';
 export default function studentReducer(state = initialState.students, action) {
   switch (action.type) {
     case types.LOAD_STUDENTS_SUCCESS:
+      console.log("[REDUCER: ON_STUDENTS_SUCCESS]");
       return action.students;
-
-    case types.CREATE_COURSE_SUCCESS:
-      return [
-        ...state,
-        Object.assign({}, action.student)
-      ];
-
-    case types.UPDATE_COURSE_SUCCESS:
-      return [
-        ...state.filter(student => student.id !== action.student.id),
-        Object.assign({}, action.student)
-      ];
 
     case types.ON_APPLY:
       console.log("[REDUCER: ON_APPLY]");
-      console.log(action);
-      // const newStudentsState = [...state] //clone the state in the store
-      // const newStudentsState = Object.assign([],state);
-      let newStudentsState = state.map(student => Object.assign({},student)); //clone the state in the store
-      let studentIndex = 0;
-      for(var i = 0; i <newStudentsState.length;i++){
-        if(newStudentsState[i].number === action.sid){
-          newStudentsState[i].applications.push(action.position);
+      // console.log(action);
+      // // const newStudentsState = [...state] //clone the state in the store
+      // // const newStudentsState = Object.assign([],state);
+      // let newStudentsState = state.map(student => Object.assign({},student)); //clone the state in the store
+      // let currStudent = null;
+      // //let studentIndex = 0;
+      // for(var i = 0; i <newStudentsState.length;i++){
+      //   if(newStudentsState[i].number === action.sid){
+      //     //newStudentsState[i].applications.push(action.position);
+      //     currStudent = Object.assign({}, newStudentsState[i]);
+      //     break;
+      //   }
+      // }
+      // currStudent.applications.push(action.position);
+      // console.log(currStudent);
+      // //return newStudentsState;
+      // //return Object.assign([],newStudentsState);
+      // return [
+      //   ...state.filter(student => student.number !== action.sid),
+      //   Object.assign({},currStudent)
+      // ]
+      // return state;
+
+    let currStudent = null;
+    for(var i = 0; i <state.length;i++){
+        if(state[i].number === action.sid){
+          currStudent = Object.assign({},state[i]);
           break;
         }
+    }
+    
+    //currStudent.applications.push(action.position);
+    currStudent.applications = [...currStudent.applications, action.position];  
+
+    return state.map((student,i) => {
+      if(student.number === action.sid){
+        return Object.assign({},student,currStudent)
       }
-      console.log(newStudentsState);
-      //return newStudentsState;
-      return Object.assign([],newStudentsState);
+      return student;
+    })
+
+
 
       // const newStudentsState = [...state] //clone the state in the store
       // console.log(newStudentsState);

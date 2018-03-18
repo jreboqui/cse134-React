@@ -55,8 +55,6 @@ class CurrentJobPosting extends Component {
     componentWillMount(){
         //this.userType = localStorage.getItem('userType');
         this.userType = localAPI.all().userType;
-        console.log("[COMPONENTWILLMOUNT of CurrentJobPosting]");
-        console.log(this.props);
         let retrievedCompanies = this.props.allCompanies;
         //console.log(retrievedCompanies);
         //console.log(this.props.match.params.positionId);
@@ -81,18 +79,18 @@ class CurrentJobPosting extends Component {
     onClickApply = () => {
         let {dispatch} = this.props;
 
-        console.log("[onClickApply]");
-        console.log(this.props);    
+        // console.log("[onClickApply]");
+        // console.log(this.props);    
         var status = "Under Review";
         const newApplication = new ApplicationInfo(
-            this.state.currCompany.id, this.state.currCompany.name,this.state.currJobPosting.title,this.state.currJobPosting.positionId,status);
+            this.state.currCompany.id, this.state.currCompany.name,this.state.currJobPosting.title,this.state.currJobPosting.id,status);
        
             
         this.props.actions.onApply(parseInt(localAPI.all().userId),newApplication);
         // StudentAPI.apply(parseInt(localAPI.all().userId),newApplication);
         // alert("Success! " + newApplication.positionTitle + " with " + newApplication.companyName + " has been added to your application list.");
-        // this.props.history.push("/student/" + localAPI.all().userId);
         alert("Success! " + newApplication.positionTitle + " with " + newApplication.companyName + " has been added to your application list.");
+        this.props.history.push("/student/" + localAPI.all().userId);
     }
 
     render() {
