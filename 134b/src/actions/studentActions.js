@@ -24,3 +24,11 @@ export function onApply(sid,position) {
     position
   }
 }
+
+export function onUpdateStatus(sid,newApplications) {
+  return {
+    type: types.ON_UPDATE_STATUS,
+    sid,
+    newApplications,
+  }
+}

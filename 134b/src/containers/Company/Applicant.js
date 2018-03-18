@@ -1,5 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as studentActions from '../../actions/studentActions';
+import * as actionType from '../../actions/actionTypes';
+
 import StudentAPI from '../Student/StudentAPI';
 import CompanyAPI from '../Company/CompanyAPI';
 import localAPI from '../../Shared/localAPI';
@@ -15,17 +20,38 @@ class Applicant extends React.Component{
             currPosition: null,
             currStudentApp: null,
             displayStatus: null,
-            value: ""
+            value: "",
+            currCompany: null
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentWillMount(){
-        const student = StudentAPI.get(parseInt(this.props.match.params.number));
+        //const student = StudentAPI.get(parseInt(this.props.match.params.number));
+        //const company = CompanyAPI.get(parseInt(this.props.match.params.companyId));
+        
+        let student = null;
+        let company = null;
+
+        let allCompanies = this.props.allCompanies;
+        let allStudents = this.props.allStudents;
+
+        for(var i = 0; i < allStudents.length; i++){
+            if(allStudents[i].number === parseInt(this.props.match.params.number)){
+                student = allStudents[i];
+            }
+        }
         this.setState({currStudent:student});
-        const company = CompanyAPI.get(parseInt(this.props.match.params.companyId));
+
+
+        for(var i = 0; i < allCompanies.length; i++){
+            if(allCompanies[i].id === parseInt(this.props.match.params.companyId)){
+                company = allCompanies[i];
+            }
+        }
         this.setState({currCompany:company});
+
         let position = null;
         for(var i = 0; i < company.openPositions.length; i++){
             if(company.openPositions[i].id ===  parseInt(this.props.match.params.positionId)){
@@ -53,20 +79,41 @@ class Applicant extends React.Component{
     }
 
     handleSubmit(event){
-        const student = StudentAPI.get(parseInt(this.props.match.params.number));
+        event.preventDefault();
+        //const student = StudentAPI.get(parseInt(this.props.match.params.number));
+        console.log("[UPDATEAPPLICATIONSTATUS]");
+        //let student = Object.assign({},this.state.currStudent);
+        let student = this.state.currStudent
+        const company = this.state.currCompany;
+
+        let newApps = null;
         for(var i = 0; i < student.applications.length;i++){
             if(student.applications[i].positionId === parseInt(this.props.match.params.positionId) &&
             student.applications[i].companyId === parseInt(this.props.match.params.companyId)){
+
+                newApps = Object.assign(student);
+              
+               
+                let update = newApps.applications.map((app,index)=>{
+                    if(index === i){
+                        console.log("In if");
+                        return {...app,appStatus:this.state.value}
+                    }
+                    return app
+                })
                 
-                StudentAPI.updateStatus(parseInt(this.props.match.params.number),parseInt(this.props.match.params.positionId),
-                        parseInt(this.props.match.params.companyId),this.state.value);
-                        this.setState({displayStatus:this.state.value});
+                this.props.actions.onUpdateStatus(this.state.currStudent.number,update);
+            
+                this.setState({displayStatus:this.state.value});
+                //console.log(this.props.allStudents);
+                event.preventDefault();
+                this.props.history.goBack();
                 break;
             }
         }
         //console.log(StudentAPI.all());
         alert("Student Application Status Updated Successfully!");
-        event.preventDefault();
+        
     }
 
     onClickBack = () => {
@@ -136,4 +183,18 @@ class Applicant extends React.Component{
     }
 }
 
-export default Applicant
+function mapStateToProps(state) {
+    return {
+      allCompanies: state.companies,
+      allStudents: state.students
+    };
+  }
+
+//Need this to dispatch onApply action in the onClickApply() function above.
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(studentActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Applicant);

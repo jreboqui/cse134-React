@@ -1,34 +1,31 @@
 import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 
-export default function companyReducer(state = initialState.companies, action) {
+export default function companyReducer(state = initialState, action) {
   switch (action.type) {
     case types.LOAD_COMPANIES_SUCCESS:
-      //console.log("[REDUCER: LOAD_COMPANIES_SUCCESS]");
+      console.log("[REDUCER: LOAD_COMPANIES_SUCCESS]");
       //console.log(action.companies);
       return action.companies;
 
-    // case types.ON_APPLY:
-    //   console.log("[REDUCER: ON_APPLY]");
-    //   console.log(action);
-    //   console.log(state);
-    //   const newState = [...state] //clone the state in the store
-    //   console.log(newState);
-    //   const currStudent = newState.students.findIndex(student=>{
-    //     return student.number === action.id;
-    //   });
-    //   currStudent.applications.push(action.postion);
-    //   console.log(newState);
-    //   return newState;
+      // let currStudent = null;
+      // for(var i = 0; i <action.allStudents.length;i++){
+      //     if(action.allStudents[i].number === action.sid){
+      //       currStudent = Object.assign({},action.allStudents[i]);
+      //       break;
+      //     }
+      // }
+      
+      // //currStudent.applications.push(action.position);
+      // //currStudent.applications = [...currStudent.applications, action.position];  
+      // currStudent.name = "FUCK ISIS";
 
-    
-      // const index = state.students.findIndex(student => {
-      //   return student.number === action.id;
-      // });
-      // const applyingStudent = state.students.slice()
-      // return [
-      //   ...state.students.filter(student =>)
-      // ]
+      // return state.map((student,i) => {
+      //   if(student.number === action.sid){
+      //     return Object.assign({},student,currStudent)
+      //   }
+      //   return student;
+      // })
 
       default:
       return state;

@@ -32,7 +32,6 @@ class Company extends Component {
         // console.log(this.props);
         // console.log(this.props.allCompanies);
 
-        
         let retrievedCompanies = this.props.allCompanies;
         let localStore = localAPI.all();
         this.userType = localStore.userType;

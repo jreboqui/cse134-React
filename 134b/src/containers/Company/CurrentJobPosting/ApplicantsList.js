@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux'
+import * as actionType from '../../../actions/actionTypes';
+
 import StudentAPI from '../../Student/StudentAPI';
 import style from './ApplicantsList.css';
+
 
 class ApplicantsList extends Component {
     State={
@@ -11,9 +16,14 @@ class ApplicantsList extends Component {
     //currApplicants = [];
 
      componentWillMount() {
+        //console.log("[COMPONENTWILLMOUNT] of APPLICANTSLIST");
+        //console.log(this.props);
+
         const compId = this.props.companyId;
         const positionId = this.props.positionId;
-        const allStudents = StudentAPI.all();
+        //const allStudents = StudentAPI.all();
+        const allStudents = this.props.allStudents;
+
         var applicantsArr = [];
         var statusArr = [];
         for(var i = 0; i < allStudents.length;i++){
@@ -55,4 +65,10 @@ class ApplicantsList extends Component {
     }
 }
 
-export default ApplicantsList; 
+function mapStateToProps(state) {
+    return {
+      allStudents: state.students
+    };
+  }
+
+export default connect(mapStateToProps,null)(ApplicantsList); 
