@@ -35,6 +35,7 @@ export default function studentReducer(state = initialState.students, action) {
       //return newStudentsState;
       return Object.assign([],newStudentsState);
 
+
       // const newStudentsState = [...state] //clone the state in the store
       // console.log(newStudentsState);
       // // const currStudent = newState.findIndex(student=>{

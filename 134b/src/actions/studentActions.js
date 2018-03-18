@@ -46,3 +46,11 @@ export function onApply(sid,position) {
     position
   }
 }
+
+export function onSubmit(sid, newInfo) {
+  return {
+    type: types.ON_SUBMIT,
+    sid,
+    newInfo
+  }
+}

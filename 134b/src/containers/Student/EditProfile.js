@@ -2,7 +2,11 @@ import React from 'react';
 import { browserRouter, Link, Route } from 'react-router-dom';
 import StudentAPI from '../Student/StudentAPI';
 import './EditProfile.css';
-import kpan from './kpan.jpg'
+import kpan from './kpan.jpg';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as studentActions from '../../actions/studentActions';
+
 class EditProfile extends React.Component {
     constructor(props) {
         super(props);
@@ -21,12 +25,22 @@ class EditProfile extends React.Component {
 
 
     componentDidMount() {
-        const player = StudentAPI.get(
-            parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10)
-        )
-        
-        //console.log(player);
-        
+        // const player = StudentAPI.get(
+        //     parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10)
+        // )
+
+        console.log(this.props);
+        const {allStudents} = this.props;
+        let i;
+        let player;
+        let userId = parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10);
+        //find userId in allStudents
+        for (i = 0; i < allStudents.length; i++){
+             if (allStudents[i].number == userId){
+                 player = allStudents[i];
+                 break;
+             }
+         }
         this.setState({
             profileImg: player.pic,
             sname: player.name,
@@ -67,7 +81,10 @@ class EditProfile extends React.Component {
     }
 
     handleSubmit = () => {
-        StudentAPI.setAll(parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10), this.state);
+        //StudentAPI.setAll(parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10), this.state);
+        //call action to change store state
+        let userId = parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10);        
+        this.props.actions.onSubmit(userId, this.state);
         this.props.history.push('/student/' + this.props.location.pathname[this.props.location.pathname.length-1]);
     }
 
@@ -116,6 +133,17 @@ class EditProfile extends React.Component {
         );
       }
 }
+function mapStateToProps(state, ownProps) {
+    return {
+      allStudents: state.students
+    };
+  }
+  
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(studentActions, dispatch)
+  };
+}
 
-export default EditProfile;
+export default connect(mapStateToProps)(EditProfile);
 
