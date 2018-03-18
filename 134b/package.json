@@ -25,6 +25,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "css-loader": "^0.28.11",
     "enzyme-adapter-react-16": "^1.1.1"
   }
 }

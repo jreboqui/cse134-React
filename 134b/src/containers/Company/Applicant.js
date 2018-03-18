@@ -10,7 +10,7 @@ import CompanyAPI from '../Company/CompanyAPI';
 import localAPI from '../../Shared/localAPI';
 import Banner from './Banner';
 
-class Applicant extends React.Component{
+export class Applicant extends React.Component{
 
     constructor(props){
         super(props);
