@@ -30,7 +30,30 @@ export default function companyReducer(state = initialState.companies, action) {
       //   ...state.students.filter(student =>)
       // ]
 
-      default:
+    case types.ON_POST:
+    console.log("[REDUCER: ON_POST]");
+      
+    let currCompany = null;
+    for(var i = 0; i < state.length; i++){
+        if(state[i].id === action.companyId){
+          currCompany = Object.assign({},state[i]);
+          break;
+        }
+    }
+    
+    currCompany.openPositions = [...currCompany.openPositions, action.newPosition];  
+
+    return state.map((company,i) => {
+      if(company.id === action.companyId){
+        return Object.assign({},company,currCompany)
+      }
+      return company;
+    });
+  
+    break;
+      
+
+    default:
       return state;
   }
 }
