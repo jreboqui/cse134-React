@@ -17,7 +17,7 @@ import ApplicantsList from './ApplicantsList';
 import Banner from '../Banner';
 import PhotoList from '../PhotoList';
 
-class CurrentJobPosting extends Component {
+export class CurrentJobPosting extends Component {
     constructor(props) {
         super(props);
 

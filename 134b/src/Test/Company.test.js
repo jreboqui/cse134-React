@@ -6,7 +6,7 @@ import {shallow} from 'enzyme';
 import { expect } from 'chai';
 
 import { Company } from '../containers/Company/Company';
-import CurrentJobPosting from '../containers/Company/CurrentJobPosting/CurrentJobPosting';
+import { CurrentJobPosting }from '../containers/Company/CurrentJobPosting/CurrentJobPosting';
 import CompanyAbout from '../containers/Company/CurrentJobPosting/CompanyAbout';
 import JobDetails from '../containers/Company/CurrentJobPosting/JobDetails';
 import ApplicantList from '../containers/Company/CurrentJobPosting/ApplicantsList';
@@ -126,33 +126,33 @@ it('renders without crashing', () => {
 // wrapper.setState({currCompany: "Amazon"});
 // wrapper.setState({bannerPath: "Nowhere"});
 
-// it('renders without crashing', () => {
+it('renders without crashing', () => {
   
-//   shallow(<CompanyAbout industry={["Engineering","noice","fortest"]}/>);
+  shallow(<CompanyAbout industry={["Engineering","noice","fortest"]}/>);
   
-// });
+});
 
-// it('renders without crashing', () => {
+it('renders without crashing', () => {
   
-//   shallow(<JobDetails />);
+  shallow(<JobDetails />);
   
-// });
+});
 
-// describe('< CurrentJobPosting />', () => {
-//   it('should render', () => {
-//     const wrapper = shallow(<CurrentJobPosting match={match2} name="Example" />);
-//     expect(wrapper).to.have.length(1);
-//   });
-//   describe('check props', ()=> {
-//     const wrapper = shallow(<CurrentJobPosting match={match2} name="Example" />);
-//     console.log(wrapper.instance().props);
-//   })
-// })
+describe('< CurrentJobPosting />', () => {
+  it('should render', () => {
+    const wrapper = shallow(<CurrentJobPosting match={match2} name="Example" allCompanies={companies} />);
+    expect(wrapper).to.have.length(1);
+  });
+  describe('check props', ()=> {
+    const wrapper = shallow(<CurrentJobPosting match={match2} name="Example" allCompanies={companies}/>);
+    console.log(wrapper.instance().props);
+  })
+})
 
-// it('renders without crashing', () => {
+it('renders without crashing', () => {
   
-//   shallow(<ApplicantList />);
+  shallow(<ApplicantList />);
   
-// });
+});
 
 
