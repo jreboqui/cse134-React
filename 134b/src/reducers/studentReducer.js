@@ -9,8 +9,6 @@ export default function studentReducer(state = initialState.students, action) {
 
     case types.ON_APPLY:
       console.log("[REDUCER: ON_APPLY]");
-      
-
       let currStudent = null;
       for(var i = 0; i <state.length;i++){
           if(state[i].number === action.sid){
@@ -21,14 +19,13 @@ export default function studentReducer(state = initialState.students, action) {
       
       //currStudent.applications.push(action.position);
       currStudent.applications = [...currStudent.applications, action.position];  
-
+  
       return state.map((student,i) => {
         if(student.number === action.sid){
           return Object.assign({},student,currStudent)
         }
         return student;
-      });
-      break;
+      })
 
     case types.ON_SUBMIT:
       console.log("[REDUCER: ON_SUBMIT]");
@@ -62,25 +59,29 @@ export default function studentReducer(state = initialState.students, action) {
 
     //   return state;
 
+        console.log("[REDUCER: ON_UPDATE_STATUS]");
+        //console.log(action);
 
+        let curStudent = null;
+        for(var i = 0; i <state.length;i++){
+            if(state[i].number === action.sid){
+              curStudent = Object.assign({},state[i]);
+              break;
+            }
+        }
 
+        //console.log(curStudent);
+        
+        let updatedApps = null;
+        updatedApps = {...curStudent,applications:action.newApplications}
+        //console.log(updatedApps);
 
-      // const newStudentsState = [...state] //clone the state in the store
-      // console.log(newStudentsState);
-      // // const currStudent = newState.findIndex(student=>{
-      // //   return student.number === action.id;
-      // // });
-      // const currStudent = state.filter(student => student.number === action.sid);
-      // console.log(currStudent);
-      // currStudent.applications.push(action.postion);
-      
-      // return {
-      //   ...state,
-      //   students: state.students.map(
-      //     student => student.number === action.sid ?
-      //        {...student, applications: student.applications.push(action.position)} : student
-      //   )
-      // };
+        return state.map((student,i) => {
+          if(student.number === action.sid){
+            return Object.assign({},student,updatedApps)
+          }
+          return student;
+        })
       
     default:
       return state;

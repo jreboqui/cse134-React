@@ -25,6 +25,14 @@ export function onApply(sid,position) {
   }
 }
 
+export function onUpdateStatus(sid,newApplications) {
+  return {
+    type: types.ON_UPDATE_STATUS,
+    sid,
+    newApplications,
+  }
+}
+
 export function onSubmit(sid, newInfo) {
   return {
     type: types.ON_SUBMIT,

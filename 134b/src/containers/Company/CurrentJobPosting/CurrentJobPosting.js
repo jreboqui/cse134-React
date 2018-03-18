@@ -93,6 +93,10 @@ export class CurrentJobPosting extends Component {
         this.props.history.push("/student/" + localAPI.all().userId);
     }
 
+    onClickHome = () => {
+        this.props.history.push("/company/" + this.props.match.params.companyId);
+    }
+
     render() {
         //console.log(this.state.currJobPosting);
         let userType = localAPI.all().userType;
@@ -116,6 +120,8 @@ export class CurrentJobPosting extends Component {
                         ):null}
 
                         { isCompany ?(<span>
+                            <button style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}} 
+                                    className="btn btn-success" type="button" onClick={this.onClickHome}>Home</button>
                         <button style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}} 
                                     className="btn btn-primary" type="button">Edit</button>
                         <button style={{width: "6em", paddingLeft:"15px", paddingRight: "15px", paddingTop:"10px", paddingBottom:"10px"}} 
