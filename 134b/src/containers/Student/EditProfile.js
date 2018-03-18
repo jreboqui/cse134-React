@@ -8,7 +8,7 @@ import {bindActionCreators} from 'redux';
 import * as studentActions from '../../actions/studentActions';
 import * as allActions from '../../actions/allActions';
 
-class EditProfile extends React.Component {
+export class EditProfile extends React.Component {
     constructor(props) {
         super(props);
 
@@ -30,15 +30,15 @@ class EditProfile extends React.Component {
         //     parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10)
         // )
 
-        console.log(this.props);
-        const {allStudents} = this.props;
+        //console.log(this.props);
+        //const {allStudents} = this.props;
         let i;
         let player;
         let userId = parseInt(this.props.location.pathname[this.props.location.pathname.length-1], 10);
         //find userId in allStudents
-        for (i = 0; i < allStudents.length; i++){
-             if (allStudents[i].number == userId){
-                 player = allStudents[i];
+        for (i = 0; i < this.props.allStudents.length; i++){
+             if (this.props.allStudents[i].number == userId){
+                 player = this.props.allStudents[i];
                  break;
              }
          }
@@ -124,7 +124,7 @@ class EditProfile extends React.Component {
                     <input name="gpa" type="text" value={this.state.gpa} onChange={this.handleChange} />
 
                     <label for="internship">Previous Internship:</label>
-                    <textarea name="internship" class="profileintern" value={this.state.intern} onChange={this.handleChange} />
+                    <textarea name="internship" className="profileintern" value={this.state.intern} onChange={this.handleChange} />
                
                     <input type="reset" value="Reset" onClick={this.handleReset} />
                     <button class="button-cancel" type="button" onClick={this.handleCancel}>Cancel</button>

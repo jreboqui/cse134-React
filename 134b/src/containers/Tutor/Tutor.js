@@ -37,8 +37,8 @@ export class Tutor extends React.Component{
         // )
         let i;
         let tuts;
-        console.log("[Tutor.js]");
-        console.log(this.props.allTutors);
+        //console.log("[Tutor.js]");
+        //console.log(this.props.allTutors);
         let tutorId = parseInt(this.props.match.params.tutorId,10);
         for (i = 0; i < this.props.allTutors.length; i++){
             if (this.props.allTutors[i].tutorId == tutorId){

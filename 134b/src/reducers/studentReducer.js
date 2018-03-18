@@ -32,6 +32,7 @@ export default function studentReducer(state = initialState.students, action) {
 
     case types.ON_SUBMIT:
       console.log("[REDUCER: ON_SUBMIT]");
+      console.log(state);
 
       currStudent = null;
       for(var i = 0; i <state.length;i++){

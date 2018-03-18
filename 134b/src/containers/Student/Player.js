@@ -48,7 +48,7 @@ export class Player extends React.Component {
     }
         
     render(){
-        console.log(this.props);
+       // console.log(this.props);
         const {allStudents} = this.props;
         // let localStore = localAPI.all();
         // let userType = localStore.userType;
@@ -65,7 +65,7 @@ export class Player extends React.Component {
                  break;
              }
          }
-        console.log(player);
+       // console.log(player);
         //const player = StudentAPI.get(
            // parseInt(this.props.match.params.number, 10)
         //)
