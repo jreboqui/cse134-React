@@ -57,7 +57,8 @@ export default function studentReducer(state = initialState.students, action) {
       return student;
     });
 
-    //   return state;
+    case types.ON_UPDATE_STATUS:
+    
 
         console.log("[REDUCER: ON_UPDATE_STATUS]");
         //console.log(action);
