@@ -32,3 +32,11 @@ export function onUpdateStatus(sid,newApplications) {
     newApplications,
   }
 }
+
+export function onSubmit(sid, newInfo) {
+  return {
+    type: types.ON_SUBMIT,
+    sid,
+    newInfo
+  }
+}

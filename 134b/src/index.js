@@ -17,6 +17,9 @@ import { loadTutors } from './actions/tutorActions';
 //const store = createStore(rootReducer);
 
 const store = configureStore();
+const unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+)
 store.dispatch(loadStudents());
 store.dispatch(loadCompanies());
 store.dispatch(loadTutors());

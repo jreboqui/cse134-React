@@ -18,3 +18,11 @@ export function loadCompanies() {
       });
     };
 }
+
+export function onPost(companyId, newPosition) {
+  return {
+    type: types.ON_POST,
+    companyId,
+    newPosition
+  }
+}

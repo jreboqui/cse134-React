@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import { browserRouter, Link, Route } from 'react-router-dom';
 import CompanyAPI from '../Company/CompanyAPI';
 import Position from '../../Shared/Position';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as companyActions from '../../actions/companyActions';
+import * as actionType from '../../actions/actionTypes'
 
 class NewPosition extends Component {
     constructor(props) {
@@ -37,17 +41,14 @@ class NewPosition extends Component {
     }
 
     handlePost = (event) => {
-        const company = CompanyAPI.get(
-            parseInt(this.props.match.params.companyId, 10)
-        )
-        console.log(company);
+        let {dispatch} = this.props;
+        const newPosition = new Position(this.props.allCompanies[this.props.match.params.companyId-1].openPositions.length + 1, this.state.title, 
+            this.state.location, this.state.description, this.state.requirements, "Under Review", '');
 
-        const newPosition = new Position(company.openPositions.length + 1, this.state.title, this.state.location,
-                                         this.state.description, this.state.requirements, "Under Review", '');
-        CompanyAPI.addPosition(parseInt(this.props.match.params.companyId),newPosition);
+        this.props.actions.onPost(parseInt(this.props.match.params.companyId), newPosition);
         event.preventDefault();
         this.props.history.push('/company/' + this.props.match.params.companyId);
-        console.log(company);
+        
     }
 
 
@@ -82,4 +83,16 @@ class NewPosition extends Component {
     }
 }
 
-export default NewPosition; 
+function mapStateToProps(state, ownProps) {
+    return {
+      allCompanies: state.companies
+    };
+  }
+  
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(companyActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(NewPosition);

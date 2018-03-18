@@ -32,12 +32,20 @@ export class Tutor extends React.Component{
     }
 
     render(){
-        const tuts = TutorAPI.get(
-            parseInt(this.props.match.params.tutorId, 10)
-        )
-        
+        // const tuts = TutorAPI.get(
+        //     parseInt(this.props.match.params.tutorId, 10)
+        // )
+        let i;
+        let tuts;
         console.log("[Tutor.js]");
         console.log(this.props.allTutors);
+        let tutorId = parseInt(this.props.match.params.tutorId,10);
+        for (i = 0; i < this.props.allTutors.length; i++){
+            if (this.props.allTutors[i].tutorId == tutorId){
+                tuts = this.props.allTutors[i];
+                break;
+            }
+        }
         //const {allTutors} = this.props;
         //console.log(allTutors);
         //console.log(tuts);
